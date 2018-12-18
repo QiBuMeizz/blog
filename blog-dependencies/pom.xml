@@ -37,6 +37,7 @@
         <el-impl.version>2.2</el-impl.version>
         <jstl.version>1.2</jstl.version>
         <jackson.version>2.9.7</jackson.version>
+        <us.codecraft.version>0.7.3</us.codecraft.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -198,6 +199,25 @@
                 <version>${jackson.version}</version>
             </dependency>
             <!--JackSon End-->
+
+            <!-- webmagic Begin -->
+            <dependency>
+                <groupId>us.codecraft</groupId>
+                <artifactId>webmagic-core</artifactId>
+                <version>${us.codecraft.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>us.codecraft</groupId>
+                <artifactId>webmagic-extension</artifactId>
+                <version>${us.codecraft.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- webmagic End -->
 
         </dependencies>
     </dependencyManagement>

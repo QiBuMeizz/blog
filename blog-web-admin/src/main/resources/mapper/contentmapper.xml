@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.blog.web.admin.dao.ContentDao">
+
+    <sql id="contentColumns">
+          a.id,
+          a.type_id AS 'typeId',
+          a.title,
+          a.author_id AS 'authorId',
+          a.pic,
+          a.status,
+          a.content,
+          a.title_desc AS 'titleDesc',
+          a.reads,
+          a.created,
+          a.updated
+    </sql>
+
+    <select id="selectAll" resultType="Content">
+        SELECT
+        <include refid="contentColumns"/>
+        FROM content AS a
+        WHERE a.status = '1'
+    </select>
+
+    <insert id="insert">
+        INSERT INTO content (
+          type_id,
+          title,
+          author_id,
+          pic,
+          status,
+          content,
+          title_desc,
+          created,
+          updated
+        )
+        VALUES
+          (
+            #{typeId},
+            #{title},
+            #{authorId},
+            #{pic},
+            #{status},
+            #{content},
+            #{titleDesc},
+            #{created},
+            #{updated}
+          );
+    </insert>
+
+    <update id="update">
+        UPDATE
+          content
+        SET
+          `id` = #{id},
+          `type_id` = #{typeId},
+          `title` = #{title},
+          `author_id` = #{authorId},
+          `pic` = #{pic},
+          `status` = #{status},
+          `content` = #{content},
+          `title_desc` = #{titleDesc},
+          `reads` = #{reads},
+          `created` = #{created},
+          `updated` = #{updated}
+        WHERE `id` = #{id};
+
+    </update>
+
+</mapper>
