@@ -35,7 +35,6 @@
                 <div class="col-md-9">
                     <div class="content" style="margin-right: 100px;">
 
-
                         <c:set var="list" value="${pageResult.data.list}"/>
                         <c:set var="page" value="${pageResult.data}"/>
 
@@ -43,8 +42,7 @@
                             <input type="hidden" name="current" id="current" value="${page.current}"/>
                             <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                         </form>
-                        <c:forEach items="${list}" var="content">
-                        <!-- POST -->
+                        <c:forEach items="${list}" var="content">                        <!-- POST -->
                         <div class="post">
                             <div class="post-media">
                                 <div class="image-wrap">
@@ -125,7 +123,7 @@
 
     <!-- FOOTER -->
     <jsp:include page="includes/ui/footer.jsp"/>
-</div>
+</script></div>
 </body>
 <script type="text/javascript">
     //这是跳转的逻辑

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.swing.text.html.parser.ContentModel;
 import java.util.List;
@@ -41,5 +43,15 @@ public class MainController  {
         List<Type> typeList = typeService.selectAll();
         model.addAttribute("baseResult", BaseResult.success("",typeList));
         return "main";
+    }
+
+    /**
+     * 分页显示内容
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "content")
+    public String content(){
+        return null;
     }
 }
