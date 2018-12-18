@@ -78,6 +78,14 @@
             <artifactId>persistence-api</artifactId>
         </dependency>
         <!--Persistence End-->
+
+        <!-- Servlet Begin -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+        </dependency>
+        <!-- Servlet End -->
+
     </dependencies>
 
 </project>

@@ -37,6 +37,7 @@
         <el-impl.version>2.2</el-impl.version>
         <jstl.version>1.2</jstl.version>
         <jackson.version>2.9.7</jackson.version>
+        <javax-servlet-jsp.version>2.3.1</javax-servlet-jsp.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -113,6 +114,11 @@
 
             <!-- Servlet Begin -->
             <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>javax.servlet.jsp-api</artifactId>
+                <version>${javax-servlet-jsp.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
@@ -140,6 +146,7 @@
                 <version>${hibernate-validator.version}</version>
             </dependency>
             <!--Validation End-->
+
             <!--Persistence Begin-->
             <dependency>
                 <groupId>javax.persistence</groupId>

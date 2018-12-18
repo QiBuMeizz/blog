@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * dataTables
  * 分页数据传输对象
  * @param <T>
  */

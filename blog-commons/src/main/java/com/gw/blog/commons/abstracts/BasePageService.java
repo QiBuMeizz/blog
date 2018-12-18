@@ -1,11 +1,13 @@
 package com.gw.blog.commons.abstracts;
 
 import com.gw.blog.commons.abstracts.entity.BaseEntity;
+import com.gw.blog.commons.abstracts.entity.BasePageEntity;
+import com.gw.blog.commons.dto.BaseResult;
 
 import java.util.List;
 import java.util.Map;
 
-public interface BasePageService<T extends BaseEntity> {
+public interface BasePageService<T extends BasePageEntity> {
     /**
      * 分页
      * @param map
@@ -18,4 +20,11 @@ public interface BasePageService<T extends BaseEntity> {
      * @return
      */
     Integer count(T entity);
+
+    /**
+     * 自定义标签分页
+     * @param entity
+     * @return
+     */
+    BaseResult pageList(T entity);
 }

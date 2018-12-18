@@ -6,14 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sys" uri="/WEB-INF/views/tag/sys.tld" %>
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://v.bootstrapmb.com/2018/7/fsjud1659/index.html -->
 <html class="" lang="en">
 <!--<![endif]-->
 <head>
     <jsp:include page="includes/ui/head.jsp"/>
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <title>GW-Blog</title>
 </head>
 <body>
 
@@ -33,6 +34,16 @@
                 <!-- CONTENT -->
                 <div class="col-md-9">
                     <div class="content" style="margin-right: 100px;">
+
+
+                        <c:set var="list" value="${pageResult.data.list}"/>
+                        <c:set var="page" value="${pageResult.data}"/>
+
+                        <form action="/main" id="searchForm">
+                            <input type="hidden" name="current" id="current" value="${page.current}"/>
+                            <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
+                        </form>
+                        <c:forEach items="${list}" var="content">
                         <!-- POST -->
                         <div class="post">
                             <div class="post-media">
@@ -57,7 +68,7 @@
                                 <div class="post-comment">
                                     <i class="fa fa-comment"></i>
                                     <%--评论数--%>
-                                    <a href="#">105</a></div>
+                                    <a href="#">${content.reads}</a></div>
                             </div>
                             <div class="post-body">
                                 <div class="post-author">
@@ -68,14 +79,10 @@
                                 </div>
                                 <div class="post-title">
                                     <h2>
-                                        <a href="#">Bootstrap 字体图标</a></h2>
+                                        <a href="#">${content.title}</a></h2>
                                 </div>
                                 <div class="post-entry">
-                                    <p>什么是字体图标
-                                        所谓字体图标，就是使用字体（Font）格式的字形做成了图标。
-                                        Bootstrap 自带的字体图标
-                                        Bootstrap 捆绑了 200 多种字体格式的字形，在 fonts 文件夹内可以找到字体图标，它包含了下列这些文件：
-                                        glyphicons-halflings-regular.eot&nbsp;......
+                                    <p>${content.titleDesc}
                                     </p>
                                 </div>
                                 <div class="post-link">
@@ -95,12 +102,18 @@
                                 </div>
                             </div>
                         </div>
+                        </c:forEach>
                         <!-- END / POST -->
                         <!-- PAGINATION -->
                         <div class="pagination">
-                            <a href="#" class="prev">« 上一页</a>
-                            <a href="#" class="next">下一页 »</a></div>
-                        <!-- END / PAGINATION --></div>
+                            <%--<a href="#" class="prev">« 上一页</a>
+                            <a href="#" class="next">下一页 »</a>--%>
+                            <div class="row">
+                            <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
+                            </div>
+                        </div>
+                        <!-- END / PAGINATION -->
+                    </div>
                 </div>
                 <!-- END / CONTENT -->
 
@@ -112,18 +125,16 @@
 
     <!-- FOOTER -->
     <jsp:include page="includes/ui/footer.jsp"/>
-
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-<script>
-    $(function () {
-        $('#myTable').DataTable( {
-            scrollY: 300,
-            paging: false
-        } );
-    })
-</script>
 </div>
 </body>
+<script type="text/javascript">
+    //这是跳转的逻辑
+    function page(current) {
+        //current跳转到哪一页  pageSize每页的条数
+        $("#current").val(current);
+        //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
+        $("#searchForm").submit();
+    }
+</script>
 
 </html>
