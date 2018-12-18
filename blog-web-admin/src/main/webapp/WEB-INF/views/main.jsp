@@ -32,6 +32,14 @@
                 <!-- CONTENT -->
                 <div class="col-md-9">
                     <div class="content" style="margin-right: 100px;">
+                        <table id="myTable">
+                            <thead>
+                                测试DataTable
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                         <!-- POST -->
                         <div class="post">
                             <div class="post-media">
@@ -205,12 +213,22 @@
 <script type="text/javascript" src="/static/assets/ui/home/scripts.js"></script>
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="/static/assets/ui/js/datatable.js"></script>
 <script>
     $(function () {
-        $('#myTable').DataTable( {
-            scrollY: 300,
-            paging: false
-        } );
+        HandleDatatable.init({
+            "url": "/content",
+            "columns": [{"data": "id"},
+                {"data": "typeId"},
+                {"data": "title"},
+                {"data": "authorId"},
+                {"data": "pic"},
+                {"data": "content"},
+                {"data": "titleDesc"},
+                {"data": "reads"},
+                {"data": "updated"},
+                {"data": "created"}]
+        })
     })
 </script>
 </body>
