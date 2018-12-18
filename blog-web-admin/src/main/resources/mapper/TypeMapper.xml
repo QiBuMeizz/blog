@@ -17,6 +17,7 @@
         SELECT
         <include refid="typeColumns"/>
         FROM type AS a
+        WHERE a.status = '1'
         ORDER BY sort_order ASC
     </select>
 

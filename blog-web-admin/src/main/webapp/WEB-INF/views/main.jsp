@@ -12,6 +12,8 @@
 <!--<![endif]-->
 <head>
     <jsp:include page="includes/ui/head.jsp"/>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 </head>
 <body>
 
@@ -201,6 +203,16 @@
 <script type="text/javascript" src="/static/assets/ui/home/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="/static/assets/ui/home/retina.min.js"></script>
 <script type="text/javascript" src="/static/assets/ui/home/scripts.js"></script>
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script>
+    $(function () {
+        $('#myTable').DataTable( {
+            scrollY: 300,
+            paging: false
+        } );
+    })
+</script>
 </body>
 
 </html>

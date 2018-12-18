@@ -26,13 +26,24 @@
             </div>
             <div class="close-menu"></div>
             <ul class="navlist" style="height: auto;">
-                <c:forEach items="${requestScope.baseResult.data}" var="list">
-                    <li class="current-menu-parent col-md-1">
-                        <a href="#">${list.name}</a>
-                    </li>
+                <c:forEach items="${requestScope.baseResult.data}" var="type">
+                    <c:if test="${type.parentId == 0}">
+                        <li class="current-menu-parent col-md-1">
+                            <a href="#">${type.name}</a>
+                            <c:if test="${type.isParent}">
+                                <ul class="sub-menu">
+                                    <c:forEach items="${requestScope.baseResult.data}" var="child">
+                                        <c:if test="${child.parentId == type.id}">
+                                            <li>
+                                                <a href="#">${child.name}</a>
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                </ul>
+                            </c:if>
+                        </li>
+                    </c:if>
                 </c:forEach>
-
-
             </ul>
             <div class="search-box">
             <span class="icon-search">

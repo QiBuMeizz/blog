@@ -16,14 +16,16 @@ import java.util.List;
  * 前端展示首页
  */
 @Controller
-public class MainController extends BaseController<Type,TypeService> {
+public class MainController  {
 
+    @Autowired
+    private TypeService typeService;
 
 
     @GetMapping(value = {"","main"})
     public String main(Model model){
         //获得分类导航栏
-        List<Type> typeList = service.selectAll();
+        List<Type> typeList = typeService.selectAll();
         model.addAttribute("baseResult", BaseResult.success("",typeList));
         return "main";
     }
