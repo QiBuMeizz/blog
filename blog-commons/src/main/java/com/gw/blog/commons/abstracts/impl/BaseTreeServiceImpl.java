@@ -16,9 +16,7 @@ public abstract class BaseTreeServiceImpl<T extends BaseTreeEntity,D extends Bas
      */
     @Override
     public List<T> selectAll() {
-        List<T> list = dao.selectAll();
-
-        return list;
+        return dao.selectAll();
     }
 
     /**
