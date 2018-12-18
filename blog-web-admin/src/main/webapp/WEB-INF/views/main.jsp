@@ -29,9 +29,18 @@
         <div class="container">
             <div class="row">
                 <%--左边栏--%>
+
                 <!-- CONTENT -->
                 <div class="col-md-9">
                     <div class="content" style="margin-right: 100px;">
+                        <table id="myTable">
+                            <thead>
+                                测试DataTable
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                         <!-- POST -->
                         <div class="post">
                             <div class="post-media">
@@ -84,16 +93,10 @@
                                       <i class="fa fa-share-alt"></i>
                                     </span>
                                     <div class="share">
-                                        <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/index.html#">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                        <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/index.html#">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                        <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/index.html#">
+                                        <a href="#">
                                             <i class="fa fa-weixin"></i>
                                         </a>
-                                        <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/index.html#">
+                                        <a href="#">
                                             <i class="fa fa-qq"></i>
                                         </a>
                                     </div>
@@ -110,109 +113,35 @@
                 <!-- END / CONTENT -->
 
                 <%--右边栏--%>
-                <!-- SIDEBAR -->
-                <div class="col-md-3">
-                    <div class="sidebar sidebar-right">
-                        <!-- WIDGET ABOUT -->
-                        <div class="widget widget_about">
-                            <h4>关于我们</h4>
-                            <div class="author-thumb">
-                                <img src="/static/assets/ui/home/LOGO5.png" alt=""></div>
-                            <h3 class="author-name text-uppercase">
-                                <a href="#">GW 工作组</a></h3>
-                            <div class="desc">
-                                <p>
-                                    GW工作组是一个由五人组成的团队,</br>
-                                    成立于2018年11月15日,</br>
-                                    我们是一支高效,团结的优秀团队.
-                                </p>
-                            </div>
-                            <div class="about-social">
-                                加入我们:
-                                <a href="#">
-                                    <i class="fa fa-weixin"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-qq"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- END / WIDGET ABOUT -->
-                        <!-- WIDGET LATEST POST -->
-                        <div class="widget widget_latest_post">
-                            <h4>最新文章</h4>
-                            <ul>
-                                <li>
-                                    <div class="image-wrap">
-                                        <img src="/static/assets/ui/home/1(3).jpg" alt=""></div>
-                                    <div class="content-text">
-                                        <a href="#">MVC 设计思想</a></br>
-                                        <span class="date">Jan 10, 2014</span></div>
-                                </li>
-                                <li>
-                                    <div class="image-wrap">
-                                        <img src="/static/assets/ui/home/2(4).jpg" alt=""></div>
-                                    <div class="content-text">
-                                        <a href="#">HashSet 和 HashMap 区别</a>
-                                        <span class="date">Jan 10, 2014</span></div>
-                                </li>
-                                <li>
-                                    <div class="image-wrap">
-                                        <img src="/static/assets/ui/home/3(3).jpg" alt=""></div>
-                                    <div class="content-text">
-                                        <a href="#">线程池的几种方式与使用场景</a>
-                                        <span class="date">Jan 10, 2014</span></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- END / WIDGET LATEST POST -->
-
-                        <!-- WIDGET TAG CLOUD -->
-                        <div class="widget widget_tag_cloud">
-                            <h4>标签索引</h4>
-                            <div class="tagcloud">
-                                <a href="#">Java</a>
-                                <a href="#">C++</a>
-                                <a href="#">python</a>
-                                <a href="#">微服务</a>
-                                <a href="#">数据库</a>
-                                <a href="#">Javascript</a>
-                                <a href="#">maven</a>
-                                <a href="#">bootstrap</a>
-                                <a href="#">虚拟机</a>
-                            </div>
-                        </div>
-                        <!-- END / WIDGET TAG CLOUD --></div>
-                </div>
-                <!-- END / SIDEBAR --></div>
+                <jsp:include page="includes/ui/right.jsp"/>
+            </div>
         </div>
     </section>
-    <!-- BLOG MAIN CONTENT -->
+
     <!-- FOOTER -->
-    <footer id="footer" class="footer">
-        <div class="copyright text-center">
-            <p>Copyrights © 2018 All Rights Reserved by GW工作组</p>
-        </div>
-    </footer>
-    <!-- END / FOOTER --></div>
-<!-- END / PAGE WRAP -->
-<!-- LOAD JQUERY -->
-<script type="text/javascript" src="/static/assets/ui/home/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/jquery.owl.carousel.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/jquery.tweet.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/retina.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/scripts.js"></script>
+    <jsp:include page="includes/ui/footer.jsp"/>
+
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="/static/assets/ui/js/datatable.js"></script>
 <script>
     $(function () {
-        $('#myTable').DataTable( {
-            scrollY: 300,
-            paging: false
-        } );
+        HandleDatatable.init({
+            "url": "/content",
+            "columns": [{"data": "id"},
+                {"data": "typeId"},
+                {"data": "title"},
+                {"data": "authorId"},
+                {"data": "pic"},
+                {"data": "content"},
+                {"data": "titleDesc"},
+                {"data": "reads"},
+                {"data": "updated"},
+                {"data": "created"}]
+        })
     })
 </script>
+</div>
 </body>
 
 </html>
