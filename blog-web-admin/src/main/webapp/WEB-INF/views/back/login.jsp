@@ -25,6 +25,9 @@
     <link href="/static/assets/metronic/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="/static/assets/metronic/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="/static/assets/metronic/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
     <link href="/static/assets/metronic/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
@@ -40,42 +43,41 @@
 <body class=" login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="#">
-        <img src="/static/assets/metronic/assets/pages/img/logo-big.png" alt="" /> </a>
+    <a href="/">
+        <img src="/static/assets/ui/home/qianfeng_logo.png" alt="" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form id="inputForm" class="login-form" action="/back/login" method="post">
+    <form class="login-form" action="/back/login" method="post">
         <h3 class="form-title" style="text-align: center">登录</h3>
-        <div class="alert alert-danger ${message == null ? 'display-hide': ''}">
-            <button class="close" data-close="alert"></button>
-            <span> ${message} </span>
-        </div>
-        <div class="form-group">
+        <br/>
+        <div  class="form-group">
             <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
             <label class="control-label visible-ie8 visible-ie9">账号</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
                 <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="账号" name="username" /> </div>
         </div>
+        <br/>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">密码</label>
             <div class="input-icon">
                 <i class="fa fa-lock"></i>
                 <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" /> </div>
         </div>
+        <br/>
         <div class="form-actions">
             <label class="rememberme mt-checkbox mt-checkbox-outline">
                 <input type="checkbox" name="remember" value="1" /> 记住密码
                 <span></span>
             </label>
-            <button type="submit" class="btn green pull-right"> 登录 </button>
+            <button type="submit" class="btn green pull-right" id="showtoast" > 登录 </button>
         </div>
     </form>
     <!-- END LOGIN FORM -->
-    <div class="copyright"> 2018 &copy; Blog - Admin. </div>
+    <div class="copyright"> 2018 &copy; Blog - GW Team. </div>
 </div>
 
 <!-- END LOGIN -->
@@ -95,10 +97,19 @@
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="/static/assets/metronic/assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/apps/model/toastr.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="/static/assets/metronic/assets/pages/scripts/login-4.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
-
+<script>
+    //带标题的消息框
+    if(${message != null }){
+        toastr.error("${message}")
+    }
+</script>
 </body>
-
+    
 </html>

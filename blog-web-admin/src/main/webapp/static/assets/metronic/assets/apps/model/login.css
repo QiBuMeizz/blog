@@ -129,7 +129,10 @@
     margin: 0 auto;
     padding: 10px;
     color: #eee;
-    font-size: 13px
+    font-size: 13px;
+    border-top:3px solid #ebebeb;
+    margin:0 0 20px;
+    padding:0 0 23px;
 }
 
 @media (max-width: 480px) {

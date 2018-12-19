@@ -13,7 +13,7 @@ public class Page implements Serializable {
     /**
      * 每页显示数
      */
-    private int size = 3;
+    private int size = 10;
     /**
      * 偏移量
      */

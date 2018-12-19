@@ -46,9 +46,11 @@
                                 <label >更新时间</label>
                             </div>
                         </div>
-                        <div style="float:right;">
-                            <button type="submit" class="btn blue">保存</button>
-                            <a type="button" href="/back/main" class="btn default">取消</a>
+
+                        <div style="padding-left: 20px">
+                            <button type="submit" class="btn blue btn-outline">提交</button>
+                            <button type="button" class="btn default btn-outline">取消</button>
+
                         </div>
                     </form>
                 </div>
