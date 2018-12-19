@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "back")
 public class UserController extends BaseController<User, UserService> {
 
-    @Autowired
-    private UserService userService;
 
     @GetMapping(value = "info")
     public String info(User user){
-        userService.getUser(user);
+        service.getUser(user);
         return "back/info";
     }
 
