@@ -37,7 +37,7 @@ public class TestProcessor {
 
     /**
      *
-     * @param url 入口url
+     * @param url 初始入口url
      * @param processor 自定义的规则类
      * @param pipeline 自定义处理结果类
      */
