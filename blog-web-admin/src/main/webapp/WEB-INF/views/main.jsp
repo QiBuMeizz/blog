@@ -136,11 +136,9 @@
         $("#searchForm").submit();
     }
 
-
-
     $(function () {
+        //设置开关，判断是否要默认选中“最新文章”
         var flag=false;
-
         var local = location.href;
         console.log(local);
         $("#menu a").each(function () {
