@@ -123,7 +123,7 @@
 
     <!-- FOOTER -->
     <jsp:include page="includes/ui/footer.jsp"/>
-</script></div>
+</div>
 </body>
 <script type="text/javascript">
     //这是跳转的逻辑
