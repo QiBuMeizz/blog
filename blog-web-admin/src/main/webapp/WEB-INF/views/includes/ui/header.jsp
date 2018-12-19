@@ -34,17 +34,17 @@
                         <%--当前高亮的导航 current-menu-parent--%>
                         <li class="col-md-1">
                             <a href="/main?typeId=${type.id}">${type.name}</a>
-                            <c:if test="${type.isParent}">
-                                <ul class="sub-menu">
-                                    <c:forEach items="${requestScope.baseResult.data}" var="child">
-                                        <c:if test="${child.parentId == type.id}">
-                                            <li>
-                                                <a href="/main?typeId=${child.id}">${child.name}</a>
-                                            </li>
-                                        </c:if>
-                                    </c:forEach>
-                                </ul>
-                            </c:if>
+                                <c:if test="${type.isParent}">
+                                    <ul class="sub-menu">
+                                        <c:forEach items="${requestScope.baseResult.data}" var="child">
+                                            <c:if test="${child.parentId == type.id}">
+                                                <li>
+                                                    <a class="child" href="/main?typeId=${child.id}">${child.name}</a>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                    </ul>
+                                </c:if>
                         </li>
                     </c:if>
                 </c:forEach>
