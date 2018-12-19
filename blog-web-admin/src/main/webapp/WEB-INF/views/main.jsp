@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sys" uri="/WEB-INF/views/tag/sys.tld" %>
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://v.bootstrapmb.com/2018/7/fsjud1659/index.html -->
@@ -50,41 +51,41 @@
                                     <img src="/static/assets/ui/home/25.jpg" alt=""></div>
                                 <div class="post-cat">
                                     <%--详情跳转--%>
-                                    <a href="#">详情</a></div>
+                                    <a href="/content?id=${content.id}">详情</a></div>
                             </div>
                             <div class="post-meta">
                                 <div class="post-format">
-                                    <a href="#">
+                                    <a href="/content?id=${content.id}">
                                         <i class="fa fa-image"></i>
                                     </a>
                                 </div>
                                 <%--日期时间--%>
                                 <div class="post-date">
-                                    <span class="year">2015</span>
-                                    <span class="month">Mar</span>
-                                    <span class="day">14</span></div>
+                                    <span class="year"><fmt:formatDate value="${content.updated}" pattern="yyyy"/> </span>
+                                    <span class="month"><fmt:formatDate value="${content.updated}" pattern="MM"/></span>
+                                    <span class="day"><fmt:formatDate value="${content.updated}" pattern="dd"/></span></div>
                                 <div class="post-comment">
-                                    <i class="fa fa-comment"></i>
+                                    <i class="fa fa-book"></i>
                                     <%--评论数--%>
                                     <a href="#">${content.reads}</a></div>
                             </div>
                             <div class="post-body">
                                 <div class="post-author">
                                     <div class="image-thumb">
-                                        <img src="/static/assets/ui/home/LOGO2.png" alt=""></div>
+                                        <img src="${content.user.pic}" alt=""></div>
                                     <div class="name-author">
-                                        <cite>GW工作组</cite></div>
+                                        <cite>${content.user.username}</cite></div>
                                 </div>
                                 <div class="post-title">
                                     <h2>
-                                        <a href="#">${content.title}</a></h2>
+                                        <a href="/content?id=${content.id}">${content.title}</a></h2>
                                 </div>
                                 <div class="post-entry">
                                     <p>${content.titleDesc}
                                     </p>
                                 </div>
                                 <div class="post-link">
-                                    <a href="#" class="pi-btn">阅读更多</a></div>
+                                    <a href="/content?id=${content.id}" class="pi-btn">阅读更多</a></div>
                                 <div class="post-share">
                                     <span class="share-toggle pi-btn">
                                       <i class="fa fa-share-alt"></i>
@@ -123,7 +124,8 @@
 
     <!-- FOOTER -->
     <jsp:include page="includes/ui/footer.jsp"/>
-</script></div>
+</div>
+
 </body>
 <script type="text/javascript">
     //这是跳转的逻辑

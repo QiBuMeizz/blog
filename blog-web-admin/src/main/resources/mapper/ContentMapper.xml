@@ -13,13 +13,22 @@
           a.title_desc AS 'titleDesc',
           a.reads,
           a.created,
-          a.updated
+          a.updated,
+          b.username AS 'user.username',
+          b.pic AS 'user.pic',
+          b.phone AS 'user.phone',
+          b.email AS 'user.email'
+    </sql>
+
+    <sql id="LeftJoinUser">
+        JOIN user AS b ON a.author_id = b.id
     </sql>
 
     <select id="selectAll" resultType="Content">
         SELECT
         <include refid="ContentColumns"/>
         FROM content AS a
+        <include refid="LeftJoinUser"/>
         WHERE a.status = '1'
     </select>
 
@@ -27,6 +36,7 @@
         SELECT
           <include refid="ContentColumns"/>
         FROM content AS a
+          <include refid="LeftJoinUser"/>
         WHERE a.status = '1'
         <where>
             <if test="title != null and title != '' ">
@@ -48,6 +58,15 @@
                 and a.title like concat('%',#{title},'%')
             </if>
         </where>
+    </select>
+
+    <select id="selectById" resultType="com.gw.blog.domain.Content">
+        SELECT
+        <include refid="ContentColumns"/>
+        FROM content AS a
+        <include refid="LeftJoinUser"/>
+        WHERE a.status = '1'
+        AND a.type_id = #{id};
     </select>
 
     <insert id="insert">
