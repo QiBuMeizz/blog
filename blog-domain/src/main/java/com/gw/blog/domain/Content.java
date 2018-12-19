@@ -5,6 +5,8 @@ import com.gw.blog.commons.abstracts.entity.BasePageEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.Transient;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Content extends BasePageEntity {
@@ -36,4 +38,12 @@ public class Content extends BasePageEntity {
      * 阅读量
      */
     private Long reads;
+
+    //----------------------------------------------------------------
+
+    /**
+     * 作者名称
+     */
+    @Transient
+    private User user;
 }

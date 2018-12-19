@@ -22,21 +22,22 @@
                 <div class="portlet-body form">
                     <form role="form">
                         <div class="form-body">
+                            <input type="text" id=" " hidden>
                             <div class="form-group form-md-line-input">
-                                <input type="text" class="form-control" id="form_control_1" placeholder="请输入用户名">
-                                <label for="form_control_1">用户名</label>
+                                <input type="text" class="form-control" id="username" placeholder="请输入用户名" value="${user.username}">
+                                <label for="username">用户名</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" class="form-control" id="form_control_1" placeholder="请输入密码，如不修改密码可不填">
-                                <label for="form_control_1">密码</label>
+                                <input type="password" class="form-control" id="password" placeholder="请输入密码，如不修改密码可不填">
+                                <label for="password">密码</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" class="form-control" id="form_control_1" placeholder="请输入邮箱">
-                                <label for="form_control_1">邮箱</label>
+                                <input type="text" class="form-control" id="email" placeholder="请输入邮箱" value="${user.email}">
+                                <label for="email">邮箱</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" class="form-control" id="form_control_1" placeholder="请输入手机号">
-                                <label for="form_control_1">手机号</label>
+                                <input type="text" class="form-control" id="phone" placeholder="请输入手机号" value="${user.phone}">
+                                <label for="phone">手机号</label>
                             </div>
 
                         </div>

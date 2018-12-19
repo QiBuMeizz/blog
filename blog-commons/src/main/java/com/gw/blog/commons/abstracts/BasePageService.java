@@ -7,7 +7,7 @@ import com.gw.blog.commons.dto.BaseResult;
 import java.util.List;
 import java.util.Map;
 
-public interface BasePageService<T extends BasePageEntity> {
+public interface BasePageService<T extends BasePageEntity> extends BaseService<T> {
     /**
      * 分页
      * @param map

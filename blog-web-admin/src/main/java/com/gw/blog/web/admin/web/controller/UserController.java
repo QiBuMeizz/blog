@@ -1,7 +1,11 @@
 package com.gw.blog.web.admin.web.controller;
 
+import com.gw.blog.commons.abstracts.BaseController;
+import com.gw.blog.domain.User;
+import com.gw.blog.web.admin.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -9,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping(value = "back")
-public class UserController {
+public class UserController extends BaseController<User, UserService> {
 
     @GetMapping(value = "main")
     public String main(){
@@ -17,8 +21,15 @@ public class UserController {
     }
 
     @GetMapping(value = "info")
-    public String info(){
+    public String info(User user){
+        service.getUser(user);
         return "back/info";
+    }
+
+
+    @PostMapping(value = "save")
+    public String save(){
+        return "redirect:back/info";
     }
 
     /**
@@ -29,4 +40,8 @@ public class UserController {
     public String login(){
         return "back/login";
     }
+
+
 }
+
+
