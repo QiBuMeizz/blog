@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gw.blog.web.admin.dao.ContentDao">
 
-    <sql id="contentColumns">
+    <sql id="ContentColumns">
           a.id,
           a.type_id AS 'typeId',
           a.title,
@@ -18,9 +18,34 @@
 
     <select id="selectAll" resultType="Content">
         SELECT
-        <include refid="contentColumns"/>
+        <include refid="ContentColumns"/>
         FROM content AS a
         WHERE a.status = '1'
+    </select>
+
+    <select id="pageList" resultType="Content">
+        SELECT
+          <include refid="ContentColumns"/>
+        FROM content AS a
+        <where>
+            <if test="title != null and title != '' ">
+                and a.title like concat('%',#{title},'%')
+            </if>
+        </where>
+        <if test="page!=null">
+            LIMIT #{page.start},#{page.size};
+        </if>
+    </select>
+
+    <select id="count" resultType="Integer">
+        SELECT
+          COUNT(*)
+        FROM content AS a
+        <where>
+            <if test="title != null and title != '' ">
+                and a.title like concat('%',#{title},'%')
+            </if>
+        </where>
     </select>
 
     <insert id="insert">
