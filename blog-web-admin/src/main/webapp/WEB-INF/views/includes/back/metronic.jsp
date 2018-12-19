@@ -9,7 +9,6 @@
 <link href="/static/assets/metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN THEME GLOBAL STYLES -->
-<link href="/static/assets/metronic/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
 <link href="/static/assets/metronic/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME GLOBAL STYLES -->
 <!-- BEGIN THEME LAYOUT STYLES -->
@@ -17,4 +16,5 @@
 <%--<link href="/static/assets/metronic/assets/layouts/layout4/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />--%>
 <link href="/static/assets/metronic/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME LAYOUT STYLES -->
+<link href="/static/assets/metronic/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
 <%--<link rel="shortcut icon" href="favicon.ico" />--%>

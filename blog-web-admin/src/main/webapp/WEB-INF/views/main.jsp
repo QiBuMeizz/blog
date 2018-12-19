@@ -49,7 +49,7 @@
                             <div class="post-media">
                                 <div class="image-wrap">
                                     <%--图片--%>
-                                    <img src="/static/assets/ui/home/25.jpg" alt=""></div>
+                                    <img src="${content.pic}" alt=""></div>
                                 <div class="post-cat">
                                     <%--详情跳转--%>
                                     <a href="/content?id=${content.id}">详情</a></div>
@@ -108,8 +108,8 @@
                         <div class="pagination">
                             <%--<a href="#" class="prev">« 上一页</a>
                             <a href="#" class="next">下一页 »</a>--%>
-                            <div class="row">
-                            <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
+                            <div class="row text-center">
+                                <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
                             </div>
                         </div>
                         <!-- END / PAGINATION -->

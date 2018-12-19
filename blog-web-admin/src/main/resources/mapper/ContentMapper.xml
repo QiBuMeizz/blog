@@ -39,10 +39,10 @@
           <include refid="LeftJoinUser"/>
         WHERE a.status = '1'
         <if test="title != null and title != '' ">
-            and a.title like concat('%',#{title},'%')
+            AND a.title LIKE concat('%',#{title},'%')
         </if>
         <if test="typeId != null and typeId != '' ">
-            and a.type_id = #{typeId}
+            AND a.type_id = #{typeId}
         </if>
         <if test="page!=null">
             LIMIT #{page.start},#{page.size};
@@ -68,7 +68,7 @@
         FROM content AS a
         <include refid="LeftJoinUser"/>
         WHERE a.status = '1'
-        AND a.type_id = #{id};
+        AND a.id = #{id};
     </select>
 
     <insert id="insert">
