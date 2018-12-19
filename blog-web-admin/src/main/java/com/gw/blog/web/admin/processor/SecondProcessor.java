@@ -1,8 +1,6 @@
 package com.gw.blog.web.admin.processor;
 
 import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.processor.PageProcessor;
 
 /**
  * @description

@@ -14,6 +14,15 @@ import java.util.Date;
 public class MyPipeline implements Pipeline {
     private Logger logger = LoggerFactory.getLogger(FirstProcessor.class);
     public static ContentDao contentDao;
+    private Long entityTypeId;
+
+    public Long getEntityTypeId() {
+        return entityTypeId;
+    }
+
+    public void setEntityTypeId(Long entityTypeId) {
+        this.entityTypeId = entityTypeId;
+    }
 
     @Override
     public void process(ResultItems resultItems, Task task) {
@@ -32,7 +41,7 @@ public class MyPipeline implements Pipeline {
 //        System.out.println("picture:"+picture);
         Content entity = new Content();
         Date date = new Date();
-        entity.setTypeId(3L);
+        entity.setTypeId(entityTypeId);
         entity.setAuthorId(1L);
         entity.setStatus(1);
         entity.setTitle(title);
