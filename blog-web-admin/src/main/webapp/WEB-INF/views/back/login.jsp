@@ -47,7 +47,7 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form id="inputForm" class="login-form" action="/back/login" method="post">
+    <form class="login-form" action="/back/login" method="post">
         <h3 class="form-title" style="text-align: center">登录</h3>
         <div class="alert alert-danger ${message == null ? 'display-hide': ''}">
             <button class="close" data-close="alert"></button>
@@ -71,7 +71,7 @@
                 <input type="checkbox" name="remember" value="1" /> 记住密码
                 <span></span>
             </label>
-            <button type="submit" class="btn green pull-right"> 登录 </button>
+            <input type="submit" class="btn green pull-right"> 登录 </input>
         </div>
     </form>
     <!-- END LOGIN FORM -->
