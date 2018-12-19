@@ -20,4 +20,13 @@ public class UserController {
     public String info(){
         return "back/info";
     }
+
+    /**
+     * 跳转到登录页面
+     * @return
+     */
+    @GetMapping(value = "login")
+    public String login(){
+        return "back/login";
+    }
 }
