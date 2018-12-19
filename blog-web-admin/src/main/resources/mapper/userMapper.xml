@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.blog.web.admin.dao.UserDao">
+
+    <select id="selectUser" resultType="User">
+        SELECT
+            id,
+            username,
+            password,
+            pic,
+            email,
+            phone,
+            role,
+            created,
+            updated
+        FROM
+            user
+        WHERE
+            status = 1
+    </select>
+
+    <update id="updateUser">
+        UPDATE
+            user
+        SET
+            <where>
+                <if test="username != null and username != ''">
+                    username=#{username},
+                </if>
+                <if test="password != null and password != ''">
+                    password=#{password},
+                </if>
+                <if test="pic != null and pic != ''">
+                    pic=#{pic},
+                </if>
+                <if test="email != null and email != ''">
+                    email=#{email},
+                </if>
+                <if test="updated != null and updated != ''">
+                    updated=#{updated},
+                </if>
+            </where>
+        WHERE
+            id=#{id}
+    </update>
+</mapper>
