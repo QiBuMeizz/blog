@@ -21,7 +21,8 @@
 <!-- PAGE WRAP -->
 <div id="page-wrap">
     <!-- HEADER -->
-    <jsp:include page="includes/ui/header.jsp"/>
+    <%--<jsp:include page="includes/ui/header.jsp"/>--%>
+    <%@include file="includes/ui/header.jsp"%>
     <!-- END / HEADER -->
 
     <%--博客内容--%>
@@ -122,8 +123,7 @@
     </section>
 
     <!-- FOOTER -->
-    <jsp:include page="includes/ui/footer.jsp"/>
-</script></div>
+    <jsp:include page="includes/ui/footer.jsp"/></div>
 </body>
 <script type="text/javascript">
     //这是跳转的逻辑
@@ -133,6 +133,15 @@
         //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
         $("#searchForm").submit();
     }
+
+    var local = location.href;
+    console.log(local);
+    $("#menu a").each(function () {
+       if($(this).prop("href")===local ){
+           $(this).parent().addClass("current-menu-parent");
+
+       }
+    });
 </script>
 
 </html>

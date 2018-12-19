@@ -28,11 +28,12 @@
           <include refid="ContentColumns"/>
         FROM content AS a
         WHERE a.status = '1'
-        <where>
-            <if test="title != null and title != '' ">
-                and a.title like concat('%',#{title},'%')
-            </if>
-        </where>
+        <if test="title != null and title != '' ">
+            and a.title like concat('%',#{title},'%')
+        </if>
+        <if test="typeId != null and typeId != '' ">
+            and a.type_id = #{typeId}
+        </if>
         <if test="page!=null">
             LIMIT #{page.start},#{page.size};
         </if>
@@ -43,11 +44,12 @@
           COUNT(*)
         FROM content AS a
         WHERE a.status = '1'
-        <where>
-            <if test="title != null and title != '' ">
-                and a.title like concat('%',#{title},'%')
-            </if>
-        </where>
+        <if test="title != null and title != '' ">
+            and a.title like concat('%',#{title},'%')
+        </if>
+        <if test="typeId != null and typeId != '' ">
+            and a.type_id = #{typeId}
+        </if>
     </select>
 
     <insert id="insert">
@@ -94,5 +96,18 @@
         WHERE `id` = #{id};
 
     </update>
-
+    <select id="getByTypeId" resultType="Content">
+        SELECT
+        <include refid="ContentColumns"/>
+        FROM
+        content AS a
+        <where>
+            <if test="typeId!=null">
+                AND a.type_id=#{typeId}
+            </if>
+        </where>
+        <if test="page!=null">
+            LIMIT #{page.start},#{page.size};
+        </if>
+    </select>
 </mapper>
