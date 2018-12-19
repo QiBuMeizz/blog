@@ -12,7 +12,10 @@ public abstract class BaseProcessor implements PageProcessor {
     protected void putField(Page page, String urlXpath){
         page.addTargetRequests(page.getHtml().xpath(urlXpath).all());
         page.putField("title", page.getHtml().xpath("//html/body/div[2]/section[1]/div/div/div/h2/text()"));
+        //获取标签中所有的内容(包括标签)
         page.putField("content", page.getHtml().xpath("//html/body/div[2]/section[2]/div/div/div").toString());
+        //获取该标签中所有标签的内容
+        //page.putField("content", page.getHtml().xpath("//html/body/div[2]/section[2]/div/div/div/tidyText()").toString());
         page.putField("picture", page.getHtml().xpath("//html/body/div[2]/section[2]/div/div/div/p/img/@src").toString());
         if (page.getResultItems().get("title") == null) {
             //跳过没有数据的页面

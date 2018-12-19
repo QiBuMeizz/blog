@@ -24,14 +24,18 @@ public class TestProcessor {
      */
     @Test
     public void testFirstProcessor(){
-        getData("http://www.funtl.com/2018/06/03/contents/Java-单体应用/",new FirstProcessor(),new MyPipeline());
+        MyPipeline myPipeline = new MyPipeline();
+        myPipeline.setEntityTypeId(3L);
+        getData("http://www.funtl.com/2018/06/03/contents/Java-单体应用/",new FirstProcessor(),myPipeline);
     }
     /**
      * 爬面试宝典
      */
     @Test
     public void testSecondProcessor(){
-        getData("http://www.funtl.com/2018/04/07/contents/Java-面试宝典/", new SecondProcessor(),new MyPipeline());
+        MyPipeline myPipeline = new MyPipeline();
+        myPipeline.setEntityTypeId(12L);
+        getData("http://www.funtl.com/2018/04/07/contents/Java-面试宝典/", new SecondProcessor(),myPipeline);
     }
 
 
