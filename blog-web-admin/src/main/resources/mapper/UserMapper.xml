@@ -14,36 +14,24 @@
             a.updated
     </sql>
 
-    <select id="selectUser" resultType="User">
-        SELECT
-          <include refid="userColumns"/>
-        FROM
-            user AS a
-        WHERE
-            status = 1
-    </select>
 
-    <update id="updateUser">
+    <update id="update">
         UPDATE
             user
         SET
-            <where>
                 <if test="username != null and username != ''">
                     username=#{username},
                 </if>
                 <if test="password != null and password != ''">
                     password=#{password},
                 </if>
-                <if test="pic != null and pic != ''">
-                    pic=#{pic},
+                <if test="phone != null and phone != ''">
+                    phone=#{phone},
                 </if>
                 <if test="email != null and email != ''">
                     email=#{email},
                 </if>
-                <if test="updated != null and updated != ''">
-                    updated=#{updated},
-                </if>
-            </where>
+                    updated=#{updated}
         WHERE
             id=#{id}
     </update>
@@ -55,5 +43,14 @@
           user AS a
         WHERE
           a.username = #{username}
+    </select>
+
+    <select id="selectById" resultType="User">
+        SELECT
+        <include refid="userColumns"/>
+        FROM
+        user AS a
+        WHERE
+        a.id = #{id}
     </select>
 </mapper>

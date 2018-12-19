@@ -4,8 +4,6 @@ package com.gw.blog.web.admin.service;
 import com.gw.blog.commons.abstracts.BaseService;
 import com.gw.blog.domain.User;
 
-import java.util.List;
-
 /**
  * 用户业务处理层接口
  *
@@ -16,8 +14,8 @@ import java.util.List;
  */
 public interface UserService extends BaseService<User> {
 
-    List<User> getUser(User user);
-    void saveUser();
+    //保存个人信息
+    String saveUser(User user);
 
     /**
      * 登录

@@ -4,12 +4,11 @@ import com.gw.blog.commons.abstracts.impl.BaseServiceImpl;
 import com.gw.blog.domain.User;
 import com.gw.blog.web.admin.dao.UserDao;
 import com.gw.blog.web.admin.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 /**
  * 用户业务处理层接口的实现
@@ -22,21 +21,20 @@ import java.util.List;
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, UserDao> implements UserService {
 
-    @Autowired
-    private UserDao userDao;
-
-    //查询用户
+    //保存个人信息
     @Override
-    public List<User> getUser(User user) {
-        List<User> users = new ArrayList<>();
-        users = userDao.selectUser(user.getId());
-        return users;
-    }
-
-    //编辑用户
-    @Override
-    public void saveUser() {
-
+    public String saveUser(User user) {
+        //初始化密码
+        String password = null;
+        //添加更新时间
+        user.setUpdated(new Date());
+        //密码不为空，加密
+        if(StringUtils.isNotBlank(user.getPassword())){
+            password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+        }
+        user.setPassword(password);
+        dao.update(user);
+        return "保存成功";
     }
 
 	/**
