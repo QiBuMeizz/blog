@@ -27,6 +27,7 @@
         SELECT
           <include refid="ContentColumns"/>
         FROM content AS a
+        WHERE a.status = '1'
         <where>
             <if test="title != null and title != '' ">
                 and a.title like concat('%',#{title},'%')
@@ -41,6 +42,7 @@
         SELECT
           COUNT(*)
         FROM content AS a
+        WHERE a.status = '1'
         <where>
             <if test="title != null and title != '' ">
                 and a.title like concat('%',#{title},'%')

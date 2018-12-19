@@ -52,6 +52,6 @@ public class MainController  {
     @ResponseBody
     @PostMapping(value = "content")
     public String content(){
-        return null;
+        return "content";
     }
 }
