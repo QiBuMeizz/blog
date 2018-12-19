@@ -126,13 +126,11 @@
 
 .login .copyright {
     text-align: center;
-    margin: 0 auto;
-    padding: 10px;
     color: #eee;
     font-size: 13px;
     border-top:3px solid #ebebeb;
-    margin:0 0 20px;
-    padding:0 0 23px;
+    margin:0;
+    padding:10px 0;
 }
 
 @media (max-width: 480px) {
