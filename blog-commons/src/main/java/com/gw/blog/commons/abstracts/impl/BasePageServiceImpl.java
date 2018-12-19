@@ -55,8 +55,7 @@ public abstract class BasePageServiceImpl<T extends BasePageEntity,D extends Bas
         List<T> pageList = dao.pageList(entity);
         return getResult(entity,count,pageList);
     }
-
-    private BaseResult getResult(T entity, Integer count, List<T> pageList){
+    protected BaseResult getResult(T entity, Integer count, List<T> pageList){
         //设置PageResult
         PageResult<T> pageResult = new PageResult<>();
 

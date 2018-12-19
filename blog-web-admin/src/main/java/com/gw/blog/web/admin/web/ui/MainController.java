@@ -1,7 +1,5 @@
 package com.gw.blog.web.admin.web.ui;
 
-import com.gw.blog.commons.abstracts.BaseController;
-import com.gw.blog.commons.abstracts.BaseService;
 import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.commons.dto.Page;
 import com.gw.blog.domain.Content;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.swing.text.html.parser.ContentModel;
 import java.util.List;
 
 /**
@@ -34,14 +31,14 @@ public class MainController  {
     @Autowired
     private ContentService contentService;
 
-
     @GetMapping(value = {"","main"})
     public String main(Content content, Page page, Model model){
         //分页列表
         content.setPage(page);
+        //显示主页面
+
         BaseResult baseResult = contentService.pageList(content);
         model.addAttribute("pageResult",baseResult);
-
 
         //获得分类导航栏
         List<Type> typeList = typeService.selectAll();
@@ -49,10 +46,12 @@ public class MainController  {
         return "main";
     }
 
+    
     /**
-     * 显示内容
-     *
-     */
+     * 分页显示内容
+     * @return     */
+ 
+
     @GetMapping(value = "content")
     public String content(@RequestParam Long id, Model model){
         Content content = contentService.selectById(id);
