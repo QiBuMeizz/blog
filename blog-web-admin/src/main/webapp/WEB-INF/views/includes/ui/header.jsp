@@ -28,6 +28,7 @@
             <ul class="navlist" style="height: auto;">
                 <c:forEach items="${requestScope.baseResult.data}" var="type">
                     <c:if test="${type.parentId == 0}">
+                        <%--当前高亮的导航 current-menu-parent--%>
                         <li class="current-menu-parent col-md-1">
                             <a href="#">${type.name}</a>
                             <c:if test="${type.isParent}">

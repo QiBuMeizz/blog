@@ -1,12 +1,13 @@
 package com.gw.blog.domain;
 
 import com.gw.blog.commons.abstracts.entity.BaseEntity;
+import com.gw.blog.commons.abstracts.entity.BasePageEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Content extends BaseEntity {
+public class Content extends BasePageEntity {
     /**
      * 所属分类ID
      */

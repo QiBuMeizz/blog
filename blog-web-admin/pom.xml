@@ -98,5 +98,22 @@
             <artifactId>jstl</artifactId>
         </dependency>
         <!--JSTL End-->
+
+        <!-- webmagic Begin -->
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-extension</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- webmagic End -->
     </dependencies>
 </project>
