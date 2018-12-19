@@ -2,6 +2,7 @@ package com.gw.blog.web.admin.web.controller;
 
 import com.gw.blog.commons.abstracts.BaseController;
 import com.gw.blog.commons.contants.Contents;
+import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.domain.User;
 import com.gw.blog.web.admin.service.UserService;
 import org.springframework.beans.BeanUtils;
@@ -31,11 +32,13 @@ public class UserController extends BaseController<User, UserService> {
     //更新个人信息
     @PostMapping(value = "save")
     public String save(User user, RedirectAttributes redirectAttributes, HttpServletRequest request){
-        String result = service.saveUser(user);
+        BaseResult result = service.save(user);
+        if(result.equals(BaseResult.success())){
         User sessionUser = (User) request.getSession().getAttribute(SESSION_USER);
         request.getSession().setAttribute(SESSION_USER,sessionUser);
         BeanUtils.copyProperties(user,sessionUser);
-        redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE,result);
+        redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE,"保存成功");
+        }
         return "redirect:/back/info";
     }
 

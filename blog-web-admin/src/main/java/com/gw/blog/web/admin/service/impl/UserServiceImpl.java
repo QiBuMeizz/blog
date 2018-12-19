@@ -1,14 +1,12 @@
 package com.gw.blog.web.admin.service.impl;
 
 import com.gw.blog.commons.abstracts.impl.BaseServiceImpl;
+import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.domain.User;
 import com.gw.blog.web.admin.dao.UserDao;
 import com.gw.blog.web.admin.service.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
-
-import java.util.Date;
 
 /**
  * 用户业务处理层接口的实现
@@ -21,23 +19,17 @@ import java.util.Date;
 @Service
 public class UserServiceImpl extends BaseServiceImpl<User, UserDao> implements UserService {
 
-    //保存个人信息
+
+
+    //修改密码
     @Override
-    public String saveUser(User user) {
-        //初始化密码
-        String password = null;
-        //添加更新时间
-        user.setUpdated(new Date());
-        //密码不为空，加密
-        if(StringUtils.isNotBlank(user.getPassword())){
-            password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
-        }
+    public BaseResult save(User user) {
+        String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
         user.setPassword(password);
-        dao.update(user);
-        return "保存成功";
+        return super.save(user);
     }
 
-	/**
+    /**
      * 登录
      * @param params
      * @return

@@ -14,8 +14,7 @@ import com.gw.blog.domain.User;
  */
 public interface UserService extends BaseService<User> {
 
-    //保存个人信息
-    String saveUser(User user);
+
 
     /**
      * 登录

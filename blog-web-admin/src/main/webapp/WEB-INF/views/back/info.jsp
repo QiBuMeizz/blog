@@ -24,7 +24,7 @@
                 <div class="portlet-body form">
                     <form role="form" action="/back/save" method="post" modelAttribute="user">
                         <div class="form-body">
-                            <input type="text" name="id" id="${sessionScope.user.id}" hidden>
+                            <input type="text" name="id" value="${sessionScope.user.id}" hidden>
                             <div class="form-group form-md-line-input">
                                 <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名" value="${sessionScope.user.username}">
                                 <label for="username">用户名</label>
