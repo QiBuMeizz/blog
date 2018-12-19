@@ -14,7 +14,19 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
     </context:component-scan>
 
-    <!-- 拦截器-->
+    <!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/back/**"/>
+            <mvc:exclude-mapping path="/static/**"/>
+            <mvc:exclude-mapping path="/back/login"/>
+            <bean class="com.gw.blog.web.admin.web.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/back/**"/>
+            <bean class="com.gw.blog.web.admin.web.interceptor.MainInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!--引入annotation driven-->
     <mvc:annotation-driven/>
