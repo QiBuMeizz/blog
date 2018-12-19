@@ -55,7 +55,7 @@ public class PageTag extends BodyTagSupport implements Serializable {
 
         try {
             writer.write("<a class='button col-md-1 text-center' href='javascript:page(1)'>首页</a>");
-            writer.write("<a class='button col-md-2 pre text-center' href='javascript:page("+prePage+")'>上一页</a>");
+            writer.write("<a class='button col-md-2 text-center' href='javascript:page("+prePage+")'>上一页</a>");
 
             /*for (int i = start; i < end+1; i++) {
                 if (current == i){
@@ -66,10 +66,10 @@ public class PageTag extends BodyTagSupport implements Serializable {
                 }
             }*/
 
-            writer.write("<a class='button col-md-6 text-center' href='javascript:void(0)'>-&nbsp;"+current+"&nbsp;-</a>");
+            writer.write("<a class='button col-md-5 text-center' href='javascript:void(0)'>-&nbsp;"+current+"&nbsp;-</a>");
 
-            writer.write("<a class='button col-md-1 text-center pull-right' href='javascript:page("+totalPage+")'>尾页</a>");
-            writer.write("<a class='button col-md-2 text-center pull-right next' href='javascript:page("+nextPage+")'>下一页</a>");
+            writer.write("<a class='button col-md-2 text-center' href='javascript:page("+nextPage+")'>下一页</a>");
+            writer.write("<a class='button col-md-1 text-center' href='javascript:page("+totalPage+")'>尾页</a>");
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -21,7 +21,7 @@
                     <ul id="navigation">
                         <li><a href="/back/main">首页<span>home</span></a></li>
                         <li><a href="/back/info">我的信息<span>information</span></a></li>
-                        <li><a href="/back/content/form">博文管理<span>article management</span></a></li>
+                        <li><a href="/back/content/list">博文管理<span>article management</span></a></li>
                         <li><a href="/back/type/form">分类管理<span>Classification management</span></a></li>
                         <li><a href="/back/comment/form">评论管理<span>comments management</span></a></li>
                         <li><a href="/main">关于<span>about</span></a></li>

@@ -41,9 +41,9 @@
                             </div>
 
                         </div>
-                        <div style="float:right;">
-                            <button type="button" class="btn blue">提交</button>
-                            <button type="button" class="btn default">取消</button>
+                        <div style="padding-left: 20px">
+                            <button type="submit" class="btn blue btn-outline">提交</button>
+                            <button type="button" class="btn default btn-outline">取消</button>
                         </div>
                     </form>
                 </div>
