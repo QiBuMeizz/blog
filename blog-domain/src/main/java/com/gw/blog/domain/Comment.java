@@ -40,12 +40,14 @@ public class Comment extends BasePageEntity {
      * 内容ID
      */
     private Long contentId;
-	/**
+    /**
      * 文章标题
      */
     @Transient
-	/**
+    private Content content;
+    /**
      * 父评论名字
      */
     @Transient
     private String parentName;
+}
