@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 public class CommentServiceImpl extends BasePageServiceImpl<Comment, CommentDao> implements CommentService {
     /**
-     * 查询评论
-     * @param comment 父评论ID
-     * @param index 起始下标
-     * @param size 偏移量
+     * 鏌ヨ璇勮
+     * @param comment 鐢ㄤ簬鑾峰彇鍐呭ID
+     * @param index
+     * @param size
      * @return
      */
     @Override

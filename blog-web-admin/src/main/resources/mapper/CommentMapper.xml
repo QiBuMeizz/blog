@@ -14,25 +14,47 @@
         a.status,
         a.created,
         a.updated,
-        b.title AS 'content.title'
+        b.title AS 'content.title',
+        c.name AS 'parentName'
     </sql>
 
-    <sql id="LeftJoinContext">
-        JOIN content AS b ON a.content_id = b.id
+    <sql id="LeftJoin">
+        LEFT JOIN content AS b ON a.content_id = b.id
+        LEFT JOIN comment AS c ON a.parent_id = c.id
     </sql>
 
     <select id="selectAll" resultType="Comment">
         SELECT
             <include refid="CommentColumns"/>
         FROM comment AS a
-            <include refid="LeftJoinContext"/>
+            <include refid="LeftJoin"/>
+    </select>
+
+    <select id="selectById" resultType="Comment">
+        SELECT
+         <include refid="CommentColumns"/>
+        FROM comment AS a
+         <include refid="LeftJoin"/>
+        WHERE
+          a.status = '1' AND a.id = #{id}
+    </select>
+
+    <select id="selectComment" resultType="Comment" parameterType="java.util.Map">
+        SELECT
+            <include refid="CommentColumns"/>
+        FROM comment AS a
+            <include refid="LeftJoin"/>
+        WHERE
+            a.status = '1' AND a.parent_id = #{comment.id} AND a.content_id = #{comment.contentId}
+        ORDER BY a.created ASC
+        LIMIT #{index},#{size};
     </select>
 
     <select id="pageList" resultType="Comment">
         SELECT
             <include refid="CommentColumns"/>
         FROM comment AS a
-            <include refid="LeftJoinContext"/>
+            <include refid="LeftJoin"/>
         Where 1=1
             <if test="status != null and status !=''">
                 AND a.status LIKE concat('%',#{status},'%')
@@ -51,6 +73,7 @@
             AND a.status LIKE concat('%',#{status},'%')
         </if>
     </select>
+
     
 
 </mapper>

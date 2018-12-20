@@ -8,7 +8,7 @@ import java.util.Map;
 @Repository
 public interface CommentDao extends BasePageDao<Comment> {
     /**
-     * ²éÑ¯ÆÀÂÛ
+     *æŸ¥è¯¢è¯„è®º
      * @param map
      * @return
      */
