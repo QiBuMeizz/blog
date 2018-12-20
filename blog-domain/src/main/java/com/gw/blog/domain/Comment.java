@@ -1,6 +1,8 @@
 package com.gw.blog.domain;
 
+
 import com.gw.blog.commons.abstracts.entity.BasePageEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,9 +28,10 @@ public class Comment extends BasePageEntity {
      */
     private String pic;
     /**
-     * 是否有回复
+     * 是否有回复，0-false，1-true
      */
-    private int isParent;
+    @JsonProperty("isParent")
+    private Boolean isParent;
     /**
      * 父评论ID
      */
@@ -37,9 +40,14 @@ public class Comment extends BasePageEntity {
      * 内容ID
      */
     private Long contentId;
-
     /**
      * 文章标题
      */
     @Transient
-    private Content content;}
+    private Content content;
+    /**
+     * 父评论名字
+     */
+    @Transient
+    private String parentName;
+}

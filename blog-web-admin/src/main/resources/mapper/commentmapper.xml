@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.blog.web.admin.dao.CommentDao">
+
+    <sql id="CommentColumns">
+        a.id,
+        a.name,
+        a.email,
+        a.text,
+        a.pic,
+        a.is_parent AS 'isParent',
+        a.parent_id AS 'parentId',
+        a.content_id AS 'contentId',
+        a.status,
+        a.created,
+        a.updated,
+        b.title AS 'content.title'
+    </sql>
+
+    <sql id="LeftJoinContext">
+        JOIN content AS b ON a.content_id = b.id
+    </sql>
+
+    <select id="selectAll" resultType="Comment">
+        SELECT
+            <include refid="CommentColumns"/>
+        FROM comment AS a
+            <include refid="LeftJoinContext"/>
+    </select>
+
+    <select id="pageList" resultType="Comment">
+        SELECT
+            <include refid="CommentColumns"/>
+        FROM comment AS a
+            <include refid="LeftJoinContext"/>
+        Where 1=1
+            <if test="status != null and status !=''">
+                AND a.status LIKE concat('%',#{status},'%')
+            </if>
+            <if test="page != null">
+                LIMIT #{page.start},#{page.size};
+            </if>
+    </select>
+
+    <select id="count" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM comment AS a
+        WHERE 1=1
+        <if test="status != null and status !=''">
+            AND a.status LIKE concat('%',#{status},'%')
+        </if>
+    </select>
+    
+
+</mapper>
