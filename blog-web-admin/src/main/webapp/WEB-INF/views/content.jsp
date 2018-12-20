@@ -77,22 +77,6 @@
                             </div>
                         </div>
                         <!-- END / POST -->
-                        <!-- ABOUT AUTHOR -->
-                        <div class="about-author" style="height: 170px">
-                            <div class="image-thumb fl"><img src="/static/assets/ui/home/2(3).jpg" alt=""></div>
-                            <div class="author-info">
-                                <div class="author-name">
-                                    <h4 class="text-uppercase">${content.user.username}</h4>
-                                </div>
-                                <div class="author-content">
-
-                                </div>
-                                <div class="author-social">
-                                    <p>${content.user.email}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / ABOUT AUTHOR -->
 
                         <!-- COMMENTS -->
                         <div id="comments">

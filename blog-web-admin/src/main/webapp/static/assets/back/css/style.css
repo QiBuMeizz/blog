@@ -771,14 +771,11 @@ h2.home {
 }
 
 /* ---------------------------------- Content ----------------------------------------------*/
-.middle-width{
-	width: 85%;
-}
 
 
 #middle {
 	width:85%;
-	height: 968px;
+	height: 100%;
 	position:relative;
 	top:0;
 	left:262px;
