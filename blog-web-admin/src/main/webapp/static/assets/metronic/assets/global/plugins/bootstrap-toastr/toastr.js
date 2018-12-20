@@ -165,7 +165,7 @@
                     hideEasing: 'swing',
                     onHidden: undefined,
 
-                    extendedTimeOut: 1000,
+                    extendedTimeOut: 2000,
                     iconClasses: {
                         error: 'toast-error',
                         info: 'toast-info',
