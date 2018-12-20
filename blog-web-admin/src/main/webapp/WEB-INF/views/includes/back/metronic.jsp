@@ -18,3 +18,4 @@
 <!-- END THEME LAYOUT STYLES -->
 <link href="/static/assets/metronic/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
 <%--<link rel="shortcut icon" href="favicon.ico" />--%>
+<link href="/static/assets/metronic/assets/mycss/app.css" rel="stylesheet" type="text/css" />

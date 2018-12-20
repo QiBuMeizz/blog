@@ -110,8 +110,6 @@
           status = #{status},
           content = #{content},
           title_desc = #{titleDesc},
-          reads = #{reads},
-          created = #{created},
           updated = #{updated}
         WHERE id = #{id};
     </update>

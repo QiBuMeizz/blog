@@ -1,13 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<!-- _________________________ Start Background Image __________________________ -->
-<div class="bgImage">
-    <img src="/static/assets/back/images/subpage_bg.jpg" alt="" />
-</div>
-<!-- _________________________ Finish Background Image __________________________ -->
-<div id="page" style="width: 100%">
 
-    <!-- _________________________ Start Header _________________________ -->
     <div class="header_wrap">
         <div id="header">
             <div class="header_inner">
@@ -34,6 +27,3 @@
             <!-- _________________________ Finish Navigation ____________________ -->
         </div>
     </div>
-    <!-- _________________________ Finish Header ________________________ -->
-
-    <!-- _________________________ Start Middle _________________________ -->

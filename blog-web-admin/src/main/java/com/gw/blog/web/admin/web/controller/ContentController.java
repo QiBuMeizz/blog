@@ -55,16 +55,9 @@ public class ContentController extends BaseController<Content,ContentService> {
      * @return
      */
     @PostMapping(value = "save")
-    public String save(Content content,Model model,Page page){
-//        Long id = content.getId();
-//        //修改
-//        if(id!=null){
-//            contentService.update(content);
-//            model.addAttribute("content",content);
-//        }
-        content.setPage(page);
-        BaseResult baseResult = service.pageList(content);
-        model.addAttribute("pageResult",baseResult);
-        return "back/content/list";
+    public String save(Content content,Model model){
+        //封装了修改成功消息
+        BaseResult result = service.save(content);
+        return "redirect:/back/content/list";
     }
 }

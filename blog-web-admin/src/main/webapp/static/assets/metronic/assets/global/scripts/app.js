@@ -203,7 +203,7 @@ var App = function() {
     var handleMaterialDesign = function() {
 
         // Material design ckeckbox and radio effects
-        $('body').on('click', '.md-checkbox > label, .md-radio > label', function() {
+        $('body').on('click', '.md-checkbox > label, .md-radio > label', function($) {
             var the = $(this);
             // find the first span which is our circle/bubble
             var el = $(this).children('span:first-child');
@@ -219,7 +219,7 @@ var App = function() {
               
             // remove the original so that it is ready to run on next click
             $("." + el.attr("class") + ":last", the).remove();
-        }); 
+        });
 
         if ($('body').hasClass('page-md')) { 
             // Material design click effect
