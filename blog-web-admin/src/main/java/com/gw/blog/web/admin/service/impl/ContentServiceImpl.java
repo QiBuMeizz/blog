@@ -13,4 +13,15 @@ import java.util.List;
 
 @Service
 public class ContentServiceImpl extends BasePageServiceImpl<Content, ContentDao> implements ContentService {
+    @Autowired
+    private ContentDao contentDao;
+    @Override
+    public Content getById(Long id) {
+        return contentDao.getById(id);
+    }
+
+//    @Override
+//    public void update(Content content) {
+//        contentDao.update(content);
+//    }
 }

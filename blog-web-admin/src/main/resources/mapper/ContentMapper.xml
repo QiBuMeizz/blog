@@ -101,20 +101,18 @@
         UPDATE
           content
         SET
-          `id` = #{id},
-          `type_id` = #{typeId},
-          `title` = #{title},
-          `author_id` = #{authorId},
-          `pic` = #{pic},
-          `status` = #{status},
-          `content` = #{content},
-          `title_desc` = #{titleDesc},
-          `reads` = #{reads},
-          `created` = #{created},
-          `updated` = #{updated}
-        WHERE `id` = #{id};
-
+          title = #{title},
+          author_id = #{authorId},
+          pic = #{pic},
+          status = #{status},
+          content = #{content},
+          title_desc = #{titleDesc},
+          reads = #{reads},
+          created = #{created},
+          updated = #{updated}
+        WHERE id = #{id};
     </update>
+
     <select id="getByTypeId" resultType="Content">
         SELECT
         <include refid="ContentColumns"/>
@@ -128,5 +126,15 @@
         <if test="page!=null">
             LIMIT #{page.start},#{page.size};
         </if>
+    </select>
+
+    <select id="getById" resultType="Content">
+        SELECT
+        <include refid="ContentColumns"/>
+        FROM
+        content AS a
+        <include refid="LeftJoinUser"/>
+        WHERE
+        a.id=#{id}
     </select>
 </mapper>

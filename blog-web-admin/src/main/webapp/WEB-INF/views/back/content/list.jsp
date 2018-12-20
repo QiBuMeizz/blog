@@ -38,7 +38,7 @@
                         <input type="hidden" name="current" id="current" value="${page.current}"/>
                         <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     </form>
-                    <table class="table  ">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th class="table-checkbox">
@@ -72,8 +72,8 @@
                                 <td>${content.reads}</td>
                                 <td><fmt:formatDate value="${content.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                                 <td>
-                                    <button type="button" class="btn red btn-outline">删除</button>
-                                    <button type="button" class="btn blue btn-outline">修改</button>
+                                    <a type="button" href="/back/content/delete?id=${content.id}" class="btn red btn-outline">删除</a>
+                                    <a type="button" href="/back/content/modify?id=${content.id}" class="btn blue btn-outline">修改</a>
                                 </td>
                             </tr>
                         </c:forEach>
