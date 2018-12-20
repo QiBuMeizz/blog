@@ -51,6 +51,21 @@
             AND a.status LIKE concat('%',#{status},'%')
         </if>
     </select>
-    
 
+    <delete id="delete">
+        DELETE
+        FROM
+            comment
+        WHERE
+            id = #{id}
+    </delete>
+
+    <select id="selectById" resultType="Comment">
+        SELECT
+        <include refid="CommentColumns"/>
+        FROM comment AS a
+        <include refid="LeftJoinContext"/>
+        WHERE
+        a.id = #{id}
+    </select>
 </mapper>

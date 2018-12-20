@@ -21,7 +21,7 @@ public class PageTag extends BodyTagSupport implements Serializable {
     /**
      * 每页多少条
      */
-    private int pageSize=3;
+    private  int pageSize=3;
 
     /**
      * 当前是第几页

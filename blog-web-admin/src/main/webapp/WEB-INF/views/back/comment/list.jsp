@@ -74,8 +74,8 @@
                                 <td>${comment.status == 1 ? "已审核" : "未审核"}</td>
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                                 <td>
-                                    <button type="button" class="btn blue btn-outline">修改</button>
-                                    <button type="button" class="btn red btn-outline">删除</button>
+                                    <button type="submit" class="btn blue btn-outline">修改</button>
+                                    <a href="/back/comment/delete?id=${comment.id}" type="submit" class="btn red btn-outline">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>

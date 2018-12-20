@@ -11,12 +11,12 @@
     <li data-thumb="/static/assets/back/images/slider/thumbs/img1.jpg" data-start="top left" data-finish="bottom right" data-zoom="out" data-animation="10">
         <img src="/static/assets/back/images/slider/img1.jpg" alt="Banner Image 1" />
         <div class="cmsmsSlideCaption" data-top="50">
-            <h2>博客后台</h2>
-            <p>怪物博客，我们只收怪物不收普通人！</p>
+            <h2 style="color: lightgray">博客后台</h2>
+            <p style="color: lightgray;font-weight:bold">我们这里只收怪物，不收普通人。</p>
             <a href="/main" class="button btn_1">点击进入博客主页</a>
         </div>
     </li>
-    <li data-thumb="/static/assets/back/images/slider/thumbs/img2.jpg" data-start="bottom center" data-finish="center center" data-zoom="in" data-animation="15">
+    <li data-thumb="/static/assets/back/images/slider/thumbs/img2.jpg" data-start="bottom center" data-finish="center center" data-zoom="in" data-animation="20">
         <img src="/static/assets/back/images/slider/img2.jpg" alt="Banner Image 2" />
     </li>
     <li data-thumb="/static/assets/back/images/slider/thumbs/img3.jpg" data-start="top left" data-finish="bottom right" data-zoom="out" data-animation="10">
