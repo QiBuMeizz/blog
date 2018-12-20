@@ -86,6 +86,13 @@
         </dependency>
         <!-- Servlet End -->
 
+        <!-- fileupload Begin-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <!-- fileupload End-->
+
     </dependencies>
 
 </project>

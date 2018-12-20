@@ -5,7 +5,7 @@
 <html>
 <head>
     <%@include file="../../includes/back/header.jsp"%>
-    <title>我的信息</title>
+    <title>博文管理</title>
     <%@include file="../../includes/back/metronic.jsp"%>
     <style type="text/css">
         table{
@@ -44,7 +44,6 @@
                         <c:set var="list" value="${pageResult.data.list}"/>
                         <c:set var="page" value="${pageResult.data}"/>
 
-<<<<<<< HEAD
                         <form action="/back/content/list" id="searchForm">
                             <input type="hidden" name="current" id="current" value="${page.current}"/>
                             <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
@@ -53,40 +52,11 @@
                             <thead>
                             <tr>
                                 <th class="table-checkbox">
-=======
-                    <form action="/back/content/list" id="searchForm">
-                        <input type="hidden" name="current" id="current" value="${page.current}"/>
-                        <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
-                    </form>
-                    <table class="table  ">
-                        <thead>
-                        <tr>
-                            <th class="table-checkbox">
-                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                    <input id="father" type="checkbox" class="group-checkable"
-                                           data-set="#sample_2 .checkboxes"/>
-                                    <span></span>
-                                </label>
-                            </th>
-                            <th> 文章标题</th>
-                            <th> 作者</th>
-                            <th> 标题描述</th>
-                            <th> 阅读量</th>
-                            <th> 更新时间</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${list}" var="content">
-                            <tr >
-                                <td>
->>>>>>> a9d88872e74058b91e5ad2b5bee7efac77a4df59
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                        <input type="checkbox" class="group-checkable children"
+                                        <input type="checkbox" class="group-checkable" id="father"
                                                data-set="#sample_2 .checkboxes"/>
                                         <span></span>
                                     </label>
-<<<<<<< HEAD
                                 </th>
                                 <th> 文章标题</th>
                                 <th> 作者</th>
@@ -94,18 +64,6 @@
                                 <th> 阅读量</th>
                                 <th> 更新时间</th>
                                 <th>操作</th>
-=======
-                                </td>
-                                <td>${content.title}</td>
-                                <td>${content.user.username}</td>
-                                <td>${content.titleDesc}</td>
-                                <td>${content.reads}</td>
-                                <td><fmt:formatDate value="${content.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-                                <td>
-                                    <button type="button" class="btn blue btn-outline"><i class="fa fa-edit">&nbsp;修改</i></button>
-                                    <a href="/back/content/delete?id=${content.id}" type="button" class="btn red btn-outline"><i class="fa fa-trash-o">&nbsp;删除</i></a>
-                                </td>
->>>>>>> a9d88872e74058b91e5ad2b5bee7efac77a4df59
                             </tr>
                             </thead>
                             <tbody>
@@ -113,7 +71,7 @@
                                 <tr>
                                     <td>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="group-checkable"
+                                            <input type="checkbox" class="group-checkable children"
                                                    data-set="#sample_2 .checkboxes"/>
                                             <span></span>
                                         </label>
@@ -142,15 +100,8 @@
 
                 </div>
             </div>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a9d88872e74058b91e5ad2b5bee7efac77a4df59
         </div>
     </div>
-
-<<<<<<< HEAD
 
     <!-- _________________________ Start Footer _________________________ -->
     <%--<div id="footer">
@@ -165,17 +116,6 @@
             //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
             $("#searchForm").submit();
         }
-    </script>
-=======
-<%@include file="../../includes/back/metronij.jsp"%>
-<script>
-    function page(current) {
-        //current跳转到哪一页  pageSize每页的条数
-        $("#current").val(current);
-        //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
-        $("#searchForm").submit();
-    }
-
     $(function () {
         var father = $("#father");
         var children = $(".children");
@@ -201,6 +141,5 @@
 
 
 </script>
->>>>>>> a9d88872e74058b91e5ad2b5bee7efac77a4df59
 </body>
 </html>

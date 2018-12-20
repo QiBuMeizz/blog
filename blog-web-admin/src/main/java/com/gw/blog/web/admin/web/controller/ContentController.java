@@ -40,14 +40,8 @@ public class ContentController extends BaseController<Content,ContentService> {
      */
     @GetMapping(value = "modify")
     public String modify(Content content,Model model) {
-        Long id = content.getId();
-        //修改前的信息回显
-        if (id != null) {
-            //获取content对象
-            content = contentService.getById(id);
-            model.addAttribute("content",content);
-        }
-        //添加
+        //保存
+        model.addAttribute("content",content);
         return "back/content/form";
     }
 
@@ -62,6 +56,15 @@ public class ContentController extends BaseController<Content,ContentService> {
         return "redirect:/back/content/list";
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * 删除
+     * @param content
+     * @param redirectAttributes
+     * @return
+     */
+>>>>>>> 3f8a1e58cca69cc39cbcd417c88f651f6d321a58
     @GetMapping(value = "delete")
     public String delete(Content content, RedirectAttributes redirectAttributes){
         //BaseResult result = service.delete(content);

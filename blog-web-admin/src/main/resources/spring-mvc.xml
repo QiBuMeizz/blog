@@ -41,4 +41,5 @@
     <!--静态资源配置-->
     <!--cache-period ：可自定义-->
     <mvc:resources mapping="/static/**" location="/static/" cache-period="12343241"></mvc:resources>
+
 </beans>

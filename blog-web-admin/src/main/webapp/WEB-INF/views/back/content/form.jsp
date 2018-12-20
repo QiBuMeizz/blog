@@ -125,7 +125,7 @@
         zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
     });
 </script>
-<script src="/static/assets/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<%--<script src="/static/assets/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -137,6 +137,6 @@
 <script src="/static/assets/metronic/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>--%>
 </body>
 </html>
