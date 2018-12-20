@@ -29,29 +29,31 @@
     <div class="middle_content">
         <h3 style="color: floralwhite">分类列表</h3>
         <div class="entry">
+
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <table class="table" id="treeTable">
                         <thead>
                             <tr>
-                                <th> ID </th>
-                                <th> 类目名称 </th>
-                                <th> 状态 </th>
-                                <th> 排列序号 </th>
-                                <th> 更新时间 </th>
-                                <th> 操作 </th>
+                                <th width="5%" > ID </th>
+                                <th width="19%"> 类目名称 </th>
+                                <th width="19%"> 状态 </th>
+                                <th width="19%"> 排列序号 </th>
+                                <th width="19%"> 更新时间 </th>
+                                <th width="19%"> 操作 </th>
                             </tr>
                         </thead>
 
                         <tbody>
                             <c:forEach items="${list}" var="type">
                                 <tr id="${type.id}" pId="${type.parentId}">
-                                    <td>${type.id}</td>
-                                    <td>${type.name}</td>
-                                    <td>${type.status}</td>
-                                    <td>${type.sortOrder}</td>
-                                    <td><fmt:formatDate value="${type.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                    <td><a href="#" type="button" class="btn btn-circle blue btn-outline">修改</a>
+                                    <td width="5%" >${type.id}</td>
+                                    <td width="19%">${type.name}</td>
+                                    <td width="19%">${type.status}</td>
+                                    <td width="19%">${type.sortOrder}</td>
+                                    <td width="19%"><fmt:formatDate value="${type.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                    <td width="19%">
+                                        <a href="/back/type/form?id=${type.id}" type="button" class="btn btn-circle blue btn-outline">修改</a>
                                         <button class="btn btn-circle blue btn-outline red mt-sweetalert" +
                                                 data-title="确认删除吗？" +
                                                 data-type="info"  +
@@ -66,7 +68,9 @@
                                                 data-popup-title-success="已删除" +
                                                 data-popup-title-cancel="已取消" +
                                                 data-url="#">删除</button>
-                                        <a href="#" type="button" class="btn btn-circle green btn-outline">添加下级菜单</a>
+                                        <c:if test="${type.isParent}">
+                                            <a href="#" type="button" class="btn btn-circle green btn-outline">添加下级菜单</a>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -75,7 +79,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

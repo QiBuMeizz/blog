@@ -31,4 +31,5 @@ public class Comment extends BaseEntity {
      * 内容ID
      */
     private Long contentId;
+
 }

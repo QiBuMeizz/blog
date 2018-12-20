@@ -67,7 +67,7 @@
         <br/>
         <div class="form-actions">
             <label class="rememberme mt-checkbox mt-checkbox-outline">
-                <input type="checkbox" name="remember"/> 记住密码
+                <input type="checkbox" name="remember" ${userInfo == null ? "" : "checked='checked'"} /> 记住密码
                 <span></span>
             </label>
             <button type="submit" class="btn green pull-right" id="showtoast" > 登录 </button>

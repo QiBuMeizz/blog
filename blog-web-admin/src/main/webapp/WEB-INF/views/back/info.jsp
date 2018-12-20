@@ -49,7 +49,7 @@
 
                         <div style="padding-left: 20px">
                             <button type="submit" class="btn blue btn-outline">提交</button>
-                            <button type="button" class="btn default btn-outline">取消</button>
+                            <button type="button" class="btn default btn-outline" onclick="history.go(-1);">返回</button>
 
                         </div>
                     </form>
@@ -75,8 +75,12 @@
 <script src="/static/assets/metronic/assets/apps/model/toastr.js" type="text/javascript"></script>
 <script>
     //带标题的消息框
-    if(${message != null }){
+    if(${status == 500}){
         toastr.error("${message}")
+    }
+
+    if(${status == 200}){
+        toastr.success("${message}")
     }
 </script>
 </body>

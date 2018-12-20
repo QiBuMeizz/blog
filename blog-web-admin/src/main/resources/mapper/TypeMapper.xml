@@ -10,16 +10,31 @@
           a.is_parent AS 'isParent',
           a.sort_order AS 'sortOrder',
           a.created,
-          a.updated
+          a.updated,
+          b.name AS 'tname'
+    </sql>
+
+    <!-- 联查语句 -->
+    <sql id="leftJoinType">
+        LEFT JOIN type AS b ON a.parent_id = b.id
     </sql>
 
     <select id="selectAll" resultType="Type">
         SELECT
           <include refid="typeColumns"/>
         FROM type AS a
+          <include refid="leftJoinType"/>
         WHERE a.status = '1'
         ORDER BY a.sort_order ASC
     </select>
 
+    <select id="selectById" resultType="Type">
+        SELECT
+          <include refid="typeColumns"/>
+        FROM type AS a
+          <include refid="leftJoinType"/>
+            WHERE a.status = '1'
+            AND a.id = #{id};
+    </select>
 
 </mapper>
