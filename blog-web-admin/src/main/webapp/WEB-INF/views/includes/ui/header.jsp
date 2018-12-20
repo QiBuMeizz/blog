@@ -55,8 +55,9 @@
             <span class="icon-search">
               <i class="fa fa-search"></i>
             </span>
-                <form action="#">
-                    <input type="search" value="搜索"></form>
+                <form action="/main">
+                    <input type="search" name="title" value="搜索">
+                </form>
             </div>
         </div>
     </nav>

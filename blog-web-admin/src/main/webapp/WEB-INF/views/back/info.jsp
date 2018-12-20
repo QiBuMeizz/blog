@@ -5,7 +5,6 @@
     <%@include file="../includes/back/header.jsp"%>
     <title>我的信息</title>
     <%@include file="../includes/back/metronic.jsp"%>
-    <link href="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="standard simple">
 <!-- _________________________ Start Background Image __________________________ -->
@@ -71,13 +70,8 @@
 <script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/app/validate.js" type="text/javascript"></script>
 
-<script src="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/apps/model/toastr.js" type="text/javascript"></script>
 <script>
-    //带标题的消息框
-    if(${message != null }){
-        toastr.error("${message}")
-    }
+
 </script>
 </body>
 </html>

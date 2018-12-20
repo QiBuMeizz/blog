@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "back/content")
@@ -33,6 +34,7 @@ public class ContentController extends BaseController<Content,ContentService> {
         return "back/content/list";
     }
 
+<<<<<<< HEAD
     /**
      * 跳转到编辑页面
      * @return
@@ -58,6 +60,12 @@ public class ContentController extends BaseController<Content,ContentService> {
     public String save(Content content,Model model){
         //封装了修改成功消息
         BaseResult result = service.save(content);
+=======
+    @GetMapping(value = "delete")
+    public String delete(Content content, RedirectAttributes redirectAttributes){
+        //BaseResult result = service.delete(content);
+        redirectAttributes.addFlashAttribute("message","删除数据成功!!!");
+>>>>>>> a9d88872e74058b91e5ad2b5bee7efac77a4df59
         return "redirect:/back/content/list";
     }
 }
