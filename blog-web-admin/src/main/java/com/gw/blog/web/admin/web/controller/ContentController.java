@@ -34,21 +34,14 @@ public class ContentController extends BaseController<Content,ContentService> {
         return "back/content/list";
     }
 
-<<<<<<< HEAD
     /**
      * 跳转到编辑页面
      * @return
      */
     @GetMapping(value = "modify")
     public String modify(Content content,Model model) {
-        Long id = content.getId();
-        //修改前的信息回显
-        if (id != null) {
-            //获取content对象
-            content = contentService.getById(id);
-            model.addAttribute("content",content);
-        }
-        //添加
+        //保存
+        model.addAttribute("content",content);
         return "back/content/form";
     }
 
@@ -60,12 +53,19 @@ public class ContentController extends BaseController<Content,ContentService> {
     public String save(Content content,Model model){
         //封装了修改成功消息
         BaseResult result = service.save(content);
-=======
+        return "redirect:/back/content/list";
+    }
+
+    /**
+     * 删除
+     * @param content
+     * @param redirectAttributes
+     * @return
+     */
     @GetMapping(value = "delete")
     public String delete(Content content, RedirectAttributes redirectAttributes){
         //BaseResult result = service.delete(content);
         redirectAttributes.addFlashAttribute("message","删除数据成功!!!");
->>>>>>> a9d88872e74058b91e5ad2b5bee7efac77a4df59
         return "redirect:/back/content/list";
     }
 }

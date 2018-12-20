@@ -5,13 +5,10 @@
     <%@include file="../includes/back/header.jsp"%>
     <title>我的信息</title>
     <%@include file="../includes/back/metronic.jsp"%>
+
 </head>
 <body class="standard simple">
-<!-- _________________________ Start Background Image __________________________ -->
 <%@include file="../includes/back/background.jsp"%>
-<!-- _________________________ Finish Background Image __________________________ -->
-
-<!-- _________________________ Start Page ___________________________ -->
 
     <div id="middle" style="width: 85%">
         <div id="home">
@@ -70,8 +67,6 @@
 <script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/app/validate.js" type="text/javascript"></script>
 
-<script>
 
-</script>
 </body>
 </html>
