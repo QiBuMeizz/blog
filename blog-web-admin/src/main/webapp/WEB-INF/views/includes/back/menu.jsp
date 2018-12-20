@@ -5,7 +5,7 @@
     <div class="header_wrap">
         <div id="header">
             <div class="header_inner">
-                <a class="logo" title="六花" href="#">
+                <a class="logo" title="六花" href="/back/info">
                     <img alt="六花" src="/static/assets/back/images/logo.png" />
 
                 </a>

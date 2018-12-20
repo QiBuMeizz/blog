@@ -136,13 +136,26 @@
         $("#searchForm").submit();
     }
 
-    var local = location.href;
-    console.log(local);
-    $("#menu a").each(function () {
-       if($(this).prop("href")===local ){
-           $(this).parent().addClass("current-menu-parent");
-
-       }
+    $(function () {
+        //设置开关，判断是否要默认选中“最新文章”
+        var flag=false;
+        var local = location.href;
+        console.log(local);
+        $("#menu a").each(function () {
+            if($(this).prop("href")===local ){
+                $(this).parent().addClass("current-menu-parent");
+                flag=true;
+            }
+        });
+        $("#menu  .child").each(function () {
+            if($(this).prop("href")===local ){
+                $(this).closest(".col-md-1").addClass("current-menu-parent");
+                flag=true;
+            }
+        });
+        if(!flag){
+            $("#menu li:first").addClass("current-menu-parent");
+        }
     });
 </script>
 

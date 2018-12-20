@@ -13,7 +13,7 @@
         <div class="cmsmsSlideCaption" data-top="50">
             <h2>博客后台</h2>
             <p>怪物博客，我们只收怪物不收普通人！</p>
-            <a href="#" class="button btn_1">点击进入博客主页</a>
+            <a href="/main" class="button btn_1">点击进入博客主页</a>
         </div>
     </li>
     <li data-thumb="/static/assets/back/images/slider/thumbs/img2.jpg" data-start="bottom center" data-finish="center center" data-zoom="in" data-animation="15">
