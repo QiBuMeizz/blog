@@ -56,15 +56,14 @@ public class ContentController extends BaseController<Content,ContentService> {
         return "redirect:/back/content/list";
     }
 
-<<<<<<< HEAD
-=======
+
     /**
      * 删除
      * @param content
      * @param redirectAttributes
      * @return
      */
->>>>>>> 3f8a1e58cca69cc39cbcd417c88f651f6d321a58
+
     @GetMapping(value = "delete")
     public String delete(Content content, RedirectAttributes redirectAttributes){
         //BaseResult result = service.delete(content);

@@ -10,6 +10,7 @@
 <script src="/static/assets/metronic/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/apps/model/toastr.js" type="text/javascript"></script>
