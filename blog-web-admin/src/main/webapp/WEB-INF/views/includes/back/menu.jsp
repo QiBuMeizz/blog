@@ -5,7 +5,7 @@
     <div class="header_wrap">
         <div id="header">
             <div class="header_inner">
-                <a class="logo" title="六花" href="#">
+                <a class="logo" title="六花" href="/back/info">
                     <img alt="六花" src="/static/assets/back/images/logo.png" />
 
                 </a>
@@ -16,9 +16,9 @@
                         <br>
                         <li><a href="/back/main">首页<span>home</span></a></li>
                         <li><a href="/back/info">我的信息<span>information</span></a></li>
-                        <li><a href="/back/content/form">博文管理<span>article management</span></a></li>
-                        <li><a href="/back/type/form">分类管理<span>Classification management</span></a></li>
-                        <li><a href="/back/comment/form">评论管理<span>comments management</span></a></li>
+                        <li><a href="/back/content/list">博文管理<span>article management</span></a></li>
+                        <li><a href="/back/type/list">分类管理<span>Classification management</span></a></li>
+                        <li><a href="/back/comment/list">评论管理<span>comments management</span></a></li>
                         <li><a href="/main">关于<span>about</span></a></li>
                     </ul>
                 </div>

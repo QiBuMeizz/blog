@@ -1,6 +1,6 @@
 package com.gw.blog.web.admin.service.impl;
 
-import com.gw.blog.commons.abstracts.impl.BaseServiceImpl;
+import com.gw.blog.commons.abstracts.impl.BasePageServiceImpl;
 import com.gw.blog.domain.Comment;
 import com.gw.blog.web.admin.dao.CommentDao;
 import com.gw.blog.web.admin.service.CommentService;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 @Service
-public class CommentServiceImpl extends BaseServiceImpl<Comment, CommentDao> implements CommentService {
+public class CommentServiceImpl extends BasePageServiceImpl<Comment, CommentDao> implements CommentService {
     /**
-     * æŸ¥è¯¢è¯„è®º
-     * @param comment çˆ¶è¯„è®ºID
-     * @param index èµ·å§‹ä¸‹æ ‡
-     * @param size åç§»é‡
+     * ²éÑ¯ÆÀÂÛ
+     * @param comment ¸¸ÆÀÂÛID
+     * @param index ÆğÊ¼ÏÂ±ê
+     * @param size Æ«ÒÆÁ¿
      * @return
      */
     @Override

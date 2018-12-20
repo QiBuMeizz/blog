@@ -22,7 +22,8 @@
 <!-- PAGE WRAP -->
 <div id="page-wrap">
     <!-- HEADER -->
-    <jsp:include page="includes/ui/header.jsp"/>
+    <%--<jsp:include page="includes/ui/header.jsp"/>--%>
+    <%@include file="includes/ui/header.jsp"%>
     <!-- END / HEADER -->
 
     <%--博客内容--%>
@@ -48,7 +49,7 @@
                             <div class="post-media">
                                 <div class="image-wrap">
                                     <%--图片--%>
-                                    <img src="/static/assets/ui/home/25.jpg" alt=""></div>
+                                    <img src="${content.pic}"  alt=""></div>
                                 <div class="post-cat">
                                     <%--详情跳转--%>
                                     <a href="/content?id=${content.id}">详情</a></div>
@@ -107,8 +108,8 @@
                         <div class="pagination">
                             <%--<a href="#" class="prev">« 上一页</a>
                             <a href="#" class="next">下一页 »</a>--%>
-                            <div class="row">
-                            <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
+                            <div class="row text-center">
+                                <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
                             </div>
                         </div>
                         <!-- END / PAGINATION -->
@@ -123,7 +124,8 @@
     </section>
 
     <!-- FOOTER -->
-    <jsp:include page="includes/ui/footer.jsp"/>
+</div>
+ <jsp:include page="includes/ui/footer.jsp"/>
 </body>
 <script type="text/javascript">
     //这是跳转的逻辑
@@ -133,6 +135,27 @@
         //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
         $("#searchForm").submit();
     }
+
+    $(function () {
+        //设置开关，判断是否要默认选中“最新文章”
+        var flag=false;
+        var local = location.href;
+        $("#menu a").each(function () {
+            if($(this).prop("href")===local ){
+                $(this).parent().addClass("current-menu-parent");
+                flag=true;
+            }
+        });
+        $("#menu  .child").each(function () {
+            if($(this).prop("href")===local ){
+                $(this).closest(".col-md-1").addClass("current-menu-parent");
+                flag=true;
+            }
+        });
+        if(!flag){
+            $("#menu li:first").addClass("current-menu-parent");
+        }
+    });
 </script>
 
 </html>

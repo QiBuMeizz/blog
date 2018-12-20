@@ -1,7 +1,8 @@
 package com.gw.blog.domain;
 
+
+import com.gw.blog.commons.abstracts.entity.BasePageEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gw.blog.commons.abstracts.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,7 +10,7 @@ import javax.persistence.Transient;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Comment extends BaseEntity {
+public class Comment extends BasePageEntity {
     /**
      * 评论的用户名
      */
@@ -39,7 +40,11 @@ public class Comment extends BaseEntity {
      * 内容ID
      */
     private Long contentId;
-    /**
+	/**
+     * 文章标题
+     */
+    @Transient
+    private Content content; 	/**
      * 父评论名字
      */
     @Transient

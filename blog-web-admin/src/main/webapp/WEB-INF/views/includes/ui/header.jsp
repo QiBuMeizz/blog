@@ -25,18 +25,23 @@
                 <span class="item item-3"></span>
             </div>
             <div class="close-menu"></div>
-            <ul class="navlist" style="height: auto;">
+
+
+            <ul id="menu" class="navlist" style="height: auto;">
+                <li class="col-md-1">
+                    <a href="/main">最新文章</a>
+                </li>
                 <c:forEach items="${requestScope.baseResult.data}" var="type">
                     <c:if test="${type.parentId == 0}">
                         <%--当前高亮的导航 current-menu-parent--%>
-                        <li class="current-menu-parent col-md-1">
-                            <a href="#">${type.name}</a>
+                        <li class="col-md-1">
+                            <a href="/main?typeId=${type.id}">${type.name}</a>
                             <c:if test="${type.isParent}">
                                 <ul class="sub-menu">
                                     <c:forEach items="${requestScope.baseResult.data}" var="child">
                                         <c:if test="${child.parentId == type.id}">
                                             <li>
-                                                <a href="#">${child.name}</a>
+                                                <a class="child" href="/main?typeId=${child.id}">${child.name}</a>
                                             </li>
                                         </c:if>
                                     </c:forEach>
@@ -50,8 +55,9 @@
             <span class="icon-search">
               <i class="fa fa-search"></i>
             </span>
-                <form action="#">
-                    <input type="search" value="搜索"></form>
+                <form action="/main">
+                    <input type="search" name="title" value="搜索">
+                </form>
             </div>
         </div>
     </nav>

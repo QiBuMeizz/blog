@@ -23,7 +23,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity,D extends BaseDao<T>>
     @Override
     public BaseResult delete(T entity) {
         dao.delete(entity);
-        return BaseResult.success();
+        return BaseResult.success("删除数据成功!!!");
     }
 
     /**

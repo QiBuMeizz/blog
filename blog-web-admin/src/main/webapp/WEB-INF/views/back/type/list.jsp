@@ -11,12 +11,12 @@
 <!-- _________________________ Finish Background Image __________________________ -->
 
 <!-- _________________________ Start Page ___________________________ -->
-<div id="middle">
+<div id="middle" style="width: 85%">
     <div id="home">
-        <h2 class="home" style="color:lightgrey">评论管理</h2>
+        <h2 class="home" style="color:lightgrey">分类管理</h2>
     </div>
     <div class="middle_content">
-        <h3 style="color: floralwhite">评论列表</h3>
+        <h3 style="color: floralwhite">分类列表</h3>
         <div class="entry">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -24,7 +24,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class=" icon-layers font-green"></i>
-                                <span class="caption-subject font-green sbold uppercase">评论列表</span>
+                                <span class="caption-subject font-green sbold uppercase">分类列表</span>
                             </div>
                             <div class="actions">
                                 <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
