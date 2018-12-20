@@ -12,7 +12,7 @@
 
 <!-- _________________________ Start Page ___________________________ -->
 
-    <div id="middle">
+    <div id="middle" style="width: 85%">
         <div id="home">
             <h2 class="home" style="color:lightgrey">个人信息</h2>
         </div>

@@ -11,7 +11,7 @@
 <!-- _________________________ Finish Background Image __________________________ -->
 
 <!-- _________________________ Start Page ___________________________ -->
-<div id="middle">
+<div id="middle" style="width: 85%">
     <div id="home">
         <h2 class="home" style="color:lightgrey">评论管理</h2>
     </div>
