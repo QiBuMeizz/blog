@@ -72,8 +72,8 @@
                                 <td>${content.reads}</td>
                                 <td><fmt:formatDate value="${content.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                                 <td>
-                                    <button type="button" class="btn red btn-outline">删除</button>
-                                    <button type="button" class="btn blue btn-outline">修改</button>
+                                    <button type="button" class="btn red btn-circle btn-outline">删除</button>
+                                    <button type="button" class="btn blue btn-circle btn-outline">修改</button>
                                 </td>
                             </tr>
                         </c:forEach>

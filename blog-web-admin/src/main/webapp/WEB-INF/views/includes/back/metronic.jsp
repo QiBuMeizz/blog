@@ -17,4 +17,8 @@
 <link href="/static/assets/metronic/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME LAYOUT STYLES -->
 <link href="/static/assets/metronic/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+<!-- BEGIN SWEETALERT -->
+<link href="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" id="style_components" type="text/css" />
+<!-- END SWEETALERT -->
+
 <%--<link rel="shortcut icon" href="favicon.ico" />--%>

@@ -15,10 +15,10 @@
 
     <select id="selectAll" resultType="Type">
         SELECT
-        <include refid="typeColumns"/>
+          <include refid="typeColumns"/>
         FROM type AS a
         WHERE a.status = '1'
-        ORDER BY sort_order ASC
+        ORDER BY a.sort_order ASC
     </select>
 
 
