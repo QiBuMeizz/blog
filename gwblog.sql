@@ -26,6 +26,7 @@ CREATE TABLE `comment` (
   `email` varchar(255) DEFAULT NULL COMMENT '评论者的邮箱',
   `text` text COMMENT '内容',
   `pic` varchar(255) DEFAULT NULL COMMENT '头像的路径',
+  `is_parent` tinyint(1) DEFAULT '0' COMMENT '是否有回复，0-false，1-true',
   `parent_id` bigint(20) DEFAULT NULL COMMENT '父评论的id',
   `content_id` bigint(20) DEFAULT NULL COMMENT '所属文章的id',
   `status` int(4) DEFAULT NULL COMMENT '评论的状态值:1(已审核),0(待审核)',
@@ -36,12 +37,12 @@ CREATE TABLE `comment` (
 
 /*Data for the table `comment` */
 
-insert  into `comment`(`id`,`name`,`email`,`text`,`pic`,`parent_id`,`content_id`,`status`,`created`,`updated`) values 
-(1,'zs','123@163.com','测试评论1',NULL,0,1,1,'2018-12-17 19:20:52','2018-12-17 19:20:55'),
-(2,'张三','123@163.com','测试评论2',NULL,1,1,1,'2018-12-17 19:22:05','2018-12-17 19:22:09'),
-(3,'ls','123@163.com','测试评论3',NULL,2,1,1,'2018-12-17 19:22:54','2018-12-17 19:22:57'),
-(4,'ww','1123@163.com','测试评论4',NULL,1,1,1,'2018-12-17 19:23:50','2018-12-17 19:23:53'),
-(5,'xm','123@163.com','测试评论5',NULL,1,1,0,'2018-12-17 19:24:42','2018-12-17 19:24:45');
+insert  into `comment`(`id`,`name`,`email`,`text`,`pic`,`is_parent`,`parent_id`,`content_id`,`status`,`created`,`updated`) values 
+(1,'zs','123@163.com','测试评论1',NULL,1,0,1,1,'2018-12-17 19:20:52','2018-12-17 19:20:55'),
+(2,'张三','123@163.com','测试评论2',NULL,0,1,1,1,'2018-12-17 19:22:05','2018-12-17 19:22:09'),
+(3,'ls','123@163.com','测试评论3',NULL,0,2,1,1,'2018-12-17 19:22:54','2018-12-17 19:22:57'),
+(4,'ww','1123@163.com','测试评论4',NULL,0,1,1,1,'2018-12-17 19:23:50','2018-12-17 19:23:53'),
+(5,'xm','123@163.com','测试评论5',NULL,0,1,1,0,'2018-12-17 19:24:42','2018-12-17 19:24:45');
 
 /*Table structure for table `content` */
 
@@ -300,7 +301,7 @@ CREATE TABLE `user` (
 /*Data for the table `user` */
 
 insert  into `user`(`id`,`username`,`password`,`pic`,`email`,`phone`,`role`,`status`,`created`,`updated`) values 
-(1,'meizz','123123',NULL,NULL,'13413684661',0,1,'2018-12-15 17:09:05','2018-12-15 17:09:09');
+(1,'meizz','4297f44b13955235245b2497399d7a93',NULL,NULL,'13413684661',0,1,'2018-12-15 17:09:05','2018-12-15 17:09:09');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
