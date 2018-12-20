@@ -5,7 +5,7 @@
 <html>
 <head>
     <%@include file="../../includes/back/header.jsp"%>
-    <title>我的信息</title>
+    <title>博文管理</title>
     <%@include file="../../includes/back/metronic.jsp"%>
     <style type="text/css">
         table{
