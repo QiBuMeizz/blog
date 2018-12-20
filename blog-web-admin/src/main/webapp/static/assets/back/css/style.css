@@ -832,7 +832,10 @@ a.transp:hover {
 	top:172px;
 }
 
-.middle_content {padding:30px;}
+.middle_content {
+	padding:30px;
+	height: auto;
+}
 
 .divider {
 	border-bottom:3px solid #ebebeb;
