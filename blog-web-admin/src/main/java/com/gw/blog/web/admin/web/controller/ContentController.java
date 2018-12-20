@@ -15,14 +15,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "back")
+@RequestMapping(value = "back/content")
 public class ContentController extends BaseController<Content,ContentService> {
 
-    @GetMapping(value = "content/list")
+    @GetMapping(value = "list")
     public String list(Content content, Page page, Model model){
         //分页列表
         content.setPage(page);
@@ -31,5 +32,12 @@ public class ContentController extends BaseController<Content,ContentService> {
         BaseResult baseResult = service.pageList(content);
         model.addAttribute("pageResult",baseResult);
         return "back/content/list";
+    }
+
+    @GetMapping(value = "delete")
+    public String delete(Content content, RedirectAttributes redirectAttributes){
+        //BaseResult result = service.delete(content);
+        redirectAttributes.addFlashAttribute("message","删除数据成功!!!");
+        return "redirect:/back/content/list";
     }
 }

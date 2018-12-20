@@ -43,7 +43,7 @@
                         <tr>
                             <th class="table-checkbox">
                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                    <input type="checkbox" class="group-checkable"
+                                    <input id="father" type="checkbox" class="group-checkable"
                                            data-set="#sample_2 .checkboxes"/>
                                     <span></span>
                                 </label>
@@ -61,7 +61,7 @@
                             <tr >
                                 <td>
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                        <input type="checkbox" class="group-checkable"
+                                        <input type="checkbox" class="group-checkable children"
                                                data-set="#sample_2 .checkboxes"/>
                                         <span></span>
                                     </label>
@@ -72,8 +72,8 @@
                                 <td>${content.reads}</td>
                                 <td><fmt:formatDate value="${content.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                                 <td>
-                                    <button type="button" class="btn red btn-outline">删除</button>
-                                    <button type="button" class="btn blue btn-outline">修改</button>
+                                    <button type="button" class="btn blue btn-outline"><i class="fa fa-edit">&nbsp;修改</i></button>
+                                    <a href="/back/content/delete?id=${content.id}" type="button" class="btn red btn-outline"><i class="fa fa-trash-o">&nbsp;删除</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -87,17 +87,9 @@
 
             </div>
         </div>
-
-
     </div>
 </div>
 
-
-<!-- _________________________ Start Footer _________________________ -->
-<%--<div id="footer">
-    <p>Pacifico &copy; 2016 by 萌站</p>
-</div>--%>
-<!-- _________________________ Finish Footer ________________________ -->
 <%@include file="../../includes/back/metronij.jsp"%>
 <script>
     function page(current) {
@@ -106,6 +98,31 @@
         //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
         $("#searchForm").submit();
     }
+
+    $(function () {
+        var father = $("#father");
+        var children = $(".children");
+        //全选功能
+        father.change(function () {
+            //console.log($(this).is(":checked"));
+            $(".children").each(function () {
+                $(this).prop("checked",father.is(":checked"));
+            });
+        });
+
+        //取消全选功能
+        children.change(function () {
+            var flag = true;
+            children.each(function () {
+                if (!$(this).is(":checked")) {
+                    flag = false;
+                }
+            });
+            father.prop("checked",flag);
+        });
+    });
+
+
 </script>
 </body>
 </html>
