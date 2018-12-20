@@ -46,4 +46,9 @@ public class Content extends BasePageEntity {
      */
     @Transient
     private User user;
+
+    /**
+     * 类别名称
+     */
+    private String typeName;
 }

@@ -10,7 +10,7 @@
 <ul id="sliderMotion">
     <li data-thumb="/static/assets/back/images/slider/thumbs/img1.jpg" data-start="top left" data-finish="bottom right" data-zoom="out" data-animation="10">
         <img src="/static/assets/back/images/slider/img1.jpg" alt="Banner Image 1" />
-        <div class="cmsmsSlideCaption" data-top="50">
+        <div class="cmsmsSlideCaption echo" data-top="50">
             <h2>博客后台</h2>
             <p>怪物博客，我们只收怪物不收普通人！</p>
             <a href="/main" class="button btn_1">点击进入博客主页</a>

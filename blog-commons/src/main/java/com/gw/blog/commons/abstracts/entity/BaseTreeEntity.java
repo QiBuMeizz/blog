@@ -1,5 +1,6 @@
 package com.gw.blog.commons.abstracts.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,6 +21,8 @@ public class BaseTreeEntity extends BaseEntity {
     /**
      * 是否为父目录
      */
+    //当请求方式是JSON时的别名
+    @JsonProperty(value = "isParent")
     private Boolean isParent;
 
     /**
