@@ -44,23 +44,17 @@ public class MainController  {
     public String main(Content content, Page page, Model model){
         //分页列表
         content.setPage(page);
-
         //关于我们
         if (content != null && content.getTypeId() == ABOUT_US_TYPE) {
             return "redirect:/content?id=" + ABOUT_US_CONTENT;
         }
-
-
         //列表页面
         BaseResult baseResult = contentService.pageList(content);
-
         //对应的分类没有博文
         if (baseResult.getStatus() == BaseResult.STATUS_FAIL){
             return "redirect:/content?id=" + COMING_SOON;
         }
-
         model.addAttribute("pageResult",baseResult);
-
         //获得分类导航栏
         List<Type> typeList = typeService.selectAll();
         model.addAttribute("baseResult", BaseResult.success("",typeList));

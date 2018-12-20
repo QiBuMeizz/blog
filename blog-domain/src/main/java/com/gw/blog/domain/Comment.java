@@ -1,12 +1,14 @@
 package com.gw.blog.domain;
 
-import com.gw.blog.commons.abstracts.entity.BaseEntity;
+import com.gw.blog.commons.abstracts.entity.BasePageEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.Transient;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Comment extends BaseEntity {
+public class Comment extends BasePageEntity {
     /**
      * 评论的用户名
      */
@@ -24,6 +26,10 @@ public class Comment extends BaseEntity {
      */
     private String pic;
     /**
+     * 是否有回复
+     */
+    private int isParent;
+    /**
      * 父评论ID
      */
     private Long parentId;
@@ -32,4 +38,8 @@ public class Comment extends BaseEntity {
      */
     private Long contentId;
 
-}
+    /**
+     * 文章标题
+     */
+    @Transient
+    private Content content;}

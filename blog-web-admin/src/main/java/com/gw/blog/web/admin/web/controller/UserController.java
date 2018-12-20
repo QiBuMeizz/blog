@@ -33,15 +33,16 @@ public class UserController extends BaseController<User, UserService> {
     @PostMapping(value = "save")
     public String save(User user, RedirectAttributes redirectAttributes, HttpServletRequest request){
         BaseResult result = service.save(user);
-        if(result.equals(BaseResult.success())){
-        User sessionUser = (User) request.getSession().getAttribute(SESSION_USER);
-        request.getSession().setAttribute(SESSION_USER,sessionUser);
-        BeanUtils.copyProperties(user,sessionUser);
-        redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE,"保存成功");
+
+        if (result.equals(BaseResult.success())) {
+            User sessionUser = (User) request.getSession().getAttribute(SESSION_USER);
+            request.getSession().setAttribute(SESSION_USER, sessionUser);
+            BeanUtils.copyProperties(user, sessionUser);
+            redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE, "保存成功");
         redirectAttributes.addFlashAttribute(Contents.STATUS, BaseResult.STATUS_SUCCESS);
         }
         else {
-            redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE,result.getMessage());
+            redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE, result.getMessage());
             redirectAttributes.addFlashAttribute(Contents.STATUS, BaseResult.STATUS_FAIL);
         }
         return "redirect:/back/info";

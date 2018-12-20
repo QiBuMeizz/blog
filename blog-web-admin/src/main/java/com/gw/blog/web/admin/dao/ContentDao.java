@@ -13,4 +13,5 @@ public interface ContentDao extends BasePageDao<Content> {
      * @return
      */
     List<Content> getByTypeId(Long typeId);
+
 }

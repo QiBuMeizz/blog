@@ -13,4 +13,5 @@ import java.util.List;
 
 @Service
 public class ContentServiceImpl extends BasePageServiceImpl<Content, ContentDao> implements ContentService {
+
 }
