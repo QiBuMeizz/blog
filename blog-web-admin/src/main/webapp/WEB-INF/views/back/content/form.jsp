@@ -73,15 +73,7 @@
 
         </div>
     </div>
-    <!-- _________________________ Start zTree __________________________ -->
-    <%--<script src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js" type="text/javascript"></script>--%>
-    <!-- _________________________ Finish zTree __________________________ -->
 
-    <!-- _________________________ Start Footer _________________________ -->
-    <%--<div id="footer">
-        <p>Pacifico &copy; 2016 by 萌站</p>
-    </div>--%>
-    <!-- _________________________ Finish Footer ________________________ -->
     <%@include file="../../includes/back/metronij.jsp" %>
 
     <script src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js" type="text/javascript"></script>
