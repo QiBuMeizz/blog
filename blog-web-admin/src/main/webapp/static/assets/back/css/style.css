@@ -772,8 +772,9 @@ h2.home {
 
 /* ---------------------------------- Content ----------------------------------------------*/
 
+
 #middle {
-	width:1645px;
+	width:85%;
 	height: 968px;
 	position:relative;
 	top:0;

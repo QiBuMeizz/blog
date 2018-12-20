@@ -5,6 +5,7 @@
     <%@include file="../includes/back/header.jsp"%>
     <title>我的信息</title>
     <%@include file="../includes/back/metronic.jsp"%>
+    <link href="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="standard simple">
 <!-- _________________________ Start Background Image __________________________ -->
@@ -13,20 +14,19 @@
 
 <!-- _________________________ Start Page ___________________________ -->
 
-    <div id="middle">
+    <div id="middle" style="width: 85%">
         <div id="home">
             <h2 class="home" style="color:lightgrey">个人信息</h2>
         </div>
         <div class="middle_content">
             <h3 style="color: floralwhite">修改个人信息</h3>
-            ${message}
             <div class="entry">
                 <div class="portlet-body form">
-                    <form role="form" action="/back/save" method="post" modelAttribute="user">
+                    <form role="form" action="/back/save" method="post" modelAttribute="user" id="inputForm">
                         <div class="form-body">
                             <input type="text" name="id" value="${sessionScope.user.id}" hidden>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名" value="${sessionScope.user.username}">
+                                <input type="text" name="username" class="form-control required" id="username" placeholder="请输入用户名" value="${sessionScope.user.username}">
                                 <label for="username">用户名</label>
                             </div>
                             <div class="form-group form-md-line-input">
@@ -34,11 +34,11 @@
                                 <label for="password">密码</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="email" class="form-control" id="email" placeholder="请输入邮箱" value="${sessionScope.user.email}">
+                                <input type="text" name="email" class="form-control email" id="email" placeholder="请输入邮箱" value="${sessionScope.user.email}">
                                 <label for="email">邮箱</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="phone" class="form-control" id="phone" placeholder="请输入手机号" value="${sessionScope.user.phone}">
+                                <input type="text" name="phone" class="form-control mobile" id="phone" placeholder="请输入手机号" value="${sessionScope.user.phone}">
                                 <label for="phone">手机号</label>
                             </div>
                             <div class="form-group form-md-line-input">
@@ -64,6 +64,20 @@
             <p>Pacifico &copy; 2016 by 萌站</p>
         </div>--%>
         <!-- _________________________ Finish Footer ________________________ -->
+
 <%@include file="../includes/back/metronij.jsp"%>
+<script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/app/validate.js" type="text/javascript"></script>
+
+<script src="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/apps/model/toastr.js" type="text/javascript"></script>
+<script>
+    //带标题的消息框
+    if(${message != null }){
+        toastr.error("${message}")
+    }
+</script>
 </body>
 </html>

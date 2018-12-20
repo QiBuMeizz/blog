@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "back")
 public class TypeController {
 
-    @GetMapping(value = "type/form")
+    @GetMapping(value = "type/list")
     public String form(){
-        return "back/type/form";
+        return "back/type/list";
     }
 
 }

@@ -44,6 +44,9 @@
         <if test="typeId != null and typeId != '' ">
             AND a.type_id = #{typeId}
         </if>
+        <if test="typeId == null or typeId == '' ">
+            ORDER BY a.updated DESC
+        </if>
         <if test="page!=null">
             LIMIT #{page.start},#{page.size};
         </if>

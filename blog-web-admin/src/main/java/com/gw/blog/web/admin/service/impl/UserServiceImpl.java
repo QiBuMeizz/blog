@@ -2,9 +2,11 @@ package com.gw.blog.web.admin.service.impl;
 
 import com.gw.blog.commons.abstracts.impl.BaseServiceImpl;
 import com.gw.blog.commons.dto.BaseResult;
+import com.gw.blog.commons.validation.BeanValidator;
 import com.gw.blog.domain.User;
 import com.gw.blog.web.admin.dao.UserDao;
 import com.gw.blog.web.admin.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -24,7 +26,14 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDao> implements U
     //修改密码
     @Override
     public BaseResult save(User user) {
-        String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+        String result = BeanValidator.validator(user);
+        if(result != null){
+            return BaseResult.fail(result);
+        }
+        String password =null;
+        if(StringUtils.isNotBlank(user.getPassword())){
+            password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+        }
         user.setPassword(password);
         return super.save(user);
     }
@@ -42,7 +51,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDao> implements U
         // 账号正确
         if (user != null) {
             // 密码正确
-            if (user.getPassword().equals(password)) {
+            if (user.getPassword().equals(password) || user.getPassword().equals(params.getPassword())) {
                 return user;
             }
         }
