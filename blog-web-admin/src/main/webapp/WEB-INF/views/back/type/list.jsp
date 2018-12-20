@@ -1,35 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <html>
 <head>
     <%@include file="../../includes/back/header.jsp" %>
-    <title>我的信息</title>
-    <%@include file="../../includes/back/metronic.jsp" %>
+    <title>分类管理</title>
     <link href="/static/assets/metronic/assets/apps/plugins/themes/vsStyle/treeTable.min.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        table{
-            color:lightgrey;
-        }
-        div a{
-            color:lightgrey;
-        }
-    </style>
+
 </head>
 <body class="standard simple">
-<!-- _________________________ Start Background Image __________________________ -->
 <%@include file="../../includes/back/background.jsp" %>
-<!-- _________________________ Finish Background Image __________________________ -->
-
-<!-- _________________________ Start Page ___________________________ -->
-<div id="middle" class="middle-width" style="width: 85%">
-    <div id="home">
-        <h2 class="home" style="color:lightgrey">分类管理</h2>
-    </div>
+<div id="page" class="background">
+    <div id="middle" class="middle-width" style="width: 85%;height: auto">
+        <div id="home">
+            <h2 class="home" style="color:lightgrey">分类管理</h2>
+        </div>
     <div class="middle_content">
-        <h3 style="color: floralwhite">分类列表</h3>
+        <h3 style="color: floralwhite;float:left">分类列表</h3>
+        <br><br><br><br><br><br>
         <div class="entry">
-
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <table class="table" id="treeTable">
@@ -81,7 +71,7 @@
         </div>
     </div>
 </div>
-
+</div>
 
 <!-- _________________________ Start Footer _________________________ -->
 <%--<div id="footer">

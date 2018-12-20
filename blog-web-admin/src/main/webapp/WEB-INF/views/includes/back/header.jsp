@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="/static/assets/back/images/favicon.png" type="image/png" />
     <link rel="stylesheet" href="/static/assets/back/css/style.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="/static/assets/back/css/styles/prettyPhoto.css" type="text/css" media="screen" />
-<link href="http://fonts.lug.ustc.edu.cn/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.lug.ustc.edu.cn/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
 
     <link href="/static/assets/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/static/assets/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />

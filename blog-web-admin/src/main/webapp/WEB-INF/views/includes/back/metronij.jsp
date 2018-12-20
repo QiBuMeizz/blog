@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <script src="/static/assets/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<%--<script type="text/javascript"> if (window.jQuery == undefined) document.write( unescape('%3Cscript src="/static/assets/back/js/jquery-1.6.4.min.js" type="text/javascript"%3E%3C/script%3E') ); </script>--%>
 <script src="/static/assets/back/js/jquery.prettyPhoto.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -20,8 +19,13 @@
 </script>
 <script>
     <%--带标题的消息框--%>
-    if(${message != null }){
-        toastr.error("${message}");
+    if(${baseResult.status == 500}){
+        toastr.error("${baseResult.message}");
+    }
+
+    <%--带标题的消息框--%>
+    if(${baseResult.status == 200}){
+        toastr.success("${baseResult.message}");
     }
 
 </script>

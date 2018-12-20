@@ -4,7 +4,6 @@
 <head>
     <%@include file="../../includes/back/header.jsp"%>
     <title>内容管理</title>
-    <%@include file="../../includes/back/metronic.jsp"%>
 </head>
 <body class="standard simple">
 

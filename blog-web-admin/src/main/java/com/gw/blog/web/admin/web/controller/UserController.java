@@ -38,12 +38,10 @@ public class UserController extends BaseController<User, UserService> {
             User sessionUser = (User) request.getSession().getAttribute(SESSION_USER);
             request.getSession().setAttribute(SESSION_USER, sessionUser);
             BeanUtils.copyProperties(user, sessionUser);
-            redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE, "保存成功");
-        redirectAttributes.addFlashAttribute(Contents.STATUS, BaseResult.STATUS_SUCCESS);
+            redirectAttributes.addFlashAttribute(Contents.BASE_RESULT, BaseResult.success("保存成功"));
         }
         else {
-            redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE, result.getMessage());
-            redirectAttributes.addFlashAttribute(Contents.STATUS, BaseResult.STATUS_FAIL);
+            redirectAttributes.addFlashAttribute(Contents.BASE_RESULT, BaseResult.fail(result.getMessage()));
         }
         return "redirect:/back/info";
     }
