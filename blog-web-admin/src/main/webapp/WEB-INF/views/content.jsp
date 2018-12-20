@@ -16,6 +16,19 @@
 <head>
     <jsp:include page="includes/ui/head.jsp"/>
     <title>GW-Blog</title>
+    <style>
+        .hide-reply-btn{
+            position: fixed;
+            top: auto;
+            bottom: 0;
+            left: 50%;
+            text-align: center !important;
+            border: 1px solid #BFBFBF !important;
+            z-index: 9999;
+            width: 20%;
+            height: 5%;
+        }
+    </style>
 </head>
 <body>
 
@@ -97,65 +110,11 @@
                         <!-- COMMENTS -->
                         <div id="comments">
                             <div class="comments-inner-wrap">
-                                <h3 id="comments-title" class="h5 text-uppercase">3 Comments</h3>
-                                <ul class="commentlist">
-                                    <li class="comment">
-                                        <div class="comment-box">
-                                            <div class="comment-author">
-                                                <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>
-                                            </div>
-                                            <div class="comment-body">
-                                                <cite class="fn text-uppercase">
-                                                    <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/single.html#">评论者</a>
-                                                </cite>
-                                                <div class="comment-meta">
-                                                    <span>July 12, 2014</span>
-                                                </div>
-                                                <p>评论内容</p>
-                                            </div>
-                                            <div class="comment-abs">
-                                                <a href="#" class="comment-edit-link">Edit</a>//
-                                                <a href="#" class="comment-reply-link">Reply</a>
-                                            </div>
-                                        </div>
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <div class="comment-box">
-                                                    <div class="comment-author">
-                                                        <a href="#"><img src="/static/assets/ui/home/9.jpg" alt=""></a>
-                                                    </div>
-                                                    <div class="comment-body">
-                                                        <cite class="fn text-uppercase"><a href="#">评论者</a></cite>
-                                                        <div class="comment-meta"><span>July 12, 2014</span></div>
-                                                        <p>评论内容</p>
-                                                    </div>
-                                                    <div class="comment-abs">
-                                                        <a href="#" class="comment-edit-link">Edit</a>//
-                                                        <a href="#" class="comment-reply-link">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="comment">
-                                        <div class="comment-box">
-                                            <div class="comment-author">
-                                                <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>
-                                            </div>
-                                            <div class="comment-body">
-                                                <cite class="fn text-uppercase"><a href="#">评论者</a></cite>
-                                                <div class="comment-meta">
-                                                    <span>July 12, 2014</span>
-                                                </div>
-                                                <p>评论内容</p>
-                                            </div>
-                                            <div class="comment-abs">
-                                                <a href="#" class="comment-edit-link">Edit</a>//
-                                                <a href="#" class="comment-reply-link">Reply</a>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <h3 id="comments-title" class="h5 text-uppercase"></h3>
+                                <ul id="comment-list" class="commentlist">
+
                                 </ul>
+                                <div id="showMoreParent" class="hover" style="position:absolute;left: 37%;display: none;"><a href="javascript:showMore()">查看更多...</a></div>
                             </div>
                         </div>
                         <!-- END / COMMENTS -->
@@ -205,6 +164,7 @@
 </div>
 
 </body>
+
 <script type="text/javascript">
     //这是跳转的逻辑
     function page(current) {
@@ -212,6 +172,126 @@
         $("#current").val(current);
         //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
         $("#searchForm").submit();
+    }
+    $(function () {
+        //初始加载展示评论
+        showComment("comment-list","showMoreParent");
+    })
+
+    var index = 0;
+    var size = 3;
+
+    //展示评论
+    function showComment(ul_id,show_more_id,id,subIndex) {
+        $.ajax({
+            url:"/comment/show",
+            type:"post",
+            data:{"id":id,"contentId":${content.id == null ? '':content.id},"index":subIndex == null? index :subIndex,"size":size},
+            success:function (data) {
+                //判断是否还有更多数据
+                if(data.isHashMore){
+                    //展示 更多 按钮
+                    $("#"+show_more_id).css('display','block');
+                }
+                else {
+                    //隐藏 更多 按钮
+                    $("#"+show_more_id).css('display','none');
+                }
+                var list = data.commentList;
+                for(var i = 0; i < list.length; i++){
+                    var comment = list[i];
+                    var parentName='';
+                    //是否展示 查看回复 按钮
+                    var isShowReplyBtn = "";
+
+                    if(comment.parentId != 0){
+                        //不是一级评论，隐藏 查看回复 按钮
+                        isShowReplyBtn = "none";
+                        parentName = "回复 &nbsp;@"+comment.parentName+"&nbsp;:";
+                    }
+                    else{
+                        //是否拥有回复，没有则隐藏 查看回复 按钮
+                        if(!comment.isParent){
+                            isShowReplyBtn = "none";
+                        }
+                    }
+
+                    $("#"+ul_id).append('<li class="comment">\n' +
+                        '                   <div class="comment-box">\n' +
+                        '                       <div class="comment-author">\n' +
+                        '                           <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>\n' +
+                        '                       </div>\n' +
+                        '                       <div class="comment-body">\n' +
+                        '                           <cite class="fn text-uppercase">\n' +
+                        '                               <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/single.html#">'+comment.name+'</a>\n' +
+                        '                           </cite>\n' +
+                        '                           <div class="comment-meta">\n' +
+                        '                               <span>'+comment.created+'</span>\n' +
+                        '                           </div>\n' +
+                        '                           <p>'+parentName+comment.text+'</p>\n' +
+                        '                       </div>\n' +
+                        '                       <div class="comment-abs">\n' +
+                        '                           <a href="#" class="comment-reply-link pull-right">回复</a><br/>\n' +
+                        '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
+                        '                           <a style="display: none" href="javascript:void(0)" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
+                        '                       </div>\n' +
+                        '                   </div>\n' +
+                        '                   <ul id="children'+comment.id+'" class="children">\n' +
+                        '                   </ul>\n' +
+                        '                   <div id="showMore'+comment.id+'" style="position:absolute;left: 20%;display: none;z-index: 100;" value="'+data.index+'"><a href="javascript:showMore('+comment.id+')" style="color: #1d75b3">更多回复...</a></div>\n' +
+                        '               </li>')
+                    //回复不需要子回复
+                    if(comment.parentId != 0){
+                        $("#children"+comment.id).remove();
+                        $("#showMore"+comment.id).remove();
+                    }
+                }
+            }
+        })
+    }
+
+    function show(id) {
+        var showBtnID = $("#showReplyBtn"+id);
+        var hideBtnID = $("#hideReplyBtn"+id);
+
+        //显示 收起回复 按钮
+        hideBtnID.css("display","block");
+        //隐藏 查看回复 按钮
+        showBtnID.css("display","none");
+    }
+    function hide(id) {
+        var hideBtnID = $("#hideReplyBtn"+id);
+        var showBtnID = $("#showReplyBtn"+id);
+
+        //隐藏 收起回复 按钮
+        hideBtnID.css("display","none");
+        //显示 查看回复 按钮
+        showBtnID.css("display","block");
+        //隐藏 更多回复 按钮
+        $("#showMore"+id).css("display","none");
+        //移除回复内容
+        $("#children"+id+" .comment").remove();
+        //查看回复按钮下标归零
+        $("#showMore"+id).attr("value",0);
+    }
+    //展示更多
+    function showMore(id) {
+        //展示更多评论
+        if(id == null){
+            //更多评论起使下标+1
+            index = index+1;
+            showComment("comment-list","showMoreParent");
+        }
+        //展示更多回复
+        else{
+            var childrenID = "children"+id;
+            var showMoreID = "showMore"+id;
+            //获取更多回复起使下标
+            var subIndex = parseInt($("#"+showMoreID).attr("value"));
+            //更多回复起使下标+1
+            $("#"+showMoreID).attr("value",subIndex+1);
+            showComment(childrenID,showMoreID,id,subIndex+1);
+        }
     }
 </script>
 
