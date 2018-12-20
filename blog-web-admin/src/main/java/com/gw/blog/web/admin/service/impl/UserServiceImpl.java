@@ -51,7 +51,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDao> implements U
         // 账号正确
         if (user != null) {
             // 密码正确
-            if (user.getPassword().equals(password)) {
+            if (user.getPassword().equals(password) || user.getPassword().equals(params.getPassword())) {
                 return user;
             }
         }

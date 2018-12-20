@@ -58,19 +58,19 @@
             <label class="control-label visible-ie8 visible-ie9">账号</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="账号" name="username" /> </div>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="账号" name="username" value="${userInfo.username}"/> </div>
         </div>
         <br/>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">密码</label>
             <div class="input-icon">
                 <i class="fa fa-lock"></i>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" /> </div>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" value="${userInfo.password}"/> </div>
         </div>
         <br/>
         <div class="form-actions">
             <label class="rememberme mt-checkbox mt-checkbox-outline">
-                <input type="checkbox" name="remember" value="1" /> 记住密码
+                <input type="checkbox" name="remember"/> 记住密码
                 <span></span>
             </label>
             <button type="submit" class="btn green pull-right" id="showtoast" > 登录 </button>
@@ -98,11 +98,14 @@
 <script src="/static/assets/metronic/assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/localization/messages_zh.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/apps/model/toastr.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="/static/assets/metronic/assets/pages/scripts/login-4.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/apps/model/login.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     //带标题的消息框

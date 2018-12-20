@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "back")
 public class CommentController {
 
-    @GetMapping(value = "comment/form")
+    @GetMapping(value = "comment/list")
     public String form(){
-        return "back/comment/form";
+        return "back/comment/list";
     }
 }
