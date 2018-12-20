@@ -5,6 +5,7 @@
     <%@include file="../../includes/back/header.jsp"%>
     <title>内容管理</title>
     <%@include file="../../includes/back/metronic.jsp"%>
+    <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="standard simple">
 
@@ -83,6 +84,7 @@
     <!-- _________________________ Finish Footer ________________________ -->
     <%@include file="../../includes/back/metronij.jsp" %>
 
+    <script src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js" type="text/javascript"></script>
 
     <div class="modal fade" id="zModel" tabindex="-1" role="basic" aria-hidden="true">
         <div class="modal-dialog">
@@ -93,7 +95,7 @@
                 </div>
                 <div class="modal-body">
                     123
-                    <%--<ul id="treeDemo" class="ztree"></ul>--%>
+                    <ul id="treeDemo" class="ztree"></ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn dark btn-outline" data-dismiss="modal">关闭</button>
@@ -106,19 +108,22 @@
     </div>
 </div>
 <script type="text/javascript">
-    // var zTreeObj;
-    // // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-    // var setting = {};
-    // // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-    // var zNodes = [
-    //     {name:"test1", open:true, children:[
-    //             {name:"test1_1"}, {name:"test1_2"}]},
-    //     {name:"test2", open:true, children:[
-    //             {name:"test2_1"}, {name:"test2_2"}]}
-    // ];
-    // $(document).ready(function(){
-    //     zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-    // });
+    var zTreeObj;
+    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+    var setting = {
+        
+
+    };
+    // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+    var zNodes = [
+        {name:"test1", open:true, children:[
+                {name:"test1_1"}, {name:"test1_2"}]},
+        {name:"test2", open:true, children:[
+                {name:"test2_1"}, {name:"test2_2"}]}
+    ];
+    $(document).ready(function(){
+        zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    });
 </script>
 <script src="/static/assets/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
