@@ -39,6 +39,9 @@ public class UserController extends BaseController<User, UserService> {
         BeanUtils.copyProperties(user,sessionUser);
         redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE,"保存成功");
         }
+        else {
+            redirectAttributes.addFlashAttribute(Contents.SYSTEM_MESSAGE,result.getMessage());
+        }
         return "redirect:/back/info";
     }
 
