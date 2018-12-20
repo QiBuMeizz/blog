@@ -37,6 +37,11 @@ public abstract class BasePageServiceImpl<T extends BasePageEntity,D extends Bas
     public BaseResult pageList(T entity) {
         Integer count = dao.count(entity);
 
+        //没有符合的数据
+        if (count == 0){
+            return BaseResult.fail("敬请期待!!!");
+        }
+
         Page page = entity.getPage();
 
         //简单的分页数

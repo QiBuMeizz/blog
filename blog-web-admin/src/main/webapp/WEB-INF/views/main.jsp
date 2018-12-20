@@ -49,7 +49,7 @@
                             <div class="post-media">
                                 <div class="image-wrap">
                                     <%--图片--%>
-                                    <img src="${content.pic}" alt=""></div>
+                                    <img src="${content.pic}"  alt=""></div>
                                 <div class="post-cat">
                                     <%--详情跳转--%>
                                     <a href="/content?id=${content.id}">详情</a></div>
@@ -140,7 +140,6 @@
         //设置开关，判断是否要默认选中“最新文章”
         var flag=false;
         var local = location.href;
-        console.log(local);
         $("#menu a").each(function () {
             if($(this).prop("href")===local ){
                 $(this).parent().addClass("current-menu-parent");
