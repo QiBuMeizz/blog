@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 @Controller
 public abstract class BaseController<T extends BaseEntity,S extends BaseService<T>> {
@@ -31,6 +32,4 @@ public abstract class BaseController<T extends BaseEntity,S extends BaseService<
             return entityClass.newInstance();
         }
     }
-
-
 }

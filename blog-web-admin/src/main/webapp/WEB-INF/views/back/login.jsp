@@ -22,10 +22,6 @@
     <link href="/static/assets/metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="/static/assets/metronic/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="/static/assets/metronic/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
@@ -44,7 +40,8 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
     <a href="/">
-        <img src="/static/assets/ui/home/qianfeng_logo.png" alt="" /> </a>
+        <%--<img src="/static/assets/ui/home/qianfeng_logo.png" alt="" /> </a>--%>
+        <img src="https://cdn.bootcss.com/zTree.v3/3.5.32/css/zTreeStyle/img/diy/1_open.png" alt="" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
@@ -70,7 +67,7 @@
         <br/>
         <div class="form-actions">
             <label class="rememberme mt-checkbox mt-checkbox-outline">
-                <input type="checkbox" name="remember"/> 记住密码
+                <input type="checkbox" name="remember" ${userInfo == null ? "" : "checked='checked'"} /> 记住密码
                 <span></span>
             </label>
             <button type="submit" class="btn green pull-right" id="showtoast" > 登录 </button>

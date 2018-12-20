@@ -42,5 +42,4 @@ public class Comment extends BasePageEntity {
      * 文章标题
      */
     @Transient
-    private Content content;
-}
+    private Content content;}
