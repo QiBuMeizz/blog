@@ -18,19 +18,42 @@
     </div>
     <div class="middle_content">
         <h3 style="color: floralwhite">评论列表</h3>
-            <br>
-        <a type="button" href="#"
-           class="btn red btn-outline pull-right margin-top-20"><i class="fa fa-trash-o">多选删除</i></a>
+        <br>
+        <c:set var="list" value="${pageResult.data.list}"/>
+        <c:set var="page" value="${pageResult.data}"/>
+        <div class="row table">
+            <a type="button" href="#" class="btn red btn-outline pull-right margin-top-20"><i class="fa fa-trash-o">多选删除</i></a>
+            <button type="button" href="/back/content/modify" class="btn green btn-outline pull-right margin-top-20 "
+                    onclick="$('#searchForm').slideToggle(300)"><i class="fa fa-search">高级搜索</i>
+            </button>
+        </div>
+        <div class="col-md-offset-1" id="searchForm" hidden>
+            <form role="form" action="/back/comment/list" method="get" class="echo">
+                <input type="hidden" name="current" id="current" value="${page.current}"/>
+                <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
+                <h4 style="color: floralwhite ;">高级搜索</h4>
+                <div class="form-body row">
+                    <div class="form-group form-md-line-input col-md-3">
+                        <input type="text" name="name" class="form-control" placeholder="评论者">
+                    </div>
+                    <div class="form-group form-md-line-input col-md-3">
+                        <input type="text" name="text" class="form-control" placeholder="评论内容">
+                    </div>
+
+                    <div class="form-group form-md-line-input col-md-3">
+                        <input type="text" name="content.title" class="form-control" placeholder="评论文章">
+                    </div>
+                    <div style="padding-left: 20px">
+                        <button type="submit" class="btn blue btn-outline btn-lg">&nbsp;<i class="fa fa-search"></i>&nbsp;</button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="entry">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <c:set var="list" value="${pageResult.data.list}"/>
-                    <c:set var="page" value="${pageResult.data}"/>
 
-                    <form action="/back/comment/list" id="searchForm">
-                        <input type="hidden" name="current" id="current" value="${page.current}"/>
-                        <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
-                    </form>
+
                     <table class="table echo">
                         <thead>
                         <tr style="white-space:nowrap">
@@ -45,8 +68,8 @@
                             <th> 评论者</th>
                             <th> 评论者邮箱</th>
                             <th> 评论内容</th>
-                            <th> 文章标题</th>
-                            <th> 评论状态</th>
+                            <th> 评论文章</th>
+                            <th> 审核状态</th>
                             <th> 更新时间</th>
                             <th>操作</th>
                         </tr>
@@ -70,7 +93,7 @@
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
                                     <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline"><i class="fa fa-edit">详情</i></a>
-                                    <a href="/back/comment/save?id=${comment.id}" class="btn green btn-outline"><i class="fa fa-check">通过审核</i></a>
+                                    <a href="/back/comment/save?id=${comment.id}" class="btn yellow btn-outline"><i class="fa fa-check">通过审核</i></a>
 
                                     <a href="/back/comment/delete?id=${comment.id}" class="btn red btn-outline"><i class="fa fa-trash-o">删除</i></a>
                                 </td>

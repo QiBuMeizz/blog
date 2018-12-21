@@ -5,7 +5,13 @@
 <html>
 <head>
     <%@include file="../../includes/back/header.jsp"%>
+    <link rel="stylesheet" type="text/css" href="/static/assets/ui/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/assets/ui/font-awesome/css/font-awesome.min.css">
+    <!-- PAGE STYLE -->
+    <link rel="stylesheet" type="text/css" href="/static/assets/ui/home/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.css">
     <title>博文管理</title>
+
 </head>
 <body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp"%>
@@ -17,23 +23,39 @@
         <div class="middle_content">
             <h3 style="color: floralwhite ;float:left">博文列表</h3>
             <br><br><br>
+            <c:set var="list" value="${pageResult.data.list}"/>
+            <c:set var="page" value="${pageResult.data}"/>
             <div class="row table">
                 <a type="button" href="#"
                    class="btn red btn-outline pull-right margin-top-20 "><i class="fa fa-trash-o">多选删除</i></a>
                 <a type="button" href="/back/content/modify"
-                   class="btn green btn-outline pull-right margin-top-20 "><i class="fa fa-plus">新增文章</i></a>
+                   class="btn yellow btn-outline pull-right margin-top-20 "><i class="fa fa-plus">新增文章</i></a>
+                <button type="button" href="/back/content/modify"
+                   class="btn green btn-outline pull-right margin-top-20 " onclick="$('#searchForm').slideToggle(300)"><i class="fa fa-search">高级搜索</i></button>
             </div>
+            <div class="col-md-offset-2" id="searchForm" hidden>
+                <form role="form" action="/back/content/list" method="get" class="echo">
+                    <input type="hidden" name="current" id="current" value="${page.current}"/>
+                    <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
+                    <h4 style="color: floralwhite ;">高级搜索</h4>
+                    <div class="form-body row">
+                        <div class="form-group form-md-line-input col-md-3">
+                            <input type="text" name="title" class="form-control required" placeholder="标题">
+                        </div>
+                        <div class="form-group form-md-line-input col-md-3">
+                            <input type="text" name="content" class="form-control required" placeholder="内容">
+                        </div>
+                        <div style="padding-left: 20px">
+                            <button type="submit" class="btn blue btn-outline btn-lg"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <br>
             <div class="entry">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <c:set var="list" value="${pageResult.data.list}"/>
-                        <c:set var="page" value="${pageResult.data}"/>
-
-                        <form action="/back/content/list" id="searchForm">
-                            <input type="hidden" name="current" id="current" value="${page.current}"/>
-                            <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
-                        </form>
                         <table class="table echo">
                             <thead>
                             <tr style="white-space:nowrap">
@@ -89,13 +111,20 @@
     </div>
 </div>
     <%@include file="../../includes/back/metronij.jsp" %>
+<!-- LOAD JQUERY -->
+<script type="text/javascript" src="/static/assets/ui/home/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/static/assets/ui/home/jquery.owl.carousel.js"></script>
+<script type="text/javascript" src="/static/assets/ui/home/jquery.tweet.min.js"></script>
+<script type="text/javascript" src="/static/assets/ui/home/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="/static/assets/ui/home/retina.min.js"></script>
+<script type="text/javascript" src="/static/assets/ui/home/scripts.js"></script>
 <script>
-        function page(current) {
-            //current跳转到哪一页  pageSize每页的条数
-            $("#current").val(current);
-            //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
-            $("#searchForm").submit();
-        }
+    function page(current) {
+        //current跳转到哪一页  pageSize每页的条数
+        $("#current").val(current);
+        //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
+        $("#searchForm").submit();
+    }
     $(function () {
         var father = $("#father");
         var children = $(".children");

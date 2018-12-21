@@ -31,7 +31,7 @@ public class ContentController extends BaseController<Content,ContentService> {
     @Autowired
     private TypeService typeService;
 
-    @GetMapping(value = "list")
+    @RequestMapping(value = "list")
     public String list(Content content, Page page, Model model){
         //分页列表
         content.setPage(page);
