@@ -73,7 +73,13 @@
             AND a.status LIKE concat('%',#{status},'%')
         </if>
     </select>
-
-    
+	
+	<delete id="delete">
+        DELETE
+        FROM
+            comment
+        WHERE
+            id = #{id}
+    </delete>
 
 </mapper>
