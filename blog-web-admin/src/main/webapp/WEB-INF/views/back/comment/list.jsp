@@ -65,6 +65,7 @@
                                 <td>${comment.email}</td>
                                 <td width="40%">${comment.text}</td>
                                 <td>${comment.content.title}</td>
+                                <td>${comment.content.status == 0?'未审核':'已审核'}</td>
 
        
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>

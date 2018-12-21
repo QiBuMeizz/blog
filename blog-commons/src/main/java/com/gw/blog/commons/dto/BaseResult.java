@@ -37,7 +37,7 @@ public class BaseResult implements Serializable {
      * @return
      */
     public static BaseResult success(){
-        return creatBaseResult(STATUS_SUCCESS,"成功",null);
+        return creatBaseResult(STATUS_SUCCESS,"操作成功",null);
     }
 
     /**
@@ -64,7 +64,7 @@ public class BaseResult implements Serializable {
      * @return
      */
     public static BaseResult fail(){
-        return creatBaseResult(STATUS_FAIL,"失败",null);
+        return creatBaseResult(STATUS_FAIL,"操作失败",null);
     }
 
     /**
