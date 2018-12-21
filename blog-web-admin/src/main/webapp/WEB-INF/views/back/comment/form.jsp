@@ -23,8 +23,8 @@
             <div class="entry">
                 <div class="portlet-body form">
                     <form role="form" action="/back/comment/save" method="post" modelAttribute="user" id="commentForm">
-                        <div class="form-body">
-                            <input type="text" name="id" value="${requestScope.comment.id}" hidden>
+                        <div class="form-body" >
+                            <input type="text"  name="id" value="${requestScope.comment.id}" hidden>
                             <div class="form-group form-md-line-input">
                                 <input type="text" name="name" class="form-control" id="name" value="${requestScope.comment.name}" readonly>
                                 <label for="name">类目名称</label>
@@ -41,9 +41,9 @@
                                 <input type="text" name="parentName" class="form-control" id="parentName" value="${requestScope.comment.parentName == null? '无父评论':requestScope.comment.parentName}" readonly>
                                 <label for="parentName">父评论名称</label>
                             </div>
-                            <div class="form-group form-md-line-input">
-                                <textarea name="text" class="form-control" id="text" readonly>${requestScope.comment.text}</textarea>
-                                <label for="text">评论内容</label>
+                            <div class="form-group form-md-line-input" >
+                                <textarea name="text" class="form-control" id="textarea"  readonly>${requestScope.comment.text}</textarea>
+                                <label for="textarea">评论内容</label>
                             </div>
                             <div class="form-group form-md-line-input">
                                 <input type="text" name="status" class="form-control" id="status" value="${requestScope.comment.status == 0? '未审核':'已审核'}" readonly>
@@ -94,6 +94,14 @@
         $("#commentForm").submit();
     }
 
+
+    $('textarea').each(function () {
+        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+    }).on('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
 </script>
+
 </body>
 </html>
