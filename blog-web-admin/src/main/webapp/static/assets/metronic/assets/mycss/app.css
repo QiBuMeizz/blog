@@ -11,4 +11,19 @@
 .echo{
     color:lightgrey;
 }
+.mytable {
+    table-layout: fixed;
+    width: 97% ;
+    border:0px;
+    margin: 0px;
+}
+
+.mytable tr .mytd {
+    text-overflow: ellipsis; /* for IE */
+    -moz-text-overflow: ellipsis; /* for Firefox,mozilla */
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left
+}
+
 

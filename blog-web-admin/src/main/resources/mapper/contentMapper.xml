@@ -119,6 +119,14 @@
         WHERE id = #{id};
     </update>
 
+    <update id="delete">
+        UPDATE
+          content
+        SET
+          status = #{status}
+        WHERE id = #{id};
+    </update>
+
     <select id="getByTypeId" resultType="Content">
         SELECT
         <include refid="ContentColumns"/>

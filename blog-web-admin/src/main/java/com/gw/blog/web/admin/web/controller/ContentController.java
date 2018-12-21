@@ -74,7 +74,7 @@ public class ContentController extends BaseController<Content,ContentService> {
 
     @GetMapping(value = "delete")
     public String delete(Content content, RedirectAttributes redirectAttributes){
-        //BaseResult result = service.delete(content);
+        BaseResult result = service.delete(content);
         redirectAttributes.addFlashAttribute("message","删除数据成功!!!");
         return "redirect:/back/content/list";
     }

@@ -13,4 +13,11 @@ public interface CommentDao extends BasePageDao<Comment> {
      * @return
      */
     List<Comment>  selectComment(Map<String,Object> map);
+
+    /**
+     * 根据名字查询
+     * @param name
+     * @return
+     */
+    Comment selectByName(String name);
 }
