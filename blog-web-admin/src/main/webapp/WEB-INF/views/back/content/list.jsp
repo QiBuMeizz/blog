@@ -19,6 +19,8 @@
             <br><br><br>
             <a type="button" href="/back/content/modify"
                class="btn purple btn-outline pull-right margin-top-20">编辑新文章</a>
+            <a type="button" href="/back/content/modify"
+               class="btn yellow btn-outline pull-right margin-top-20">删除多个</a>
             <div class="entry">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">

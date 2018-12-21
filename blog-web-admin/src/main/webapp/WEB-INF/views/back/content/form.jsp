@@ -8,7 +8,7 @@
     <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/metroStyle/metroStyle.css" rel="stylesheet" type="text/css"/>
     <link href="/static/assets/back/wangEditor/wangEditor.min.css" rel="stylesheet" type="text/css"/>
     <link href="/static/assets/back/dropzone/min/basic.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/static/assets/back/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/assets/back/dropzone/dropzone.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="standard simple bodyBack">
 
@@ -18,14 +18,14 @@
 <div id="page" class="background">
     <%@include file="../../includes/back/background.jsp" %>
 
-    <div id="middle">
+    <div id="middle" style="height: auto">
         <div id="home">
             <h2 class="home" style="color:lightgrey">内容管理</h2>
         </div>
         <div class="middle_content">
             <h3 style="color: floralwhite">${content.id!=null?"修改":"添加"}内容</h3>
             <div class="entry">
-                <div class="portlet-body form">
+                <div class="portlet-body form" style="height: auto">
                     <form role="form" action="/back/content/save" method="post" modelAttribute="content">
                         <div class="form-body">
                             <input type="text" name="id" value="${content.id}" hidden>
