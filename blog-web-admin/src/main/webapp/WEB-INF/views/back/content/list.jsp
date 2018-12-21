@@ -5,11 +5,6 @@
 <html>
 <head>
     <%@include file="../../includes/back/header.jsp"%>
-    <link rel="stylesheet" type="text/css" href="/static/assets/ui/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/static/assets/ui/font-awesome/css/font-awesome.min.css">
-    <!-- PAGE STYLE -->
-    <link rel="stylesheet" type="text/css" href="/static/assets/ui/home/style.css">
-    <link rel="stylesheet" type="text/css" href="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.css">
     <title>博文管理</title>
 
 </head>
@@ -26,8 +21,23 @@
             <c:set var="list" value="${pageResult.data.list}"/>
             <c:set var="page" value="${pageResult.data}"/>
             <div class="row table">
-                <a type="button" href="#"
-                   class="btn red btn-outline pull-right margin-top-20 "><i class="fa fa-trash-o">多选删除</i></a>
+                <button class="btn red btn-outline mt-sweetalert pull-right  margin-top-20"
+                        data-title="温馨提示"
+                        data-message="确定删除所选的多条数据项吗?"
+                        data-type="warning" data-show-confirm-button="true"
+                        data-confirm-button-class="btn-danger"
+                        data-show-cancel-button="true"
+                        data-cancel-button-class="btn-default"
+                        data-close-on-confirm="false"
+                        data-close-on-cancel="false"
+                        data-confirm-button-text='确定'
+                        data-cancel-button-text='取消'
+                        data-popup-title-success="删除成功"
+                        data-popup-message-success="所选数据已从数据表中移除."
+                        data-post-url = "/back/content/delete"
+                        data-popup-title-cancel="已取消"
+                        data-popup-message-cancel="已取消删除所选数据项.">
+                <i class="fa fa-trash-o">删除多个</i></button>
                 <a type="button" href="/back/content/modify"
                    class="btn yellow btn-outline pull-right margin-top-20 "><i class="fa fa-plus">新增文章</i></a>
                 <button type="button" href="/back/content/modify"
@@ -80,7 +90,7 @@
                                     <td>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                             <input type="checkbox" class="group-checkable children"
-                                                   data-set="#sample_2 .checkboxes"/>
+                                                   data-set="#sample_2 .checkboxes" value="${content.id}"/>
                                             <span></span>
                                         </label>
                                     </td>
@@ -92,8 +102,23 @@
                                     <td>
                                         <a type="button" href="/back/content/modify?id=${content.id}"
                                            class="btn blue btn-outline"><i class="fa fa-edit">编辑</i></a>
-                                        <a type="button" href="/back/content/delete?id=${content.id}"
-                                           class="btn red btn-outline"><i class="fa fa-trash">删除</i></a>
+                                        <button class="btn btn-circle red btn-outline mt-sweetalert"
+                                                data-title="温馨提示"
+                                                data-message="确定删除所选的多条数据项吗?"
+                                                data-type="warning" data-show-confirm-button="true"
+                                                data-confirm-button-class="btn-danger"
+                                                data-show-cancel-button="true"
+                                                data-cancel-button-class="btn-default"
+                                                data-close-on-confirm="false"
+                                                data-close-on-cancel="false"
+                                                data-confirm-button-text='确定'
+                                                data-cancel-button-text='取消'
+                                                data-popup-title-success="删除成功"
+                                                data-popup-message-success="所选数据已从数据表中移除."
+                                                data-get-url = "/back/content/delete?id=${content.id}"
+                                                data-popup-title-cancel="已取消"
+                                                data-popup-message-cancel="已取消删除所选数据项.">
+                                            <i class="fa fa-trash">删除</i></button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -110,15 +135,9 @@
         </div>
     </div>
 </div>
+
     <%@include file="../../includes/back/metronij.jsp" %>
-<!-- LOAD JQUERY -->
-<script type="text/javascript" src="/static/assets/ui/home/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/jquery.owl.carousel.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/jquery.tweet.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/masonry.pkgd.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/retina.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/home/scripts.js"></script>
-<script>
+    <script src="/static/assets/ui/js/sweetalert.js" type="text/javascript"></script><script>
     function page(current) {
         //current跳转到哪一页  pageSize每页的条数
         $("#current").val(current);

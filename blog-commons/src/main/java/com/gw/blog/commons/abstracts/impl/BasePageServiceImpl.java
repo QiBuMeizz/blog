@@ -73,4 +73,15 @@ public abstract class BasePageServiceImpl<T extends BasePageEntity,D extends Bas
         //设置BaseResult
         return BaseResult.success("", pageResult);
     }
+
+    /**
+     * 多选删除
+     * @param ids
+     * @return
+     */
+    @Override
+    public BaseResult deleteMore(String ids) {
+        dao.deleteMore(ids);
+        return  BaseResult.success();
+    }
 }

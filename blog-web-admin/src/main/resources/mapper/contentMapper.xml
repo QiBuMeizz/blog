@@ -151,4 +151,13 @@
         WHERE
         a.id=#{id}
     </select>
+
+    <update id="deleteMore">
+        UPDATE
+          content
+        SET
+          status = 0
+        WHERE id IN
+        (#{ids});
+    </update>
 </mapper>

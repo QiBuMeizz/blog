@@ -1,6 +1,7 @@
 package com.gw.blog.commons.abstracts;
 
 import com.gw.blog.commons.abstracts.entity.BasePageEntity;
+import com.gw.blog.commons.dto.BaseResult;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,4 +31,11 @@ public interface BasePageDao<T extends BasePageEntity> extends BaseDao<T> {
      * 自定义标签分页
      */
     List<T> pageList(T entity);
+
+    /**
+     * 批量刪除
+     * @param ids
+     * @return
+     */
+    void deleteMore(String ids);
 }
