@@ -87,4 +87,13 @@ public class CommentServiceImpl extends BasePageServiceImpl<Comment, CommentDao>
             return false;
         }
     }
+
+    /**
+     *
+     * @param ids
+     */
+    @Override
+    public void deleteMore(Long... ids) {
+        dao.deleteMore(ids);
+    }
 }

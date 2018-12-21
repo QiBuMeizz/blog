@@ -20,4 +20,10 @@ public interface CommentDao extends BasePageDao<Comment> {
      * @return
      */
     Comment selectByName(String name);
+
+    /**
+     * 批量删除--真
+     * @param array
+     */
+    void deleteMore(Long... array);
 }

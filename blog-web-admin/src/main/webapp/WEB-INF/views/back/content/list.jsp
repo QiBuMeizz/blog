@@ -10,7 +10,7 @@
 </head>
 <body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp"%>
-<div id="page" class="background">
+<div id="page" class="background" >
     <div id="middle" class="middle-width" style="width: 85%;height: auto">
         <div id="home">
             <h2 class="home" style="color:lightgrey">博文管理</h2>
@@ -37,7 +37,7 @@
                         data-post-url = "/back/content/delete"
                         data-popup-title-cancel="已取消"
                         data-popup-message-cancel="已取消删除所选数据项.">
-                <i class="fa fa-trash-o">删除多个</i></button>
+                <i class="fa fa-trash-o">多选删除</i></button>
                 <a type="button" href="/back/content/modify"
                    class="btn yellow btn-outline pull-right margin-top-20 "><i class="fa fa-plus">新增文章</i></a>
                 <button type="button" href="/back/content/modify"
@@ -66,10 +66,10 @@
             <div class="entry">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <table class="table echo">
+                        <table class="table echo" style="table-layout:fixed">
                             <thead>
                             <tr style="white-space:nowrap">
-                                <th class="table-checkbox">
+                                <th class="table-checkbox" width="3%">
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                         <input type="checkbox" class="group-checkable" id="father"
                                                data-set="#sample_2 .checkboxes"/>
@@ -87,7 +87,7 @@
                             <tbody>
                             <c:forEach items="${list}" var="content">
                                 <tr style="white-space:nowrap">
-                                    <td>
+                                    <td width="3%">
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                             <input type="checkbox" class="group-checkable children"
                                                    data-set="#sample_2 .checkboxes" value="${content.id}"/>
@@ -96,13 +96,13 @@
                                     </td>
                                     <td>${content.title}</td>
                                     <td>${content.user.username}</td>
-                                    <td>${content.titleDesc}</td>
+                                    <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${content.titleDesc}</td>
                                     <td>${content.reads}</td>
                                     <td><fmt:formatDate value="${content.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                     <td>
                                         <a type="button" href="/back/content/modify?id=${content.id}"
                                            class="btn blue btn-outline"><i class="fa fa-edit">编辑</i></a>
-                                        <button class="btn btn-circle red btn-outline mt-sweetalert"
+                                        <button class="btn red btn-outline mt-sweetalert"
                                                 data-title="温馨提示"
                                                 data-message="确定删除所选的多条数据项吗?"
                                                 data-type="warning" data-show-confirm-button="true"
@@ -137,7 +137,8 @@
 </div>
 
     <%@include file="../../includes/back/metronij.jsp" %>
-    <script src="/static/assets/ui/js/sweetalert.js" type="text/javascript"></script><script>
+
+<script>
     function page(current) {
         //current跳转到哪一页  pageSize每页的条数
         $("#current").val(current);

@@ -22,13 +22,28 @@
         <c:set var="list" value="${pageResult.data.list}"/>
         <c:set var="page" value="${pageResult.data}"/>
         <div class="row table">
-            <a type="button" href="#" class="btn red btn-outline pull-right margin-top-20"><i class="fa fa-trash-o">多选删除</i></a>
+            <button class="btn red btn-outline mt-sweetalert pull-right  margin-top-20"
+                    data-title="温馨提示"
+                    data-message="确定删除所选的多条数据项吗?"
+                    data-type="warning" data-show-confirm-button="true"
+                    data-confirm-button-class="btn-danger"
+                    data-show-cancel-button="true"
+                    data-cancel-button-class="btn-default"
+                    data-close-on-confirm="false"
+                    data-close-on-cancel="false"
+                    data-confirm-button-text='确定'
+                    data-cancel-button-text='取消'
+                    data-popup-title-success="删除成功"
+                    data-popup-message-success="所选数据已从数据表中移除."
+                    data-post-url = "/back/comment/delete"
+                    data-popup-title-cancel="已取消"
+                    data-popup-message-cancel="已取消删除所选数据项."><i class="fa fa-trash-o">多选删除</i></button>
             <button type="button" href="/back/content/modify" class="btn green btn-outline pull-right margin-top-20 "
                     onclick="$('#searchForm').slideToggle(300)"><i class="fa fa-search">高级搜索</i>
             </button>
         </div>
-        <div class="col-md-offset-1" id="searchForm" hidden>
-            <form role="form" action="/back/comment/list" method="get" class="echo">
+        <div class="col-md-offset-1" hidden>
+            <form role="form" action="/back/comment/list" method="get" class="echo" id="searchForm">
                 <input type="hidden" name="current" id="current" value="${page.current}"/>
                 <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                 <h4 style="color: floralwhite ;">高级搜索</h4>
@@ -53,10 +68,10 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
 
-                    <table class="table echo mytable" width="50%">
+                    <table class="table echo" width="50%" style="table-layout:fixed">
                         <thead>
                         <tr style="white-space:nowrap">
-                            <th class="table-checkbox">
+                            <th class="table-checkbox" width="3%">
                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
 
                                     <input type="checkbox" class="group-checkable" id="father"
@@ -64,7 +79,7 @@
                                     <span></span>
                                 </label>
                             </th>
-                            <th> 评论者</th>
+                            <th width="7%"> 评论者</th>
                             <th> 评论者邮箱</th>
                             <th> 评论内容</th>
                             <th> 评论文章</th>
@@ -77,24 +92,39 @@
 
                         <c:forEach items="${list}" var="comment">
                             <tr style="white-space:nowrap" >
-                                <td>
+                                <td width="3%">
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                        <input type="checkbox" class="group-checkable children"
+                                        <input type="checkbox" class="group-checkable children" value="${comment.id}"
                                                data-set="#sample_2 .checkboxes"/>
                                         <span></span>
                                     </label>
                                 </td>
-                                <td>${comment.name}</td>
+                                <td width="7%">${comment.name}</td>
                                 <td>${comment.email}</td>
-                                <td class="mytd" width="80%">${comment.text}</td>
+                                <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${comment.text}</td>
                                 <td>${comment.content.title}</td>
                                 <td>${comment.status == 0?'未审核':'已审核'}</td>
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
                                     <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline"><i class="fa fa-edit">详情</i></a>
-                                    <a href="/back/comment/save?id=${comment.id}" class="btn yellow btn-outline"><i class="fa fa-check">通过审核</i></a>
-
-                                    <a href="/back/comment/delete?id=${comment.id}" class="btn red btn-outline"><i class="fa fa-trash-o">删除</i></a>
+                                    <a href="/back/comment/save?id=${comment.id}" class="btn yellow btn-outline"><i class="fa fa-check">通过</i></a>
+                                    <button class="btn red btn-outline mt-sweetalert"
+                                            data-title="温馨提示"
+                                            data-message="确定删除所选的多条数据项吗?"
+                                            data-type="warning" data-show-confirm-button="true"
+                                            data-confirm-button-class="btn-danger"
+                                            data-show-cancel-button="true"
+                                            data-cancel-button-class="btn-default"
+                                            data-close-on-confirm="false"
+                                            data-close-on-cancel="false"
+                                            data-confirm-button-text='确定'
+                                            data-cancel-button-text='取消'
+                                            data-popup-title-success="删除成功"
+                                            data-popup-message-success="所选数据已从数据表中移除."
+                                            data-get-url = "/back/comment/delete?id=${comment.id}"
+                                            data-popup-title-cancel="已取消"
+                                            data-popup-message-cancel="已取消删除所选数据项.">
+                                        <i class="fa fa-trash">删除</i></button>
                                 </td>
                             </tr>
                         </c:forEach>

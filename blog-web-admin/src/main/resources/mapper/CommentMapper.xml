@@ -136,4 +136,13 @@
             #{updated}
           );
     </insert>
+
+    <delete id="deleteMore">
+        DELETE FROM
+          comment
+        WHERE id IN
+        <foreach collection="array" open="(" separator="," close=")" item="array">
+            #{array}
+        </foreach>
+    </delete>
 </mapper>
