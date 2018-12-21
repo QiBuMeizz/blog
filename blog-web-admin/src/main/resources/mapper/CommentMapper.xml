@@ -39,6 +39,16 @@
           a.id = #{id}
     </select>
 
+    <select id="selectByName" resultType="Comment">
+        SELECT
+        <include refid="CommentColumns"/>
+        FROM comment AS a
+        <include refid="LeftJoin"/>
+        WHERE
+        a.name = #{name}
+        LIMIT 0,1;
+    </select>
+
     <select id="selectComment" resultType="Comment" parameterType="java.util.Map">
         SELECT
             <include refid="CommentColumns"/>
@@ -88,7 +98,6 @@
         UPDATE
           comment
         SET
-          id = #{id},
           name = #{name},
           email = #{email},
           text = #{text},
@@ -101,4 +110,39 @@
           updated = #{updated}
         WHERE id = #{id}
     </update>
+
+    <insert id="insert">
+        INSERT INTO comment (
+          `name`,
+          `email`,
+          `text`,
+          `pic`,
+          `parent_id`,
+          `content_id`,
+          `status`,
+          `created`,
+          `updated`
+        )
+        VALUES
+          (
+            #{name},
+            #{email},
+            #{text},
+            #{pic},
+            #{parentId},
+            #{contentId},
+            #{status},
+            #{created},
+            #{updated}
+          );
+    </insert>
+
+    <delete id="deleteMore">
+        DELETE FROM
+          comment
+        WHERE id IN
+        <foreach collection="array" open="(" separator="," close=")" item="array">
+            #{array}
+        </foreach>
+    </delete>
 </mapper>

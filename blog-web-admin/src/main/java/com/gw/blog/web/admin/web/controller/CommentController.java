@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -79,6 +80,28 @@ public class CommentController extends BaseController<Comment, CommentService> {
         redirectAttributes.addFlashAttribute(Contents.BASE_RESULT,baseResult);
         return "redirect:/back/comment/list";
     }
+    /**
+     * 多选删除
+     * @param array
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "delete")
+    public String delete(String array){
+        if (array == null || "".equals(array)){
+            return "error";
+        }
 
+
+        //分成数组
+        String[] ids = array.split(",");
+        Long[] longIds = new Long[ids.length];
+        for (int i = 0; i < ids.length; i++) {
+            longIds[i] = Long.parseLong(ids[i]);
+        }
+
+        service.deleteMore(longIds);
+        return null;
+    }
 
 }

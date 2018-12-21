@@ -38,19 +38,27 @@ public abstract class BaseController<T extends BaseEntity,S extends BaseService<
         }
     }
 
+    //校验
     protected BaseResult beanValidator(T t, Model model){
-        return checkBean(t,model);
+        return checkBean(t,model,Contents.BASE_RESULT);
+    }
+    protected BaseResult beanValidator(T t, Model model, String key){
+        return checkBean(t,model,key);
     }
     protected BaseResult beanValidator(T t, RedirectAttributes redirectAttributes){
-        return checkBean(t, redirectAttributes);
+        return checkBean(t, redirectAttributes,Contents.BASE_RESULT);
+    }
+    protected BaseResult beanValidator(T t, RedirectAttributes redirectAttributes, String key){
+        return checkBean(t, redirectAttributes, key);
     }
     /**
      * 检测Bean
      * @param t
      * @param model
+     * @param key 存进attribute中的key
      * @return
      */
-    private BaseResult checkBean(T t, Model model){
+    private BaseResult checkBean(T t, Model model, String key){
         //检测对象
         String message = BeanValidator.validator(t);
         //检测成功
@@ -62,10 +70,10 @@ public abstract class BaseController<T extends BaseEntity,S extends BaseService<
             BaseResult baseResult = BaseResult.fail(message,t);
             if(model instanceof RedirectAttributes){
                 RedirectAttributes redirectAttributes = (RedirectAttributes) model;
-                addDataToAttribute(redirectAttributes, Contents.BASE_RESULT,baseResult);
+                addDataToAttribute(redirectAttributes, key,baseResult);
             }
             else{
-                addDataToAttribute(model,Contents.BASE_RESULT,baseResult);
+                addDataToAttribute(model,key,baseResult);
             }
             return baseResult;
         }

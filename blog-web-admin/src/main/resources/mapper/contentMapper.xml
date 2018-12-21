@@ -41,7 +41,10 @@
           <include refid="LeftJoinUser"/>
         WHERE a.status = '1'
         <if test="title != null and title != '' ">
-            AND a.title LIKE concat('%',#{title},'%')
+            AND a.title LIKE CONCAT('%',#{title},'%')
+        </if>
+        <if test="content != null and content != '' ">
+            AND a.content LIKE CONCAT('%',#{content},'%')
         </if>
         <if test="typeId != null and typeId != '' ">
             AND a.type_id = #{typeId}
@@ -116,6 +119,14 @@
         WHERE id = #{id};
     </update>
 
+    <update id="delete">
+        UPDATE
+          content
+        SET
+          status = #{status}
+        WHERE id = #{id};
+    </update>
+
     <select id="getByTypeId" resultType="Content">
         SELECT
         <include refid="ContentColumns"/>
@@ -140,4 +151,13 @@
         WHERE
         a.id=#{id}
     </select>
+
+    <update id="deleteMore">
+        UPDATE
+          content
+        SET
+          status = 0
+        WHERE id IN
+        (#{ids});
+    </update>
 </mapper>

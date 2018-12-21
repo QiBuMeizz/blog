@@ -7,9 +7,12 @@
 <script src="/static/assets/metronic/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
+
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/apps/model/toastr.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+<script src="/static/assets/ui/js/sweetalert.js" type="text/javascript"></script>
 
 <div class="modal fade" id="zModel" tabindex="-1" role="basic" aria-hidden="true" style="color: #0a001f">
     <div class="modal-dialog">
