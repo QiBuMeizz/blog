@@ -10,12 +10,11 @@
     <link href="/static/assets/back/dropzone/min/basic.min.css" rel="stylesheet" type="text/css"/>
     <link href="/static/assets/back/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"/>
 </head>
-<body class="standard simple">
+<body class="standard simple bodyBack">
 
 <div class="bgImage">
     <img src="/static/assets/back/images/subpage_bg.jpg" alt="" />
 </div>
-<!-- _________________________ Finish Background Image __________________________ -->
 <div id="page" class="background">
     <%@include file="../../includes/back/background.jsp" %>
 

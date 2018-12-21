@@ -9,9 +9,9 @@
     <link href="/static/assets/metronic/assets/apps/plugins/themes/vsStyle/treeTable.min.css" rel="stylesheet" type="text/css" />
 
 </head>
-<body class="standard simple">
+<body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp" %>
-<div id="page" class="background">
+<div id="page" class="background echo">
     <div id="middle" class="middle-width" style="width: 85%;height: auto">
         <div id="home">
             <h2 class="home" style="color:lightgrey">分类管理</h2>
@@ -43,8 +43,8 @@
                                     <td width="19%">${type.sortOrder}</td>
                                     <td width="19%"><fmt:formatDate value="${type.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                     <td width="19%">
-                                        <a href="/back/type/form?id=${type.id}" type="button" class="btn btn-circle blue btn-outline">修改</a>
-                                        <button class="btn btn-circle blue btn-outline red mt-sweetalert" +
+                                        <a href="/back/type/form?id=${type.id}" type="button" class="btn blue btn-outline">修改</a>
+                                        <button class="btn blue btn-outline red mt-sweetalert" +
                                                 data-title="确认删除吗？" +
                                                 data-type="info"  +
                                                 data-show-confirm-button="true" +
@@ -59,7 +59,7 @@
                                                 data-popup-title-cancel="已取消" +
                                                 data-url="#">删除</button>
                                         <c:if test="${type.isParent}">
-                                            <a href="#" type="button" class="btn btn-circle green btn-outline">添加下级菜单</a>
+                                            <a href="#" type="button" class="btn green btn-outline">添加下级菜单</a>
                                         </c:if>
                                     </td>
                                 </tr>

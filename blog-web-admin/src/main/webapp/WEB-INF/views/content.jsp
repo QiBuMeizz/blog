@@ -52,7 +52,7 @@
                         <div class="post">
                             <div class="post-media">
                                 <div class="image-wrap">
-                                    <img src="/static/assets/ui/home/2(2).jpg" alt="">
+                                    <img src="/static/assets/ui/home/welcome2.png" style="height: 350px" alt="">
                                 </div>
                                 <div class="post-cat">
                                     <a href="#">${content.title}</a>

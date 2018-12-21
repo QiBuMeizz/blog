@@ -16,32 +16,43 @@
     <%@include file="../../includes/back/background.jsp"%>
     <div id="middle">
         <div id="home">
-            <h2 class="home" style="color:lightgrey">分类管理</h2>
+            <h2 class="home" style="color:lightgrey">评论管理</h2>
         </div>
         <div class="middle_content">
-            <h3 style="color: floralwhite">${requestScope.type.id == null ? "新增" : "修改"}分类</h3>
+            <h3 style="color: floralwhite">审核评论</h3>
             <div class="entry">
                 <div class="portlet-body form">
-                    <form role="form" action="#" method="post" modelAttribute="user" id="inputForm">
+                    <form role="form" action="/back/comment/save" method="post" modelAttribute="user" id="commentForm">
                         <div class="form-body">
-                            <input type="text" name="id" value="${requestScope.type.id}" hidden>
+                            <input type="text" name="id" value="${requestScope.comment.id}" hidden>
                             <div class="form-group form-md-line-input">
-                                <input type="text" id="parentName" class="form-control" placeholder="若无父类，留空" value="${requestScope.type.tname}" readonly data-toggle="modal" href="#treeModal"  style="cursor: pointer">
-                                <input type="text" id="parentId" name="parentId" class="form-control" value="${requestScope.type.parentId}">
-                                <label for="parentName">父类名称</label>
-                            </div>
-                            <div class="form-group form-md-line-input">
-                                <input type="text" name="name" class="form-control required" id="name" placeholder="请输入类目名称" value="${requestScope.type.name}">
+                                <input type="text" name="name" class="form-control" id="name" value="${requestScope.comment.name}" readonly>
                                 <label for="name">类目名称</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="sortOrder" class="form-control required" id="sortOrder" placeholder="请输入排列序号" value="${requestScope.type.sortOrder}">
-                                <label for="sortOrder">排列序号</label>
+                                <input type="text" name="email" class="form-control" id="email" value="${requestScope.comment.email}" readonly>
+                                <label for="email">邮箱</label>
+                            </div>
+                            <div class="form-group form-md-line-input">
+                                <input type="text" name="content.title" class="form-control" id="content.title" value="${requestScope.comment.content.title}" readonly>
+                                <label for="content.title">所属文章标题</label>
+                            </div>
+                            <div class="form-group form-md-line-input">
+                                <input type="text" name="parentName" class="form-control" id="parentName" value="${requestScope.comment.parentName == null? '无父评论':requestScope.comment.parentName}" readonly>
+                                <label for="parentName">父评论名称</label>
+                            </div>
+                            <div class="form-group form-md-line-input">
+                                <textarea name="text" class="form-control" id="text" readonly>${requestScope.comment.text}</textarea>
+                                <label for="text">评论内容</label>
+                            </div>
+                            <div class="form-group form-md-line-input">
+                                <input type="text" name="status" class="form-control" id="status" value="${requestScope.comment.status == 0? '未审核':'已审核'}" readonly>
+                                <label for="status">状态</label>
                             </div>
                         </div>
-
                         <div style="padding-left: 20px">
-                            <button type="submit" class="btn blue btn-outline">提交</button>
+                            <button type="button" class="btn blue btn-outline" onclick="pass()">通过审核</button>
+                            <a type="button" class="btn red btn-outline" href="/back/comment/delete?id=${requestScope.comment.id}">拒绝发布</a>
                             <button type="button" class="btn default btn-outline" onclick="history.go(-1);">返回</button>
 
                         </div>
@@ -75,8 +86,13 @@
 <script src="/static/assets/metronic/assets/global/plugins/jquery-validation/js/localization/messages_zh.min.js" type="text/javascript"></script>
 <script src="/static/assets/metronic/assets/app/validate.js" type="text/javascript"></script>
 
-
 <script>
+    function pass() {
+        //设置状态值
+        $("#status").val(1);
+        //提交表单
+        $("#commentForm").submit();
+    }
 
 </script>
 </body>

@@ -16,6 +16,15 @@
 <head>
     <jsp:include page="includes/ui/head.jsp"/>
     <title>GW-Blog</title>
+
+    <style type="text/css">
+
+        .bg:hover{
+            background-color: #E5E5E5;
+            border: #E5E5E5 1px solid;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -44,64 +53,47 @@
                             <input type="hidden" name="current" id="current" value="${page.current}"/>
                             <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                         </form>
-                        <c:forEach items="${list}" var="content">                        <!-- POST -->
-                        <div class="post">
-                            <div class="post-media">
-                                <div class="image-wrap">
-                                    <%--图片--%>
-                                    <img src="${content.pic}"  alt=""></div>
-                                <div class="post-cat">
-                                    <%--详情跳转--%>
-                                    <a href="/content?id=${content.id}">详情</a></div>
-                            </div>
-                            <div class="post-meta">
-                                <div class="post-format">
-                                    <a href="/content?id=${content.id}">
-                                        <i class="fa fa-image"></i>
-                                    </a>
+                        <c:forEach items="${list}" var="content">
+                            <div class="post bg" onclick="content(${content.id});" style="cursor: pointer">
+                                <div class="post-media">
+                                    <div class="image-wrap"  style=${content.pic == null || content.pic == "" ? "display:none":""}>
+                                            <%--图片--%>
+                                        <img src="${content.pic}" alt=""></div>
+                                    <div class="post-cat">
+                                            <%--详情跳转--%>
+                                        <a href="/content?id=${content.id}">详情</a></div>
                                 </div>
-                                <%--日期时间--%>
-                                <div class="post-date">
-                                    <span class="year"><fmt:formatDate value="${content.updated}" pattern="yyyy"/> </span>
-                                    <span class="month"><fmt:formatDate value="${content.updated}" pattern="MM"/></span>
-                                    <span class="day"><fmt:formatDate value="${content.updated}" pattern="dd"/></span></div>
-                                <div class="post-comment">
-                                    <i class="fa fa-book"></i>
-                                    <%--评论数--%>
-                                    <a href="#">${content.reads}</a></div>
-                            </div>
-                            <div class="post-body">
-                                <div class="post-author">
-                                    <div class="image-thumb">
-                                        <img src="${content.user.pic}" alt=""></div>
-                                    <div class="name-author">
-                                        <cite>${content.user.username}</cite></div>
+                                <div class="post-meta">
+                                        <%--日期时间--%>
+                                    <div class="post-date">
+                                        <span class="year"><fmt:formatDate value="${content.updated}"
+                                                                           pattern="yyyy"/> </span>
+                                        <span class="month"><fmt:formatDate value="${content.updated}"
+                                                                            pattern="MM"/></span>
+                                        <span class="day"><fmt:formatDate value="${content.updated}"
+                                                                          pattern="dd"/></span></div>
+                                    <div class="post-comment">
+                                        <i class="fa fa-comment"></i>
+                                            <%--评论数--%>
+                                        <a href="/content?id=${content.id}">${content.reads == null? '0':content.reads}</a></div>
                                 </div>
-                                <div class="post-title">
-                                    <h2>
-                                        <a href="/content?id=${content.id}">${content.title}</a></h2>
-                                </div>
-                                <div class="post-entry">
-                                    <p>${content.titleDesc}
-                                    </p>
-                                </div>
-                                <div class="post-link">
-                                    <a href="/content?id=${content.id}" class="pi-btn">阅读更多</a></div>
-                                <div class="post-share">
-                                    <span class="share-toggle pi-btn">
-                                      <i class="fa fa-share-alt"></i>
-                                    </span>
-                                    <div class="share">
-                                        <a href="#">
-                                            <i class="fa fa-weixin"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="fa fa-qq"></i>
-                                        </a>
+                                <div class="post-body">
+                                    <div class="post-title">
+                                        <h2>
+                                            <a href="/content?id=${content.id}">${content.title}</a></h2>
+                                    </div>
+                                    <div class="post-entry">
+                                        <p>${content.titleDesc}
+                                        </p>
+                                    </div>
+                                    <div class="post-author pull-right">
+                                        <div class="image-thumb">
+                                            <img src="${content.user.pic}" alt=""></div>
+                                        <div class="name-author">
+                                            <cite>作者:&nbsp;${content.user.username}</cite></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div><br>
                         </c:forEach>
                         <!-- END / POST -->
                         <!-- PAGINATION -->
@@ -156,6 +148,10 @@
             $("#menu li:first").addClass("current-menu-parent");
         }
     });
+
+    function content(id) {
+        location.href="/content?id="+id;
+    }
 </script>
 
 </html>
