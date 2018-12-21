@@ -82,4 +82,13 @@
             id = #{id}
     </delete>
 
+    <update id="update">
+        UPDATE
+            comment
+        SET
+            status = #{status},
+            updated = #{updated}
+        WHERE
+            id = #{id}
+    </update>
 </mapper>

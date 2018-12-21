@@ -9,7 +9,9 @@ import com.gw.blog.web.admin.service.CommentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 后台评论管理
@@ -30,14 +32,24 @@ public class CommentController extends BaseController<Comment, CommentService> {
         return "back/comment/list";
     }
 
+    // 删除评论
     @GetMapping(value = "delete")
-    public String delete(String id,Model model,Page page,Comment comment){
-
-        Comment comment1 = service.selectById(Long.parseLong(id));
-
-        BaseResult delete = service.delete(comment1);
-        model.addAttribute(Contents.SESSION_USER,delete);
-        return form(comment,page,model);
+    public String delete(String id, RedirectAttributes redirectAttributes){
+        Comment comment = new Comment();
+        comment.setId(Long.parseLong(id));
+        BaseResult delete = service.delete(comment);
+        redirectAttributes.addFlashAttribute(Contents.SESSION_USER,delete);
+        return "redirect:/back/comment/list" ;
     }
 
+    //审核评论
+    @PostMapping(value = "save")
+    public  String save(String id,String status,RedirectAttributes redirectAttributes){
+        Comment comment = new Comment();
+        comment.setStatus(Integer.parseInt(status));
+        comment.setId(Long.parseLong(id));
+        BaseResult save = service.save(comment);
+        redirectAttributes.addFlashAttribute(Contents.SESSION_USER,save);
+        return "redirect:/back/comment/list" ;
+    }
 }
