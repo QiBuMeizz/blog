@@ -117,7 +117,7 @@
                                             </span>
                                             <input name="name" type="text" class="form-control"
                                                    minlength="2" maxlength="20" required autocomplete="off"
-                                                   placeholder="请输入你的名字" value="${baseResult.data}"/>
+                                                   placeholder="请输入你的名字" value="${commentResult.data.name}"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -126,13 +126,13 @@
                                                 <i class="fa fa-envelope"></i>
                                             </span>
                                             <input id="comment-email" name="email" type="email" class="form-control"
-                                                   autocomplete="off" placeholder="请输入你的邮箱" required value="${baseResult.data}">
+                                                   autocomplete="off" placeholder="请输入你的邮箱" required value="${commentResult.data.email}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-item form-textarea-wrapper">
                                             <textarea id="comment-text" name="text" class="form-control" required
-                                                      autocomplete="off" placeholder="请输入内容">${baseResult.data}</textarea>
+                                                      autocomplete="off" placeholder="请输入内容">${commentResult.data.text}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -161,6 +161,7 @@
 </body>
 
 <script type="text/javascript">
+
     //这是跳转的逻辑
     function page(current) {
         //current跳转到哪一页  pageSize每页的条数
@@ -226,7 +227,7 @@
                             }
                         }
 
-                        $("#"+ul_id).append('<li class="comment">\n' +
+                        $("#"+ul_id).append('<li class="comment" id="tab_comment_'+comment.id+'">\n' +
                             '                   <div class="comment-box">\n' +
                             '                       <div class="comment-author">\n' +
                             '                           <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>\n' +
@@ -243,7 +244,7 @@
                             '                       <div class="comment-abs">\n' +
                             '                           <a href="#" class="comment-reply-link pull-right">回复</a><br/>\n' +
                             '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
-                            '                           <a style="display: none" href="javascript:void(0)" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
+                            '                           <a style="display: none" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
                             '                       </div>\n' +
                             '                   </div>\n' +
                             '                   <ul id="children'+comment.id+'" class="children">\n' +
@@ -284,6 +285,7 @@
         $("#children"+id+" .comment").remove();
         //查看回复按钮下标归零
         $("#showMore"+id).attr("value",0);
+        location.href = "#tab_comment_"+id;
     }
     //展示更多
     function showMore(id) {
