@@ -32,7 +32,7 @@
                         <input type="hidden" name="current" id="current" value="${page.current}"/>
                         <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     </form>
-                    <table class="table echo">
+                    <table class="table echo mytable" width="50%">
                         <thead>
                         <tr style="white-space:nowrap">
                             <th class="table-checkbox">
@@ -55,7 +55,7 @@
                         <tbody>
 
                         <c:forEach items="${list}" var="comment">
-                            <tr style="white-space:nowrap">
+                            <tr style="white-space:nowrap" >
                                 <td>
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                         <input type="checkbox" class="group-checkable children"
@@ -65,7 +65,7 @@
                                 </td>
                                 <td>${comment.name}</td>
                                 <td>${comment.email}</td>
-                                <td width="40%">${comment.text}</td>
+                                <td class="mytd" width="80%">${comment.text}</td>
                                 <td>${comment.content.title}</td>
                                 <td>${comment.status == 0?'未审核':'已审核'}</td>
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
