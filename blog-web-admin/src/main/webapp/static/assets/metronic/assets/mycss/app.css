@@ -2,5 +2,9 @@
     width: 100%;
     background-image: url('/static/assets/back/images/subpage_bg.jpg') !important;
     background-size: cover !important;
+    height: auto;
+}
+*{
+    color:lightgrey;
 }
 
