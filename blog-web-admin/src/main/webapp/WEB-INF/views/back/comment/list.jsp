@@ -7,8 +7,10 @@
     <%@include file="../../includes/back/header.jsp"%>
     <title>评论管理</title>
 </head>
+
 <body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp"%>
+
 <div id="page" class="background ">
     <div id="middle" class="middle-width" style="width: 85%;height: auto">
     <div id="home">
@@ -27,12 +29,13 @@
                         <input type="hidden" name="current" id="current" value="${page.current}"/>
                         <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     </form>
-                    <table class="table echo">
-                        <thead>
+                    <table class="table echo">                        
+					<thead>
                         <tr>
                             <th class="table-checkbox">
                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                    <input type="checkbox" class="group-checkable"
+
+                                    <input type="checkbox" class="group-checkable" id="father"
                                            data-set="#sample_2 .checkboxes"/>
                                     <span></span>
                                 </label>
@@ -47,25 +50,29 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${list}" var="comment">
+
+                        <c:forEach items="${list}" var="comment" >
                             <tr >
                                 <td>
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                        <input type="checkbox" class="group-checkable"
+                                        <input type="checkbox" class="group-checkable children"
                                                data-set="#sample_2 .checkboxes"/>
                                         <span></span>
                                     </label>
                                 </td>
-                                <td>${comment.name}</td>
+                                <input type="hidden" name="id" value="${comment.id}"/>
+                                <td >${comment.name}</td>
                                 <td>${comment.email}</td>
                                 <td width="40%">${comment.text}</td>
                                 <td>${comment.content.title}</td>
-                                <td>${comment.status == 1 ? "已审核" : "未审核"}</td>
+
+       
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                                 <td>
                                     <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline">详情</a>
                                     <a href="/back/comment/save?id=${comment.id}" class="btn green btn-outline">通过审核</a>
-                                    <a href="/back/comment/delete?id=${comment.id}" type="submit" class="btn red btn-outline">删除</a>
+
+                                    <a href="/back/comment/delete?id=${comment.id}"  class="btn red btn-outline">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -79,8 +86,6 @@
 
             </div>
         </div>
-
-
     </div>
 </div>
 </div>
@@ -93,6 +98,30 @@
         //window.location.href="/user/list?current="+current+"&pageSize="+pageSize;
         $("#searchForm").submit();
     }
+    $(function () {
+        var father = $("#father");
+        var children = $(".children");
+        //全选功能
+        father.change(function () {
+            //console.log($(this).is(":checked"));
+            $(".children").each(function () {
+                $(this).prop("checked",father.is(":checked"));
+            });
+        });
+
+        //取消全选功能
+        children.change(function () {
+            var flag = true;
+            children.each(function () {
+                if (!$(this).is(":checked")) {
+                    flag = false;
+                }
+            });
+            father.prop("checked",flag);
+        });
+    });
+
+
 </script>
 </body>
 </html>
