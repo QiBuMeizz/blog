@@ -4,6 +4,9 @@
 <head>
     <%@include file="../../includes/back/header.jsp"%>
     <title>内容管理</title>
+    <%--<link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css"/>--%>
+    <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/metroStyle/metroStyle.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/assets/back/wangEditor/wangEditor.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="standard simple bodyBack">
 
@@ -24,6 +27,13 @@
                     <form role="form" action="/back/content/save" method="post" modelAttribute="content">
                         <div class="form-body">
                             <input type="text" name="id" value="${content.id}" hidden>
+                            <div class="form-group form-md-line-input">
+                                <input type="text" name="typeId" id="typeId" value="${content.typeId}">
+                                <input type="text" name="typeName" class="form-control" id="typeName" placeholder="请输入文章类型"
+                                       value="${content.typeName}" readonly style="cursor: pointer" data-toggle="modal"
+                                       href="#zModel">
+                                <label for="typeId">文章类型</label>
+                            </div>
                             <div class="form-group form-md-line-input">
                                 <input type="text" name="title" class="form-control" id="title" placeholder="请输入文章标题"
                                        value="${content.title}">
@@ -48,21 +58,22 @@
                                            value="${content.reads}" readonly>
                                     <label for="reads">阅读量</label>
                                 </div>
+
+                                <div class="form-group form-md-line-input">
+                                    <input type="text" name="content" class="form-control" id="content"
+                                           value="${content.content}" hidden>
+                                </div>
+
+                                <div id="editor" class="form-group form-md-line-input">
+                                </div>
                             </div>
 
-                            <div class="form-group form-md-line-input">
-                                <input type="text" name="typeId" class="form-control" id="typeId" placeholder="请输入文章类型"
-                                       value="${content.typeId}" readonly style="cursor: pointer" data-toggle="modal"
-                                       href="#zModel">
-                                <label for="typeId">文章类型</label>
-
-                            </div>
+                           
                         </div>
 
                         <div style="padding-left: 20px">
-                            <button type="submit" class="btn blue btn-outline">提交</button>
+                            <button type="submit" class="btn blue btn-outline" id="submit">提交</button>
                             <button type="button" class="btn default btn-outline">取消</button>
-
                         </div>
                     </form>
                 </div>
@@ -73,55 +84,54 @@
 
     <%@include file="../../includes/back/metronij.jsp" %>
 
+    <script src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js" type="text/javascript"></script>
+    <script src="/static/assets/back/wangEditor/wangEditor.js" type="text/javascript"></script>
 
-    <div class="modal fade" id="zModel" tabindex="-1" role="basic" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">选择父类别</h4>
-                </div>
-                <div class="modal-body">
-                    123
-                    <%--<ul id="treeDemo" class="ztree"></ul>--%>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn dark btn-outline" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn green" data-dismiss="modal">保存</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
 </div>
-<script type="text/javascript">
-    // var zTreeObj;
-    // // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-    // var setting = {};
-    // // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-    // var zNodes = [
-    //     {name:"test1", open:true, children:[
-    //             {name:"test1_1"}, {name:"test1_2"}]},
-    //     {name:"test2", open:true, children:[
-    //             {name:"test2_1"}, {name:"test2_2"}]}
-    // ];
-    // $(document).ready(function(){
-    //     zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-    // });
+    
+<script>
+    var zTreeObj;
+    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+    var setting = {
+        async:{
+            enable: true,
+            url: "/back/content/async",
+            autoParam: ["id"]
+        },
+        data:{
+            simpleData:{
+                enable:true,
+                idKey: "id",
+                pIdKey: "parentId",
+                rootPId: 0
+            }
+        },
+        callback: {
+            onClick: onClick
+        }
+    };
+    function onClick(event, treeId, treeNode) {
+        console.log(treeNode.name);
+        console.log(treeNode.id);
+        $("#typeName").val(treeNode.name);
+        $("#typeId").val(treeNode.id);
+    };
+    $(document).ready(function(){
+        $.fn.zTree.init($("#treeDemo"), setting);
+
+    });
+
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create();
+    document.getElementById('submit').addEventListener('click', function () {
+        // 读取 html
+        alert(editor.txt.html());
+        $("#content").val(editor.txt.html());
+    }, false);
+
 </script>
-<%--<script src="/static/assets/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/global/scripts/app.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/pages/scripts/ui-modals.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/layouts/layout4/scripts/layout.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/layouts/layout4/scripts/demo.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-<script src="/static/assets/metronic/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>--%>
+
 </body>
 </html>

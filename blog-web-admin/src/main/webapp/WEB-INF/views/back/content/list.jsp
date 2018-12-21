@@ -29,7 +29,7 @@
                             <input type="hidden" name="current" id="current" value="${page.current}"/>
                             <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                         </form>
-                        <table class="table">
+                        <table class="table echo">
                             <thead>
                             <tr>
                                 <th class="table-checkbox">
