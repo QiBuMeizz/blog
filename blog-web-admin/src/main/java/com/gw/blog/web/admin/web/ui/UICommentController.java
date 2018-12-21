@@ -1,6 +1,7 @@
 package com.gw.blog.web.admin.web.ui;
 
 import com.gw.blog.commons.abstracts.BaseController;
+import com.gw.blog.commons.contants.Contents;
 import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.domain.Comment;
 import com.gw.blog.web.admin.service.CommentService;
@@ -30,13 +31,14 @@ import java.util.Map;
 @Controller
 @RequestMapping("/comment")
 public class UICommentController extends BaseController<Comment, CommentService> {
-
     @PostMapping("/form")
     public String saveComment(Comment comment, RedirectAttributes redirectAttributes){
         //校验评论
-        BaseResult baseResult = beanValidator(comment, redirectAttributes);
+        BaseResult baseResult = beanValidator(comment, redirectAttributes, Contents.COMMENT_RESULT);
         //校验成功
         if(baseResult.getStatus() == BaseResult.STATUS_SUCCESS){
+            baseResult.setMessage("评论已成功提交，待管理员审核后即可显示");
+            addDataToAttribute(redirectAttributes,Contents.COMMENT_RESULT,baseResult);
             return "redirect:/content?id="+comment.getContentId()+"#tab_2";
         }
         return "redirect:/content?id="+comment.getContentId()+"#tab_3";
