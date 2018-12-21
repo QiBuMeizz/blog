@@ -5,6 +5,7 @@ package com.gw.blog.web.admin.web.controller;
  */
 
 import com.gw.blog.commons.abstracts.BaseController;
+import com.gw.blog.commons.abstracts.BaseTreeController;
 import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.commons.dto.Page;
 import com.gw.blog.domain.Content;
@@ -84,10 +85,15 @@ public class ContentController extends BaseController<Content,ContentService> {
      */
     @ResponseBody
     @PostMapping(value = "async")
-    public List<Type> async(){
+    public List<Type> async(Long parentId){
         List<Type> sources = typeService.selectAll();
         List<Type> target = Lists.newArrayList();
-        sort(0L,sources,target);
+        if(parentId!=null){
+            sort(parentId,sources,target);
+        }
+        else {
+            sort(0L,sources,target);
+        }
         return target;
     }
 
@@ -96,11 +102,12 @@ public class ContentController extends BaseController<Content,ContentService> {
      */
     private void sort(Long parentId,List<Type> sources,List<Type> target){
         for (Type type: sources) {
-            if(parentId==type.getParentId()){
+            if(parentId.equals(type.getParentId())){
                 target.add(type);
-                sort(type.getId(),sources,target);
             }
         }
     }
+
+//    public  String
 
 }

@@ -46,7 +46,7 @@
                 <%--左边栏--%>
 
                 <!-- CONTENT -->
-                <div class="col-md-9">
+                <div class="col-md-9" id="tab_1">
                     <div class="content" style="margin-right: 100px;">
 
                         <div class="post">
@@ -93,7 +93,7 @@
 
                         <!-- COMMENTS -->
                         <div id="comments">
-                            <div class="comments-inner-wrap">
+                            <div class="comments-inner-wrap" id="tab_2">
                                 <h3 id="comments-title" class="h5 text-uppercase"></h3>
                                 <ul id="comment-list" class="commentlist">
 
@@ -104,29 +104,40 @@
                         <!-- END / COMMENTS -->
                         <!-- LEAVER YOUR COMMENT -->
                         <div id="respond">
-                            <div class="reply-title">
-                                <h3 class="h5 text-uppercase">留下你的评论</h3></div>
+                            <div class="reply-title" id="tab_3">
+                                <h3 class="h4 text-uppercase">留下你的评论</h3></div>
                             <!-- COMMENT FORM -->
-                            <form>
+                            <form id="comment-form" action="/comment/form" method="post">
+                                <input type="hidden" name="contentId" value="${content.id}">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-item form-name">
-                                            <input type="text" placeholder="请输入你的名字">
+                                        <div class="form-item input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            <input name="name" type="text" class="form-control"
+                                                   minlength="2" maxlength="20" required autocomplete="off"
+                                                   placeholder="请输入你的名字" value="${baseResult.data}"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-item form-email">
-                                            <input type="text" placeholder="请输入你的邮箱">
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-item input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                            <input id="comment-email" name="email" type="email" class="form-control"
+                                                   autocomplete="off" placeholder="请输入你的邮箱" required value="${baseResult.data}">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-item form-textarea-wrapper">
-                                            <textarea placeholder="请输入内容"></textarea>
+                                            <textarea id="comment-text" name="text" class="form-control" required
+                                                      autocomplete="off" placeholder="请输入内容">${baseResult.data}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-actions">
-                                            <input type="submit" value="评论" class="pi-btn">
+                                            <button type="submit" class="btn btn-default" title="评论"><i class="fa fa-send"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -158,13 +169,21 @@
         $("#searchForm").submit();
     }
     $(function () {
-        //初始加载展示评论
-        showComment("comment-list","showMoreParent");
+        if(${content.id == 1}){
+            //关于我们没有评论
+            $("#comments").remove();
+            $("#respond").remove();
+        }
+        else {
+            //初始加载展示评论
+            showComment("comment-list","showMoreParent");
+        }
     })
-
+    /* BEGIN SHOW COMMENT */
+    //起始下标
     var index = 0;
+    //展示数量
     var size = 3;
-
     //展示评论
     function showComment(ul_id,show_more_id,id,subIndex) {
         $.ajax({
@@ -182,52 +201,60 @@
                     $("#"+show_more_id).css('display','none');
                 }
                 var list = data.commentList;
-                for(var i = 0; i < list.length; i++){
-                    var comment = list[i];
-                    var parentName='';
-                    //是否展示 查看回复 按钮
-                    var isShowReplyBtn = "";
+                //没有评论
+                if(id == null && list.length == 0){
+                    $("#"+ul_id).append('<p>暂无评论，赶紧去发表你的评论吧！</p>')
+                }
+                //有评论
+                else {
+                    for(var i = 0; i < list.length; i++){
+                        var comment = list[i];
+                        //回复的对象
+                        var parentName='';
+                        //是否展示 查看回复 按钮
+                        var isShowReplyBtn = "";
 
-                    if(comment.parentId != 0){
-                        //不是一级评论，隐藏 查看回复 按钮
-                        isShowReplyBtn = "none";
-                        parentName = "回复 &nbsp;@"+comment.parentName+"&nbsp;:";
-                    }
-                    else{
-                        //是否拥有回复，没有则隐藏 查看回复 按钮
-                        if(!comment.isParent){
+                        if(comment.parentId != 0){
+                            //不是一级评论，隐藏 查看回复 按钮
                             isShowReplyBtn = "none";
+                            parentName = "回复 &nbsp;@"+comment.parentName+"&nbsp;:";
                         }
-                    }
+                        else{
+                            //是否拥有回复，没有则隐藏 查看回复 按钮
+                            if(!comment.isParent){
+                                isShowReplyBtn = "none";
+                            }
+                        }
 
-                    $("#"+ul_id).append('<li class="comment">\n' +
-                        '                   <div class="comment-box">\n' +
-                        '                       <div class="comment-author">\n' +
-                        '                           <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>\n' +
-                        '                       </div>\n' +
-                        '                       <div class="comment-body">\n' +
-                        '                           <cite class="fn text-uppercase">\n' +
-                        '                               <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/single.html#">'+comment.name+'</a>\n' +
-                        '                           </cite>\n' +
-                        '                           <div class="comment-meta">\n' +
-                        '                               <span>'+comment.created+'</span>\n' +
-                        '                           </div>\n' +
-                        '                           <p>'+parentName+comment.text+'</p>\n' +
-                        '                       </div>\n' +
-                        '                       <div class="comment-abs">\n' +
-                        '                           <a href="#" class="comment-reply-link pull-right">回复</a><br/>\n' +
-                        '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
-                        '                           <a style="display: none" href="javascript:void(0)" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
-                        '                       </div>\n' +
-                        '                   </div>\n' +
-                        '                   <ul id="children'+comment.id+'" class="children">\n' +
-                        '                   </ul>\n' +
-                        '                   <div id="showMore'+comment.id+'" style="position:absolute;left: 20%;display: none;z-index: 100;" value="'+data.index+'"><a href="javascript:showMore('+comment.id+')" style="color: #1d75b3">更多回复...</a></div>\n' +
-                        '               </li>')
-                    //回复不需要子回复
-                    if(comment.parentId != 0){
-                        $("#children"+comment.id).remove();
-                        $("#showMore"+comment.id).remove();
+                        $("#"+ul_id).append('<li class="comment">\n' +
+                            '                   <div class="comment-box">\n' +
+                            '                       <div class="comment-author">\n' +
+                            '                           <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>\n' +
+                            '                       </div>\n' +
+                            '                       <div class="comment-body">\n' +
+                            '                           <cite class="fn text-uppercase">\n' +
+                            '                               <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/single.html#">'+comment.name+'</a>\n' +
+                            '                           </cite>\n' +
+                            '                           <div class="comment-meta">\n' +
+                            '                               <span>'+DateTime.format(comment.created,"yyyy-MM-dd HH:mm:ss")+'</span>\n' +
+                            '                           </div>\n' +
+                            '                           <p>'+parentName+comment.text+'</p>\n' +
+                            '                       </div>\n' +
+                            '                       <div class="comment-abs">\n' +
+                            '                           <a href="#" class="comment-reply-link pull-right">回复</a><br/>\n' +
+                            '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
+                            '                           <a style="display: none" href="javascript:void(0)" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
+                            '                       </div>\n' +
+                            '                   </div>\n' +
+                            '                   <ul id="children'+comment.id+'" class="children">\n' +
+                            '                   </ul>\n' +
+                            '                   <div id="showMore'+comment.id+'" style="position:absolute;left: 20%;display: none;z-index: 100;" value="'+data.index+'"><a href="javascript:showMore('+comment.id+')" style="color: #1d75b3">更多回复...</a></div>\n' +
+                            '               </li>')
+                        //回复不需要子回复
+                        if(comment.parentId != 0){
+                            $("#children"+comment.id).remove();
+                            $("#showMore"+comment.id).remove();
+                        }
                     }
                 }
             }
@@ -277,6 +304,7 @@
             showComment(childrenID,showMoreID,id,subIndex+1);
         }
     }
+    /* END SHOW COMMENT */
 </script>
 
 </html>

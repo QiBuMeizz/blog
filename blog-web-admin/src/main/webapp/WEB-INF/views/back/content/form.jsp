@@ -7,6 +7,8 @@
     <%--<link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css"/>--%>
     <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/metroStyle/metroStyle.css" rel="stylesheet" type="text/css"/>
     <link href="/static/assets/back/wangEditor/wangEditor.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/assets/back/dropzone/min/basic.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/assets/back/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body class="standard simple bodyBack">
 
@@ -58,17 +60,23 @@
                                            value="${content.reads}" readonly>
                                     <label for="reads">阅读量</label>
                                 </div>
+                            </div>
 
-                                <div class="form-group form-md-line-input">
-                                    <input type="text" name="content" class="form-control" id="content"
-                                           value="${content.content}" hidden>
-                                </div>
+                            <div class="form-group form-md-line-input" style="display: none">
+                                <input type="text" name="content" class="form-control" id="content" placeholder="请输入内容"
+                                       value="${content.content}" readonly/>
+                            </div>
 
-                                <div id="editor" class="form-group form-md-line-input">
+                            <div class="form-group form-md-line-input">
+                                <input type="text" name="pic" id="pic" class="form-control" value="${content.pic}"/>
+                                <div id="dropz" class="dropzone dropzone-file-area" >
+                                    <h3 class="sbold">拖动文件到这里或点击上传</h3>
                                 </div>
                             </div>
 
-                           
+                            <div id="editor" class="form-group form-md-line-input">
+                                ${content.content}
+                            </div>
                         </div>
 
                         <div style="padding-left: 20px">
@@ -86,6 +94,8 @@
 
     <script src="https://cdn.bootcss.com/zTree.v3/3.5.33/js/jquery.ztree.core.js" type="text/javascript"></script>
     <script src="/static/assets/back/wangEditor/wangEditor.js" type="text/javascript"></script>
+    <script src="/static/assets/back/wangEditor/editor.js" type="text/javascript"></script>
+    <script src="/static/assets/back/dropzone/min/dropzone.min.js" type="text/javascript"></script>
 
 </div>
     
@@ -96,7 +106,7 @@
         async:{
             enable: true,
             url: "/back/content/async",
-            autoParam: ["id"]
+            autoParam: ["id=parentId"]
         },
         data:{
             simpleData:{
@@ -121,16 +131,33 @@
 
     });
 
-    var E = window.wangEditor
-    var editor = new E('#editor')
-    // 或者 var editor = new E( document.getElementById('editor') )
-    editor.create();
-    document.getElementById('submit').addEventListener('click', function () {
-        // 读取 html
-        alert(editor.txt.html());
-        $("#content").val(editor.txt.html());
-    }, false);
+    // var E = window.wangEditor
+    // var editor = new E('#editor')
+    // // 或者 var editor = new E( document.getElementById('editor') )
+    // editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
+    // editor.create();
+    // document.getElementById('submit').addEventListener('click', function () {
+    //     // 读取 html
+    //     // alert(editor.txt.html());
+    //     $("#content").val(editor.txt.html());
+    // }, false);
+    $(function () {
+        Editor.initWangEditor("editor","content");
+    });
 
+
+    Dropzone.options.dropz = {
+        paramName: "dropFile", // The name that will be used to transfer the file
+        url: "/upload",
+        dictDefaultMessage: '拖动文件至此或者点击上传', // 设置默认的提示语句
+        init:function () {
+            this.on("success", function (file, data) {
+                // 上传成功触发的事件
+                alert(data);
+                $("#pic").val(data.filePath);
+            });
+        }
+    };
 </script>
 
 </body>
