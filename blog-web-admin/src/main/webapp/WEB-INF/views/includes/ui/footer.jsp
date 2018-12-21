@@ -21,6 +21,7 @@
 <script type="text/javascript" src="/static/assets/ui/home/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="/static/assets/ui/home/retina.min.js"></script>
 <script type="text/javascript" src="/static/assets/ui/home/scripts.js"></script>
+<script src="/static/assets/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/static/assets/ui/js/DateTime.js"></script>

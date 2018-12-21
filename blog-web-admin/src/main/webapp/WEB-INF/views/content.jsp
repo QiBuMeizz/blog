@@ -28,6 +28,9 @@
             width: 20%;
             height: 5%;
         }
+        .modal-backdrop {
+            z-index: 0 !important;
+        }
     </style>
 </head>
 <body>
@@ -156,10 +159,66 @@
         </div>
     </section>
 
+    <!-- /.modal -->
+    <div id="commentModal" class="modal fade" style="z-index: 10000;" tabindex="-1" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">回复</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- COMMENT FORM -->
+                            <form id="respon-form" action="/comment/form" method="post">
+                                <input type="hidden" name="contentId" value="${content.id}">
+                                <input type="hidden" name="parentId">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-item input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            <input id="respon-name" name="name" type="text" class="form-control"
+                                                   minlength="2" maxlength="20" required autocomplete="off"
+                                                   placeholder="请输入你的名字"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <div class="form-item input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                            <input id="respon-email" name="email" type="email" class="form-control"
+                                                   autocomplete="off" placeholder="请输入你的邮箱" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-item form-textarea-wrapper">
+                                            <textarea id="respon-text" name="text" class="form-control" required
+                                                      autocomplete="off" placeholder="请输入内容"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="top:10px">
+                                        <div class="form-actions pull-right">
+                                            <button data-dismiss="modal" class="btn btn-default" title="关闭"><i class="fa fa-reply"></i></button>
+                                            <button type="submit" class="btn btn-default" title="提交"><i class="fa fa-send"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- END / COMMENT FORM -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <!-- FOOTER -->
     <jsp:include page="includes/ui/footer.jsp"/>
 </div>
-
 </body>
 
 <script type="text/javascript">
@@ -244,7 +303,7 @@
                             '                           <p>'+parentName+comment.text+'</p>\n' +
                             '                       </div>\n' +
                             '                       <div class="comment-abs">\n' +
-                            '                           <a href="#" class="comment-reply-link pull-right">回复</a><br/>\n' +
+                            '                           <a data-target="#commentModal" class="comment-reply-link pull-right" data-toggle="modal">回复</a><br/>\n' +
                             '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
                             '                           <a style="display: none" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
                             '                       </div>\n' +
