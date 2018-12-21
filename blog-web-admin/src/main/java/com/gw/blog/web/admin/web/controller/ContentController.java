@@ -31,7 +31,7 @@ public class ContentController extends BaseController<Content,ContentService> {
     @Autowired
     private TypeService typeService;
 
-    @GetMapping(value = "list")
+    @RequestMapping(value = "list")
     public String list(Content content, Page page, Model model){
         //分页列表
         content.setPage(page);
@@ -77,6 +77,21 @@ public class ContentController extends BaseController<Content,ContentService> {
         BaseResult result = service.delete(content);
         redirectAttributes.addFlashAttribute("message","删除数据成功!!!");
         return "redirect:/back/content/list";
+    }
+
+    /**
+     * 批量删除
+     */
+    @ResponseBody
+    @PostMapping(value = "delete")
+    public String delete(String array){
+        if (array == null || "".equals(array)){
+            return "error";
+        }
+        //String[] split = array.split(",");
+
+        BaseResult baseResult = service.deleteMore(array);
+        return null;
     }
 
     /**

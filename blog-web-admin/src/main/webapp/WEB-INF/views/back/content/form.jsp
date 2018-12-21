@@ -63,8 +63,7 @@
                             </div>
 
                             <div class="form-group form-md-line-input" style="display: none">
-                                <input type="text" name="content" class="form-control" id="content" placeholder="请输入内容"
-                                       value="${content.content}" readonly/>
+                                <input type="text" name="content" class="form-control" id="content" />
                             </div>
 
                             <div class="form-group form-md-line-input">
@@ -74,14 +73,16 @@
                                 </div>
                             </div>
 
-                            <div id="editor" class="form-group form-md-line-input">
-                                ${content.content}
+                            <div id="editor" class="form-group form-md-line-input ">
+                                <div class="echo">
+                                    ${content.content}
+                                </div>
                             </div>
                         </div>
 
                         <div style="padding-left: 20px">
-                            <button type="submit" class="btn blue btn-outline" id="submit">提交</button>
-                            <button type="button" class="btn default btn-outline">取消</button>
+                            <button type="submit" class="btn blue btn-outline" id="submit"><i class="fa fa-check">提交</i></button>
+                            <button type="button" class="btn default btn-outline" onclick="history.go(-1);"><i class="fa fa-mail-reply">返回</i></button>
                         </div>
                     </form>
                 </div>
@@ -131,16 +132,6 @@
 
     });
 
-    // var E = window.wangEditor
-    // var editor = new E('#editor')
-    // // 或者 var editor = new E( document.getElementById('editor') )
-    // editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
-    // editor.create();
-    // document.getElementById('submit').addEventListener('click', function () {
-    //     // 读取 html
-    //     // alert(editor.txt.html());
-    //     $("#content").val(editor.txt.html());
-    // }, false);
     $(function () {
         Editor.initWangEditor("editor","content");
     });
@@ -153,7 +144,6 @@
         init:function () {
             this.on("success", function (file, data) {
                 // 上传成功触发的事件
-                alert(data);
                 $("#pic").val(data.filePath);
             });
         }
