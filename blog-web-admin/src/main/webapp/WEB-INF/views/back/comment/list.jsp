@@ -39,10 +39,10 @@
                     data-popup-title-cancel="已取消"
                     data-popup-message-cancel="已取消删除所选数据项."><i class="fa fa-trash-o">多选删除</i></button>
             <button type="button" href="/back/content/modify" class="btn green btn-outline pull-right margin-top-20 "
-                    onclick="$('#searchForm').slideToggle(300)"><i class="fa fa-search">高级搜索</i>
+                    onclick="$('#search').slideToggle(300)"><i class="fa fa-search">高级搜索</i>
             </button>
         </div>
-        <div class="col-md-offset-1" hidden>
+        <div class="col-md-offset-1" id="search" hidden>
             <form role="form" action="/back/comment/list" method="get" class="echo" id="searchForm">
                 <input type="hidden" name="current" id="current" value="${page.current}"/>
                 <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
