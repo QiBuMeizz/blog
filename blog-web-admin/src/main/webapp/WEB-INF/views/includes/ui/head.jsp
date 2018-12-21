@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="/static/assets/ui/font-awesome/css/font-awesome.min.css">
 <!-- PAGE STYLE -->
 <link rel="stylesheet" type="text/css" href="/static/assets/ui/home/style.css">
+<link rel="stylesheet" type="text/css" href="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.css">
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

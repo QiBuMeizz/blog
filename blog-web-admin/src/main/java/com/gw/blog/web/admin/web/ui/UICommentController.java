@@ -1,6 +1,7 @@
 package com.gw.blog.web.admin.web.ui;
 
 import com.gw.blog.commons.abstracts.BaseController;
+import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.domain.Comment;
 import com.gw.blog.web.admin.service.CommentService;
 import org.apache.commons.collections.ListUtils;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -28,6 +30,25 @@ import java.util.Map;
 @Controller
 @RequestMapping("/comment")
 public class UICommentController extends BaseController<Comment, CommentService> {
+
+    @PostMapping("/form")
+    public String saveComment(Comment comment, RedirectAttributes redirectAttributes){
+        //校验评论
+        BaseResult baseResult = beanValidator(comment, redirectAttributes);
+        //校验成功
+        if(baseResult.getStatus() == BaseResult.STATUS_SUCCESS){
+            return "redirect:/content?id="+comment.getContentId()+"#tab_2";
+        }
+        return "redirect:/content?id="+comment.getContentId()+"#tab_3";
+    }
+
+    /**
+     * 展示评论
+     * @param comment
+     * @param index
+     * @param size
+     * @return
+     */
     @ResponseBody
     @PostMapping("/show")
     public Map<String, Object> show(Comment comment, String index, String size){

@@ -6,6 +6,12 @@ var Validate = function () {
         $("#inputForm").validate({
             errorElement: 'span',
             errorClass: 'help-block',
+            rule: {
+
+            },
+            messages: {
+
+            },
 
             errorPlacement: function (error, element) {
                 element.parent().parent().attr("class", "form-group has-error");
