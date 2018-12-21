@@ -24,7 +24,7 @@
                 <div class="col-md-12 col-sm-12">
                     <table class="table" id="treeTable">
                         <thead>
-                            <tr>
+                            <tr style="white-space:nowrap">
                                 <th width="5%" > ID </th>
                                 <th width="19%"> 类目名称 </th>
                                 <th width="19%"> 状态 </th>
@@ -36,7 +36,7 @@
 
                         <tbody>
                             <c:forEach items="${list}" var="type">
-                                <tr id="${type.id}" pId="${type.parentId}">
+                                <tr id="${type.id}" pId="${type.parentId}" style="white-space:nowrap">
                                     <td width="5%" >${type.id}</td>
                                     <td width="19%">${type.name}</td>
                                     <td width="19%">${type.status}</td>
