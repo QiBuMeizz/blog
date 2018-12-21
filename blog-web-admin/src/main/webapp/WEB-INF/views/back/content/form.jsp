@@ -59,8 +59,13 @@
                                            value="${content.reads}" readonly>
                                     <label for="reads">阅读量</label>
                                 </div>
+
+                                <div class="form-group form-md-line-input">
+                                    <input type="text" name="content" class="form-control" id="content"
+                                           value="${content.content}" hidden>
+                                </div>
+
                                 <div id="editor" class="form-group form-md-line-input">
-                                    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
                                 </div>
                             </div>
 
@@ -68,9 +73,8 @@
                         </div>
 
                         <div style="padding-left: 20px">
-                            <button type="submit" class="btn blue btn-outline">提交</button>
+                            <button type="submit" class="btn blue btn-outline" id="submit">提交</button>
                             <button type="button" class="btn default btn-outline">取消</button>
-
                         </div>
                     </form>
                 </div>
@@ -108,7 +112,8 @@
         }
     };
     function onClick(event, treeId, treeNode) {
-        // console.log(treeNode);
+        console.log(treeNode.name);
+        console.log(treeNode.id);
         $("#typeName").val(treeNode.name);
         $("#typeId").val(treeNode.id);
     };
@@ -120,7 +125,13 @@
     var E = window.wangEditor
     var editor = new E('#editor')
     // 或者 var editor = new E( document.getElementById('editor') )
-    editor.create()
+    editor.create();
+    document.getElementById('submit').addEventListener('click', function () {
+        // 读取 html
+        alert(editor.txt.html());
+        $("#content").val(editor.txt.html());
+    }, false);
+
 </script>
 
 </body>
