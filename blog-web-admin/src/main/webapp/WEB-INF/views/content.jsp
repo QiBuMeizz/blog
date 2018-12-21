@@ -88,12 +88,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="tab_2"></div>
                         </div>
                         <!-- END / POST -->
 
                         <!-- COMMENTS -->
                         <div id="comments">
-                            <div class="comments-inner-wrap" id="tab_2">
+                            <div class="comments-inner-wrap">
                                 <h3 id="comments-title" class="h5 text-uppercase"></h3>
                                 <ul id="comment-list" class="commentlist">
 
@@ -102,9 +103,10 @@
                             </div>
                         </div>
                         <!-- END / COMMENTS -->
+                        <div id="tab_3"></div>
                         <!-- LEAVER YOUR COMMENT -->
                         <div id="respond">
-                            <div class="reply-title" id="tab_3">
+                            <div class="reply-title">
                                 <h3 class="h4 text-uppercase">留下你的评论</h3></div>
                             <!-- COMMENT FORM -->
                             <form id="comment-form" action="/comment/form" method="post">
@@ -135,9 +137,9 @@
                                                       autocomplete="off" placeholder="请输入内容">${commentResult.data.text}</textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-default" title="评论"><i class="fa fa-send"></i></button>
+                                    <div class="col-md-4 pull-right">
+                                        <div class="form-actions pull-right">
+                                            <button type="submit" class="btn btn-default" title="提交"><i class="fa fa-send"></i></button>
                                         </div>
                                     </div>
                                 </div>

@@ -34,17 +34,14 @@ public abstract class BaseServiceImpl<T extends BaseEntity,D extends BaseDao<T>>
      */
     @Override
     public BaseResult save(T entity) {
-        Date date = new Date();
-        //设置更新时间
-        entity.setUpdated(date);
-        if(entity.getId() == null){
-            entity.setCreated(date);
+        //true/新增
+        if(entity.insertOrUpdate(entity)){
             dao.insert(entity);
         }
+        //false/更新
         else {
             dao.update(entity);
         }
-
         return BaseResult.success();
     }
 

@@ -31,17 +31,43 @@ import java.util.Map;
 @Controller
 @RequestMapping("/comment")
 public class UICommentController extends BaseController<Comment, CommentService> {
+    //评论提交成功后跳转回页面的页签
+    private static final String COMMENT_TAB_SUCCESS = "#tab_2";
+    //评论提交失败后跳转回页面的页签
+    private static final String COMMENT_TAB_FAIL = "#tab_3";
+
+    /**
+     * 提交评论
+     * @param comment
+     * @param redirectAttributes
+     * @return
+     */
     @PostMapping("/form")
     public String saveComment(Comment comment, RedirectAttributes redirectAttributes){
+        //设置跳转页面后的页签
+        String tab = COMMENT_TAB_FAIL;
         //校验评论
         BaseResult baseResult = beanValidator(comment, redirectAttributes, Contents.COMMENT_RESULT);
         //校验成功
         if(baseResult.getStatus() == BaseResult.STATUS_SUCCESS){
-            baseResult.setMessage("评论已成功提交，待管理员审核后即可显示");
+            if(comment.getParentId() == null){
+                comment.setParentId(0L);
+            }
+            //保存
+            baseResult = service.save(comment);
+            if(baseResult.getStatus() == BaseResult.STATUS_SUCCESS){
+                //保存成功
+                baseResult.setMessage("评论已成功提交，待管理员审核后即可显示");
+                tab = COMMENT_TAB_SUCCESS;
+            }
+            else {
+                //保存失败,将comment返回
+                baseResult.setData(comment);
+            }
+            //将结果放进session，用后即删
             addDataToAttribute(redirectAttributes,Contents.COMMENT_RESULT,baseResult);
-            return "redirect:/content?id="+comment.getContentId()+"#tab_2";
         }
-        return "redirect:/content?id="+comment.getContentId()+"#tab_3";
+        return "redirect:/content?id="+comment.getContentId()+tab;
     }
 
     /**

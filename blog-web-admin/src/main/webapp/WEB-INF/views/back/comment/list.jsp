@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -66,7 +67,7 @@
                                 <td>${comment.email}</td>
                                 <td width="40%">${comment.text}</td>
                                 <td>${comment.content.title}</td>
-                                <td>${comment.content.status == 0?'未审核':'已审核'}</td>
+                                <td>${comment.status == 0?'未审核':'已审核'}</td>
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
                                     <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline"><i class="fa fa-edit">详情</i></a>
