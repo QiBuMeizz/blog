@@ -11,7 +11,7 @@
 </head>
 <body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp" %>
-<div id="page" class="background">
+<div id="page" class="background echo">
     <div id="middle" class="middle-width" style="width: 85%;height: auto">
         <div id="home">
             <h2 class="home" style="color:lightgrey">分类管理</h2>

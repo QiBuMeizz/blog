@@ -4,8 +4,7 @@
 }
 .bodyBack{
     background-image: url('/static/assets/back/images/subpage_bg.jpg') !important;
-    background-size: cover!important;
-    background-attachment: fixed!important;
+    background-attachment: fixed;
     background-repeat:no-repeat;
 }
 .echo{
