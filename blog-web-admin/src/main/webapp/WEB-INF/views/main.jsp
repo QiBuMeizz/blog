@@ -126,7 +126,7 @@
     <!-- FOOTER -->
 </div>
  <jsp:include page="includes/ui/footer.jsp"/>
-</div></body>
+</body>
 <script type="text/javascript">
     //这是跳转的逻辑
     function page(current) {

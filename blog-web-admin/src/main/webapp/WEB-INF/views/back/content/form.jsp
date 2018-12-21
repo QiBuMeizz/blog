@@ -4,7 +4,6 @@
 <head>
     <%@include file="../../includes/back/header.jsp"%>
     <title>内容管理</title>
-    <%@include file="../../includes/back/metronic.jsp"%>
     <%--<link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css"/>--%>
     <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/metroStyle/metroStyle.css" rel="stylesheet" type="text/css"/>
     <link href="/static/assets/back/wangEditor/wangEditor.min.css" rel="stylesheet" type="text/css"/>
@@ -65,6 +64,7 @@
                                 </div>
                             </div>
 
+                           
                         </div>
 
                         <div style="padding-left: 20px">
@@ -85,6 +85,7 @@
     <script src="/static/assets/back/wangEditor/wangEditor.js" type="text/javascript"></script>
 
 </div>
+    
 <script>
     var zTreeObj;
     // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
@@ -121,5 +122,6 @@
     // 或者 var editor = new E( document.getElementById('editor') )
     editor.create()
 </script>
+
 </body>
 </html>

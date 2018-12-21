@@ -38,7 +38,7 @@
                                                data-set="#sample_2 .checkboxes"/>
                                         <span></span>
                                     </label>
-                                </th>
+								</th>
                                 <th> 文章标题</th>
                                 <th> 作者</th>
                                 <th> 标题描述</th>
