@@ -8,20 +8,27 @@ import com.gw.blog.commons.abstracts.BaseController;
 import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.commons.dto.Page;
 import com.gw.blog.domain.Content;
+import com.gw.blog.domain.Type;
 import com.gw.blog.web.admin.service.ContentService;
+import com.gw.blog.web.admin.service.TypeService;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "back/content")
 public class ContentController extends BaseController<Content,ContentService> {
     @Autowired
-    private ContentService contentService;
+    private TypeService typeService;
 
     @GetMapping(value = "list")
     public String list(Content content, Page page, Model model){
@@ -56,16 +63,44 @@ public class ContentController extends BaseController<Content,ContentService> {
         return "redirect:/back/content/list";
     }
 
+
     /**
      * 删除
      * @param content
      * @param redirectAttributes
      * @return
      */
+
     @GetMapping(value = "delete")
     public String delete(Content content, RedirectAttributes redirectAttributes){
         //BaseResult result = service.delete(content);
         redirectAttributes.addFlashAttribute("message","删除数据成功!!!");
         return "redirect:/back/content/list";
     }
+
+    /**
+     * zTree获取已经排好序的类型列表
+     * @return
+     */
+    @ResponseBody
+    @PostMapping(value = "async")
+    public List<Type> async(){
+        List<Type> sources = typeService.selectAll();
+        List<Type> target = Lists.newArrayList();
+        sort(0L,sources,target);
+        return target;
+    }
+
+    /**
+     * 排序方法
+     */
+    private void sort(Long parentId,List<Type> sources,List<Type> target){
+        for (Type type: sources) {
+            if(parentId==type.getParentId()){
+                target.add(type);
+                sort(type.getId(),sources,target);
+            }
+        }
+    }
+
 }

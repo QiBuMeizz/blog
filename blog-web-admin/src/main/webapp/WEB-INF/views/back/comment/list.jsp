@@ -8,9 +8,11 @@
     <%@include file="../../includes/back/header.jsp"%>
     <title>评论管理</title>
 </head>
-<body class="standard simple">
+
+<body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp"%>
-<div id="page" class="background">
+
+<div id="page" class="background ">
     <div id="middle" class="middle-width" style="width: 85%;height: auto">
     <div id="home">
         <h2 class="home" style="color:lightgrey">评论管理</h2>
@@ -28,13 +30,11 @@
                         <input type="hidden" name="current" id="current" value="${page.current}"/>
                         <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     </form>
-
-
-                    <table class="table  ">
-                        <thead>
+                    					<table class="table echo">                        <thead>
                         <tr>
                             <th class="table-checkbox">
                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                 
                                     <input type="checkbox" class="group-checkable" id="father"
                                            data-set="#sample_2 .checkboxes"/>
                                     <span></span>
@@ -50,31 +50,36 @@
                         </tr>
                         </thead>
                         <tbody>
+
                         <c:forEach items="${list}" var="comment" >
                         <form action="/back/comment/save" method="post">
                             <tr >
                                 <td>
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+
                                         <input type="checkbox" class="group-checkable children"
                                                data-set="#sample_2 .checkboxes"/>
                                         <span></span>
                                     </label>
                                 </td>
+
                                 <input type="hidden" name="id" value="${comment.id}"/>
                                 <td >${comment.name}</td>
                                 <td>${comment.email}</td>
                                 <td width="40%">${comment.text}</td>
                                 <td>${comment.content.title}</td>
+
                                 <td>
                                     <select name="status" class="form-control form-filter input-sm">
                                         <option name="status" value="${comment.status == 1 ? "1" : "0"}">${comment.status == 1 ? "已审核" : "未审核"}</option>
                                         <option name="status" value="${comment.status == 1 ? "0" : "1"}">${comment.status == 0 ? "已审核" : "未审核"}</option>
                                     </select>
                                 </td>
-                                <%--<td>${comment.status == 1 ? "已审核" : "未审核"}</td>--%>
+       
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                                 <td>
                                     <button type="submit" class="btn blue btn-outline">修改</button>
+               
                                     <a href="/back/comment/delete?id=${comment.id}"  class="btn red btn-outline">删除</a>
                                 </td>
                             </tr>

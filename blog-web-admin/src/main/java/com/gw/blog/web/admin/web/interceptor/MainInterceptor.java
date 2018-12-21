@@ -17,7 +17,7 @@ public class MainInterceptor implements HandlerInterceptor {
         // 用户已登录
         if (request.getSession().getAttribute(Contents.SESSION_USER) != null) {
             // 如果请求来自登录页
-            if (modelAndView.getViewName().endsWith("login") && modelAndView != null) {
+            if (modelAndView!=null && modelAndView.getViewName().endsWith("login") && modelAndView != null) {
                 // 重定向到后台首页
                 response.sendRedirect("/back/main");
             }

@@ -14,7 +14,7 @@
             <div class="author-thumb">
                 <img src="/static/assets/ui/home/LOGO5.png" alt=""></div>
             <h3 class="author-name text-uppercase">
-                <a href="#">GW 工作组</a></h3>
+                <a href="#" onclick="searchSoon('关于我们')">GW 工作组</a></h3>
             <div class="desc">
                 <p>
                     GW工作组是一个由五人组成的团队,</br>
@@ -34,7 +34,7 @@
         </div>
         <!-- END / WIDGET ABOUT -->
         <!-- WIDGET LATEST POST -->
-        <div class="widget widget_latest_post">
+        <%--<div class="widget widget_latest_post">
             <h4>最新文章</h4>
             <ul>
                 <li>
@@ -59,22 +59,24 @@
                         <span class="date">Jan 10, 2014</span></div>
                 </li>
             </ul>
-        </div>
+        </div>--%>
         <!-- END / WIDGET LATEST POST -->
 
         <!-- WIDGET TAG CLOUD -->
         <div class="widget widget_tag_cloud">
             <h4>标签索引</h4>
             <div class="tagcloud">
-                <a href="#">Java</a>
-                <a href="#">C++</a>
-                <a href="#">python</a>
-                <a href="#">微服务</a>
-                <a href="#">数据库</a>
-                <a href="#">Javascript</a>
-                <a href="#">maven</a>
-                <a href="#">bootstrap</a>
-                <a href="#">虚拟机</a>
+                <form action="/main" id="searchSoon">
+                    <input type="hidden" id="inputSoon" name="title">
+                    <a href="#" onclick="searchSoon('Java')">Java</a>
+                    <a href="#" onclick="searchSoon('C++')">C++</a>
+                    <a href="#" onclick="searchSoon('python')">python</a>
+                    <a href="#" onclick="searchSoon('微服务')">微服务</a>
+                    <a href="#" onclick="searchSoon('数据库')">数据库</a>
+                    <a href="#" onclick="searchSoon('Javascript')">Javascript</a>
+                    <a href="#" onclick="searchSoon('maven')">maven</a>
+                    <a href="#" onclick="searchSoon('bootstrap')">bootstrap</a>
+                    <a href="#" onclick="searchSoon('虚拟机')">虚拟机</a>
             </div>
         </div>
         <!-- END / WIDGET TAG CLOUD --></div>
