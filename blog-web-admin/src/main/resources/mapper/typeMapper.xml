@@ -19,6 +19,14 @@
         LEFT JOIN type AS b ON a.parent_id = b.id
     </sql>
 
+    <update id="delete">
+        UPDATE
+          type
+        SET
+          status = #{status}
+        WHERE id = #{id};
+    </update>
+
     <select id="selectAll" resultType="Type">
         SELECT
           <include refid="typeColumns"/>

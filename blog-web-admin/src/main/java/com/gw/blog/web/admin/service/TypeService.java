@@ -10,5 +10,7 @@ public interface TypeService extends BaseTreeService<Type> {
      * @param type
      * @return
      */
-    BaseResult check(Type type);
+    String check(Type type);
+
+
 }

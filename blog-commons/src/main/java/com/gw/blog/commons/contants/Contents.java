@@ -12,4 +12,5 @@ public final class Contents {
      * 提交评论返回的结果的key
      */
     public static final String COMMENT_RESULT = "commentResult";
+    public static final Integer DELETE_STATUS = 0;
 }
