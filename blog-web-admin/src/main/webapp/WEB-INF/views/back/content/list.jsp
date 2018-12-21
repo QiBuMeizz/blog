@@ -17,10 +17,13 @@
         <div class="middle_content">
             <h3 style="color: floralwhite ;float:left">博文列表</h3>
             <br><br><br>
-            <a type="button" href="/back/content/modify"
-               class="btn purple btn-outline pull-right margin-top-20">编辑新文章</a>
-            <a type="button" href="/back/content/modify"
-               class="btn yellow btn-outline pull-right margin-top-20">删除多个</a>
+            <div class="row table">
+                <a type="button" href="#"
+                   class="btn red btn-outline pull-right margin-top-20 "><i class="fa fa-trash-o">多选删除</i></a>
+                <a type="button" href="/back/content/modify"
+                   class="btn green btn-outline pull-right margin-top-20 "><i class="fa fa-plus">新增文章</i></a>
+            </div>
+            <br>
             <div class="entry">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -33,7 +36,7 @@
                         </form>
                         <table class="table echo">
                             <thead>
-                            <tr>
+                            <tr style="white-space:nowrap">
                                 <th class="table-checkbox">
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                         <input type="checkbox" class="group-checkable" id="father"
@@ -51,7 +54,7 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${list}" var="content">
-                                <tr>
+                                <tr style="white-space:nowrap">
                                     <td>
                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                             <input type="checkbox" class="group-checkable children"
@@ -66,9 +69,9 @@
                                     <td><fmt:formatDate value="${content.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                     <td>
                                         <a type="button" href="/back/content/modify?id=${content.id}"
-                                           class="btn blue btn-outline">修改</a>
+                                           class="btn blue btn-outline"><i class="fa fa-edit">编辑</i></a>
                                         <a type="button" href="/back/content/delete?id=${content.id}"
-                                           class="btn red btn-outline">删除</a>
+                                           class="btn red btn-outline"><i class="fa fa-trash">删除</i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

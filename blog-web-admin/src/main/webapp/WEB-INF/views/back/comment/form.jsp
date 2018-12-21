@@ -51,9 +51,9 @@
                             </div>
                         </div>
                         <div style="padding-left: 20px">
-                            <button type="button" class="btn blue btn-outline" onclick="pass()">通过审核</button>
-                            <a type="button" class="btn red btn-outline" href="/back/comment/delete?id=${requestScope.comment.id}">拒绝发布</a>
-                            <button type="button" class="btn default btn-outline" onclick="history.go(-1);">返回</button>
+                            <button type="button" class="btn blue btn-outline" onclick="pass()"><i class="fa fa-check">通过审核</i></button>
+                            <a type="button" class="btn red btn-outline" href="/back/comment/delete?id=${requestScope.comment.id}"><i class="fa fa-close">拒绝发布</i></a>
+                            <button type="button" class="btn default btn-outline" onclick="history.go(-1);"><i class="fa fa-mail-reply">返回</i></button>
 
                         </div>
                     </form>

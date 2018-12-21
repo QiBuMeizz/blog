@@ -62,8 +62,8 @@
                     <br>
 
                     <div style="padding-left: 20px">
-                        <button type="submit" class="btn blue btn-outline">提交</button>
-                        <button type="button" class="btn default btn-outline" onclick="history.go(-1);">返回</button>
+                        <button type="submit" class="btn blue btn-outline"><i class="fa fa-check">提交</i></button>
+                        <button type="button" class="btn default btn-outline" onclick="history.go(-1);"><i class="fa fa-mail-reply">返回</i></button>
                     </div>
 
                 </form>
