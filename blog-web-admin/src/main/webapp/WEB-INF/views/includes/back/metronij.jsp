@@ -22,8 +22,8 @@
                 <ul id="treeDemo" class="ztree"></ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn dark btn-outline" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn green" data-dismiss="modal">保存</button>
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal" onclick="clean();">关闭</button>
+                <button type="button" class="btn green" data-dismiss="modal" onclick="checkIn();">保存</button>
             </div>
         </div>
         <!-- /.modal-content -->

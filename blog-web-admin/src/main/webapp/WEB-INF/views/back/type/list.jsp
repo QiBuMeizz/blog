@@ -18,7 +18,9 @@
         </div>
     <div class="middle_content">
         <h3 style="color: floralwhite;float:left">分类列表</h3>
-        <br><br><br><br><br><br>
+        <br><br><br>
+        <a type="button" href="/back/type/form"
+           class="btn purple btn-outline pull-right margin-top-20">新增分类</a>
         <div class="entry">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -58,8 +60,8 @@
                                                 data-popup-title-success="已删除" +
                                                 data-popup-title-cancel="已取消" +
                                                 data-url="#">删除</button>
-                                        <c:if test="${type.isParent}">
-                                            <a href="#" type="button" class="btn green btn-outline">添加下级菜单</a>
+                                        <c:if test="${type.parentId == 0}">
+                                            <a href="/back/type/form?parentId=${type.id}" type="button" class="btn green btn-outline">添加下级菜单</a>
                                         </c:if>
                                     </td>
                                 </tr>

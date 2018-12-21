@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-@Controller
 public abstract class BaseController<T extends BaseEntity,S extends BaseService<T>> {
 
     @Autowired
