@@ -43,8 +43,8 @@
                                     <td width="19%">${type.sortOrder}</td>
                                     <td width="19%"><fmt:formatDate value="${type.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                     <td width="19%">
-                                        <a href="/back/type/form?id=${type.id}" type="button" class="btn btn-circle blue btn-outline">修改</a>
-                                        <button class="btn btn-circle blue btn-outline red mt-sweetalert" +
+                                        <a href="/back/type/form?id=${type.id}" type="button" class="btn blue btn-outline">修改</a>
+                                        <button class="btn blue btn-outline red mt-sweetalert" +
                                                 data-title="确认删除吗？" +
                                                 data-type="info"  +
                                                 data-show-confirm-button="true" +
@@ -59,7 +59,7 @@
                                                 data-popup-title-cancel="已取消" +
                                                 data-url="#">删除</button>
                                         <c:if test="${type.isParent}">
-                                            <a href="#" type="button" class="btn btn-circle green btn-outline">添加下级菜单</a>
+                                            <a href="#" type="button" class="btn green btn-outline">添加下级菜单</a>
                                         </c:if>
                                     </td>
                                 </tr>

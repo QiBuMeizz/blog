@@ -16,12 +16,12 @@
     </div>
     <div class="middle_content">
         <h3 style="color: floralwhite">评论列表</h3>
-            <br><br><br>
+            <br><br>
         <div class="entry">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <c:set var="list" value="${CommentpageResult.data.list}"/>
-                    <c:set var="page" value="${CommentpageResult.data}"/>
+                    <c:set var="list" value="${pageResult.data.list}"/>
+                    <c:set var="page" value="${pageResult.data}"/>
 
                     <form action="/back/comment/list" id="searchForm">
                         <input type="hidden" name="current" id="current" value="${page.current}"/>
@@ -63,7 +63,8 @@
                                 <td>${comment.status == 1 ? "已审核" : "未审核"}</td>
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                                 <td>
-                                    <button type="submit" class="btn blue btn-outline">修改</button>
+                                    <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline">详情</a>
+                                    <a href="/back/comment/save?id=${comment.id}" class="btn green btn-outline">通过审核</a>
                                     <a href="/back/comment/delete?id=${comment.id}" type="submit" class="btn red btn-outline">删除</a>
                                 </td>
                             </tr>
@@ -84,11 +85,6 @@
 </div>
 </div>
 
-<!-- _________________________ Start Footer _________________________ -->
-<%--<div id="footer">
-    <p>Pacifico &copy; 2016 by 萌站</p>
-</div>--%>
-<!-- _________________________ Finish Footer ________________________ -->
 <%@include file="../../includes/back/metronij.jsp"%>
 <script>
     function page(current) {

@@ -41,12 +41,12 @@
 <script>
     <%--带标题的消息框--%>
     if(${baseResult.status == 500}){
-        toastr.error("${baseResult.message}");
+        toastr.error("${baseResult.message}","温馨提示:");
     }
 
     <%--带标题的消息框--%>
     if(${baseResult.status == 200}){
-        toastr.success("${baseResult.message}");
+        toastr.success("${baseResult.message}","温馨提示:");
     }
 
 </script>
