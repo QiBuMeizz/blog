@@ -80,6 +80,21 @@ public class ContentController extends BaseController<Content,ContentService> {
     }
 
     /**
+     * 批量删除
+     */
+    @ResponseBody
+    @PostMapping(value = "delete")
+    public String delete(String array){
+        if (array == null || "".equals(array)){
+            return "error";
+        }
+        //String[] split = array.split(",");
+
+        BaseResult baseResult = service.deleteMore(array);
+        return null;
+    }
+
+    /**
      * zTree获取已经排好序的类型列表
      * @return
      */

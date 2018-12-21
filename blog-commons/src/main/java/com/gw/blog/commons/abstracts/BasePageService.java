@@ -26,4 +26,11 @@ public interface BasePageService<T extends BasePageEntity> extends BaseService<T
      * @return
      */
     BaseResult pageList(T entity);
+
+    /**
+     * 批量刪除
+     * @param ids
+     * @return
+     */
+    BaseResult deleteMore(String ids);
 }

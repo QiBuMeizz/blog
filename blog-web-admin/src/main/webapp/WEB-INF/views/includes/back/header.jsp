@@ -19,6 +19,8 @@
     <link href="/static/assets/metronic/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
     <link href="/static/assets/metronic/assets/mycss/app.css" rel="stylesheet" type="text/css" />
     <link href="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
+
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="/static/assets/back/css/styles/ie.css" type="text/css" />
     <![endif]-->
