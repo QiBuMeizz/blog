@@ -288,8 +288,8 @@
                             }
                         }
 
-                        $("#"+ul_id).append('<li class="comment" id="tab_comment_'+comment.id+'">\n' +
-                            '                   <div class="comment-box">\n' +
+                        $("#"+ul_id).append('<li class="comment" id="tab_comment_'+comment.id+'"> \n' +
+                            '                   <div class="comment-box" style="word-wrap: break-word;word-break: break-all;overflow: hidden;">\n' +
                             '                       <div class="comment-author">\n' +
                             '                           <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>\n' +
                             '                       </div>\n' +
@@ -299,7 +299,7 @@
                             '                           </cite>\n' +
                             '                           <div class="comment-meta">\n' +
                             '                               <span>'+DateTime.format(comment.created,"yyyy-MM-dd HH:mm:ss")+'</span>\n' +
-                            '                           </div>\n' +
+                            '                           </div><br/>\n' +
                             '                           <p>'+parentName+comment.text+'</p>\n' +
                             '                       </div>\n' +
                             '                       <div class="comment-abs">\n' +

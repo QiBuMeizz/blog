@@ -41,10 +41,10 @@
                 <a type="button" href="/back/content/modify"
                    class="btn yellow btn-outline pull-right margin-top-20 "><i class="fa fa-plus">新增文章</i></a>
                 <button type="button" href="/back/content/modify"
-                   class="btn green btn-outline pull-right margin-top-20 " onclick="$('#searchForm').slideToggle(300)"><i class="fa fa-search">高级搜索</i></button>
+                   class="btn green btn-outline pull-right margin-top-20 " onclick="$('#search').slideToggle(300)"><i class="fa fa-search">高级搜索</i></button>
             </div>
-            <div class="col-md-offset-2" id="searchForm" hidden>
-                <form role="form" action="/back/content/list" method="get" class="echo">
+            <div class="col-md-offset-2" id="search"  hidden>
+                <form role="form" action="/back/content/list" id="searchForm" method="get" class="echo">
                     <input type="hidden" name="current" id="current" value="${page.current}"/>
                     <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     <h4 style="color: floralwhite ;">高级搜索</h4>

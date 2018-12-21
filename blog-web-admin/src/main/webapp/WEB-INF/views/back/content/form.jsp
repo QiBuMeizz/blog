@@ -30,7 +30,7 @@
                         <div class="form-body">
                             <input type="text" name="id" value="${content.id}" hidden>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="typeId" id="typeId" value="${content.typeId}">
+                                <input type="text" name="typeId" id="typeId" value="${content.typeId}" hidden>
                                 <input type="text" name="typeName" class="form-control" id="typeName" placeholder="请输入文章类型"
                                        value="${content.typeName}" readonly style="cursor: pointer" data-toggle="modal"
                                        href="#zModel">
@@ -56,8 +56,8 @@
                                 </div>
 
                                 <div class="form-group form-md-line-input">
-                                    <input type="text" name="reads" class="form-control" id="reads" placeholder="请输入阅读量"
-                                           value="${content.reads}" readonly>
+                                    <input type="text" name="reads" class="form-control" id="reads" placeholder="阅读量"
+                                           value="${content.reads == null? 0 :content.reads}" readonly>
                                     <label for="reads">阅读量</label>
                                 </div>
                             </div>
