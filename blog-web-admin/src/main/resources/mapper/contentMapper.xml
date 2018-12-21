@@ -17,11 +17,13 @@
           b.username AS 'user.username',
           b.pic AS 'user.pic',
           b.phone AS 'user.phone',
-          b.email AS 'user.email'
+          b.email AS 'user.email',
+          c.name AS 'typeName'
     </sql>
 
     <sql id="LeftJoinUser">
         JOIN user AS b ON a.author_id = b.id
+        JOIN type AS c ON c.id= a.type_id
     </sql>
 
     <select id="selectAll" resultType="Content">

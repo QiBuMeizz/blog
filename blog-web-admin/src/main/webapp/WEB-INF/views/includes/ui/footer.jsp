@@ -21,5 +21,11 @@
 <script type="text/javascript" src="/static/assets/ui/home/masonry.pkgd.min.js"></script>
 <script type="text/javascript" src="/static/assets/ui/home/retina.min.js"></script>
 <script type="text/javascript" src="/static/assets/ui/home/scripts.js"></script>
+
 <script type="text/javascript" src="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
-<script type="text/javascript" src="/static/assets/ui/js/DateTime.js"></script>
+<script type="text/javascript" src="/static/assets/ui/js/DateTime.js"></script><script>
+    function searchSoon(title) {
+        $("#inputSoon").val(title);
+        $("#searchSoon").submit();
+    }
+</script>

@@ -85,4 +85,9 @@ public class LoginController extends BaseController<User, UserService> {
         }
     }
 
+    @GetMapping(value = "logout")
+    public String Logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/back/login";
+    }
 }

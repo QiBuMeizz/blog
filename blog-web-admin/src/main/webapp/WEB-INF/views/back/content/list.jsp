@@ -7,7 +7,7 @@
     <%@include file="../../includes/back/header.jsp"%>
     <title>博文管理</title>
 </head>
-<body class="standard simple">
+<body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp"%>
 <div id="page" class="background">
     <div id="middle" class="middle-width" style="width: 85%;height: auto">
@@ -29,7 +29,7 @@
                             <input type="hidden" name="current" id="current" value="${page.current}"/>
                             <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                         </form>
-                        <table class="table">
+                        <table class="table echo">
                             <thead>
                             <tr>
                                 <th class="table-checkbox">

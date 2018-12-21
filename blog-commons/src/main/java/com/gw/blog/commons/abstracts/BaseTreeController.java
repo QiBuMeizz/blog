@@ -21,7 +21,10 @@ public abstract class BaseTreeController<T extends BaseTreeEntity, S extends Bas
         for (T entity : sourceList) {
             if (parentId.equals(entity.getParentId())) {
                 targetList.add(entity);
-                sort(entity.getId(), sourceList, targetList);
+                if (0L == parentId) {
+                    sort(entity.getId(), sourceList, targetList);
+
+                }
             }
         }
 

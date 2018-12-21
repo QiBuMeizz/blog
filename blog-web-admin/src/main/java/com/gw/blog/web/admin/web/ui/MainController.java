@@ -40,12 +40,12 @@ public class MainController  {
     //敬请期待
     private static final Long COMING_SOON = 2L;
 
-    @GetMapping(value = {"","main"})
+    @GetMapping(value = {"main"})
     public String main(Content content, Page page, Model model){
         //分页列表
         content.setPage(page);
         //关于我们
-        if (content != null && content.getTypeId() == ABOUT_US_TYPE) {
+        if (ABOUT_US_TYPE.equals(content.getTypeId()) || "关于我们".equals(content.getTitle())) {
             return "redirect:/content?id=" + ABOUT_US_CONTENT;
         }
         //列表页面
@@ -78,5 +78,9 @@ public class MainController  {
         return "content";
     }
 
+    @GetMapping(value = "")
+    public String main(){
+        return "redirect:/main";
+    }
 
 }
