@@ -6,7 +6,7 @@
     <%@include file="../../includes/back/header.jsp"%>
     <title>分类管理</title>
 </head>
-<body class="standard simple">
+<body class="standard simple bodyBack">
 
 <div class="bgImage">
     <img src="/static/assets/back/images/subpage_bg.jpg" alt="" />

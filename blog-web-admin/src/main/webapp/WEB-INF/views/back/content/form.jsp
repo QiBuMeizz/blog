@@ -5,12 +5,11 @@
     <%@include file="../../includes/back/header.jsp"%>
     <title>内容管理</title>
 </head>
-<body class="standard simple">
+<body class="standard simple bodyBack">
 
 <div class="bgImage">
     <img src="/static/assets/back/images/subpage_bg.jpg" alt="" />
 </div>
-<!-- _________________________ Finish Background Image __________________________ -->
 <div id="page" class="background">
     <%@include file="../../includes/back/background.jsp" %>
 

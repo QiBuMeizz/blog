@@ -7,7 +7,7 @@
     <%@include file="../../includes/back/header.jsp"%>
     <title>评论管理</title>
 </head>
-<body class="standard simple">
+<body class="standard simple bodyBack">
 <%@include file="../../includes/back/background.jsp"%>
 <div id="page" class="background">
     <div id="middle" class="middle-width" style="width: 85%;height: auto">

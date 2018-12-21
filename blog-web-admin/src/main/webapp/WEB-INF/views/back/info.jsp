@@ -11,7 +11,7 @@
         }
     </style>
 </head>
-<body class="standard simple">
+<body class="standard simple bodyBack">
 
 <%@include file="../includes/back/background.jsp"%>
 

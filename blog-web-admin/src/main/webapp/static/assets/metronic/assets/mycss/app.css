@@ -1,9 +1,14 @@
 .background{
     width: 100%;
-    background-image: url('/static/assets/back/images/subpage_bg.jpg') !important;
-    background-size: cover !important;
     height: auto;
 }
+.bodyBack{
+    background-image: url('/static/assets/back/images/subpage_bg.jpg') !important;
+    background-size: cover!important;
+    background-attachment: fixed!important;
+    background-repeat:no-repeat;
+}
+
 *{
     color:lightgrey;
 }
