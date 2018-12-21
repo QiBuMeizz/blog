@@ -18,7 +18,9 @@
     </div>
     <div class="middle_content">
         <h3 style="color: floralwhite">评论列表</h3>
-            <br><br>
+            <br>
+        <a type="button" href="#"
+           class="btn red btn-outline pull-right margin-top-20"><i class="fa fa-trash-o">多选删除</i></a>
         <div class="entry">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -29,9 +31,9 @@
                         <input type="hidden" name="current" id="current" value="${page.current}"/>
                         <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     </form>
-                    <table class="table echo">                        
-					<thead>
-                        <tr>
+                    <table class="table echo">
+                        <thead>
+                        <tr style="white-space:nowrap">
                             <th class="table-checkbox">
                                 <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
 
@@ -51,8 +53,8 @@
                         </thead>
                         <tbody>
 
-                        <c:forEach items="${list}" var="comment" >
-                            <tr >
+                        <c:forEach items="${list}" var="comment">
+                            <tr style="white-space:nowrap">
                                 <td>
                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                         <input type="checkbox" class="group-checkable children"
@@ -60,26 +62,22 @@
                                         <span></span>
                                     </label>
                                 </td>
-                                <input type="hidden" name="id" value="${comment.id}"/>
-                                <td >${comment.name}</td>
+                                <td>${comment.name}</td>
                                 <td>${comment.email}</td>
                                 <td width="40%">${comment.text}</td>
                                 <td>${comment.content.title}</td>
                                 <td>${comment.content.status == 0?'未审核':'已审核'}</td>
-
-       
-                                <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+                                <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
-                                    <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline">详情</a>
-                                    <a href="/back/comment/save?id=${comment.id}" class="btn green btn-outline">通过审核</a>
+                                    <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline"><i class="fa fa-edit">详情</i></a>
+                                    <a href="/back/comment/save?id=${comment.id}" class="btn green btn-outline"><i class="fa fa-check">通过审核</i></a>
 
-                                    <a href="/back/comment/delete?id=${comment.id}"  class="btn red btn-outline">删除</a>
+                                    <a href="/back/comment/delete?id=${comment.id}" class="btn red btn-outline"><i class="fa fa-trash-o">删除</i></a>
                                 </td>
                             </tr>
                         </c:forEach>
                         </tbody>
-
-                        </table><br><br><br>
+                    </table><br>
                     <div class="row">
                         <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
                     </div>

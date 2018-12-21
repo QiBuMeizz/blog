@@ -16,7 +16,7 @@
 <div id="page" class="background">
     <%@include file="../../includes/back/background.jsp" %>
 
-    <div id="middle">
+    <div id="middle" style="height: auto">
         <div id="home">
             <h2 class="home" style="color:lightgrey">内容管理</h2>
         </div>
