@@ -21,13 +21,16 @@ public class PageTag extends BodyTagSupport implements Serializable {
     /**
      * 每页多少条
      */
-    private  int pageSize=3;
+    private int pageSize=10;
 
     /**
      * 当前是第几页
      */
     private int current;
 
+    /**
+     * 标签显示个数
+     */
     private static final int SHOW_PAGE = 3;
 
     /**
@@ -37,6 +40,7 @@ public class PageTag extends BodyTagSupport implements Serializable {
      */
     @Override
     public int doEndTag() throws JspException {
+        pageSize = 10;
         //简单的分页数
         int simplePage = count / pageSize;
         //实际的分页数

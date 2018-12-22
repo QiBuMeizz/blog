@@ -13,10 +13,12 @@ import com.gw.blog.web.admin.service.TypeService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implements TypeService {
 
     @Autowired
@@ -26,6 +28,7 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
      * 删除
      */
     @Override
+    @Transactional(readOnly = false)
     public BaseResult delete(Type type){
 
         // 删除本类及其所属文章
@@ -63,6 +66,7 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
      * 保存
      */
     @Override
+    @Transactional(readOnly = false)
     public BaseResult save(Type type) {
         String message = check(type);
 
@@ -89,6 +93,7 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
      * @return
      */
     @Override
+    @Transactional(readOnly = false)
     public String check(Type type) {
         // 本类ID
         Long id = type.getId();

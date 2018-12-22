@@ -20,7 +20,7 @@
     <link href="/static/assets/metronic/assets/mycss/app.css" rel="stylesheet" type="text/css" />
     <link href="/static/assets/metronic/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
     <link href="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" type="text/css" />
-
+    <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/metroStyle/metroStyle.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <link rel="stylesheet" href="/static/assets/back/css/styles/ie.css" type="text/css" />
     <![endif]-->

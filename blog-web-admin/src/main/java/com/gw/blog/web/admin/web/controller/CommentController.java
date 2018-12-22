@@ -33,7 +33,7 @@ public class CommentController extends BaseController<Comment, CommentService> {
      * @param model
      * @return
      */
-    @GetMapping(value = "list")
+    @RequestMapping(value = "list")
     public String list(Comment comment, Page page, Model model){
 
         //分页列表
@@ -41,6 +41,7 @@ public class CommentController extends BaseController<Comment, CommentService> {
 
         //显示主页面
         BaseResult baseResult = service.pageList(comment);
+        model.addAttribute("comment",comment);
         model.addAttribute("pageResult",baseResult);
         return "back/comment/list";
     }

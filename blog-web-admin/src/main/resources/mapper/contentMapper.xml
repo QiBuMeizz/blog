@@ -49,9 +49,9 @@
         <if test="typeId != null and typeId != '' ">
             AND a.type_id = #{typeId}
         </if>
-        <if test="typeId == null or typeId == '' ">
+        <!--<if test="typeId == null or typeId == '' ">-->
             ORDER BY a.updated DESC
-        </if>
+        <!--</if>-->
         <if test="page!=null">
             LIMIT #{page.start},#{page.size};
         </if>
@@ -63,7 +63,7 @@
         FROM content AS a
         WHERE a.status = '1'
         <if test="title != null and title != '' ">
-            and a.title like concat('%',#{title},'%')
+            and a.title LIKE CONCAT('%',#{title},'%')
         </if>
         <if test="typeId != null and typeId != '' ">
             and a.type_id = #{typeId}
@@ -95,9 +95,9 @@
           (
             #{typeId},
             #{title},
-            #{authorId},
+            1,
             #{pic},
-            #{status},
+            1,
             #{content},
             #{titleDesc},
             #{created},
@@ -123,7 +123,7 @@
         UPDATE
           content
         SET
-          status = #{status}
+          status = 0
         WHERE id = #{id};
     </update>
 

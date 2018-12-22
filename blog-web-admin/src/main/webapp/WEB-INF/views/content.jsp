@@ -71,7 +71,7 @@
                                     <span class="day"><fmt:formatDate value="${content.updated}" pattern="dd"/></span>
                                 </div>
                                 <div class="post-comment">
-                                    <i class="fa fa-book"></i>
+                                    <i class="fa fa-comment"></i>
                                     <a href="#">${content.reads}</a>
                                 </div>
                             </div>
@@ -86,8 +86,8 @@
 											<i class="fa fa-share-alt"></i>
 										</span>
                                     <div class="share">
-                                        <a href="#">微信<i class="fa fa-wechat"></i></a>
-                                        <a href="#">QQ<i class="fa fa-qq"></i></a>
+                                        <a href="#"><i class="fa fa-wechat"></i></a>
+                                        <a href="#"><i class="fa fa-qq"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -231,8 +231,8 @@
         $("#searchForm").submit();
     }
     $(function () {
-        if(${content.id == 1}){
-            //关于我们没有评论
+        if(${content.id == 1 || content.id == 2}){
+            //敬请期待,关于我们没有评论 1为关于我们 2为敬请期待
             $("#comments").remove();
             $("#respond").remove();
         }

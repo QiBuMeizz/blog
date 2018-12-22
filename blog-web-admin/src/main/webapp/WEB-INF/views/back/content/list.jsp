@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sys" uri="/WEB-INF/views/tag/sys.tld" %>
@@ -17,7 +18,6 @@
         </div>
         <div class="middle_content">
             <h3 style="color: floralwhite ;float:left">博文列表</h3>
-            <br><br><br>
             <c:set var="list" value="${pageResult.data.list}"/>
             <c:set var="page" value="${pageResult.data}"/>
             <div class="row table">
@@ -43,26 +43,24 @@
                 <button type="button" href="/back/content/modify"
                    class="btn green btn-outline pull-right margin-top-20 " onclick="$('#search').slideToggle(300)"><i class="fa fa-search">高级搜索</i></button>
             </div>
-            <div class="col-md-offset-2" id="search"  hidden>
+            <div class="col-md-offset-2" id="search" ${content.title == '' || content.content == '' ? '' :'style="display:none"'}>
                 <form role="form" action="/back/content/list" id="searchForm" method="get" class="echo">
                     <input type="hidden" name="current" id="current" value="${page.current}"/>
                     <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     <h4 style="color: floralwhite ;">高级搜索</h4>
                     <div class="form-body row">
                         <div class="form-group form-md-line-input col-md-3">
-                            <input type="text" name="title" class="form-control required" placeholder="标题">
+                            <input type="text" name="title" class="form-control required" placeholder="标题" value="${content.title}">
                         </div>
                         <div class="form-group form-md-line-input col-md-3">
-                            <input type="text" name="content" class="form-control required" placeholder="内容">
+                            <input type="text" name="content" class="form-control required" placeholder="内容" value="${content.content}">
                         </div>
                         <div style="padding-left: 20px">
-                            <button type="submit" class="btn blue btn-outline btn-lg"><i class="fa fa-search"></i></button>
+                            <button type="submit" onclick="initPage(${page.current})" class="btn blue btn-outline btn-lg"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-
-            <br>
             <div class="entry">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -94,9 +92,9 @@
                                             <span></span>
                                         </label>
                                     </td>
-                                    <td>${content.title}</td>
+                                    <td class="tableFix">${content.title}</td>
                                     <td>${content.user.username}</td>
-                                    <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${content.titleDesc}</td>
+                                    <td class="tableFix">${content.titleDesc}</td>
                                     <td>${content.reads}</td>
                                     <td><fmt:formatDate value="${content.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                     <td>
@@ -123,8 +121,7 @@
                                 </tr>
                             </c:forEach>
                             </tbody>
-
-                        </table><br><br><br>
+                        </table>
                         <div class="row">
                             <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
                         </div>
@@ -139,6 +136,13 @@
     <%@include file="../../includes/back/metronij.jsp" %>
 
 <script>
+    function initPage(current) {
+        if (typeof(current) == "undefined") {
+            $("#current").val(1)
+        }
+        $("#pageSize").val(10);
+    }
+
     function page(current) {
         //current跳转到哪一页  pageSize每页的条数
         $("#current").val(current);

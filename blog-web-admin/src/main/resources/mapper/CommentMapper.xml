@@ -66,8 +66,14 @@
         FROM comment AS a
             <include refid="LeftJoin"/>
         <where>
-            <if test="status != null and status !=''">
-                AND a.status LIKE concat('%',#{status},'%')
+            <if test="name != null and name !=''">
+                AND a.name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="text != null and text !=''">
+                AND a.text LIKE CONCAT('%',#{text},'%')
+            </if>
+            <if test="content.title != null and content.title !=''">
+                AND b.title LIKE CONCAT('%',#{content.title},'%')
             </if>
         </where>
         ORDER BY a.status ASC
@@ -80,10 +86,18 @@
         SELECT
             COUNT(*)
         FROM comment AS a
-        WHERE 1=1
-        <if test="status != null and status !=''">
-            AND a.status LIKE concat('%',#{status},'%')
-        </if>
+        <include refid="LeftJoin"/>
+        <where>
+            <if test="name != null and name !=''">
+                AND a.name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="text != null and text !=''">
+                AND a.text LIKE CONCAT('%',#{text},'%')
+            </if>
+            <if test="content.title != null and content.title !=''">
+                AND b.title LIKE CONCAT('%',#{content.title},'%')
+            </if>
+        </where>
     </select>
 	
 	<delete id="delete">

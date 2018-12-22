@@ -56,9 +56,9 @@
                         <c:forEach items="${list}" var="content">
                             <div class="post bg" onclick="content(${content.id});" style="cursor: pointer">
                                 <div class="post-media">
-                                    <div class="image-wrap"  style=${content.pic == null || content.pic == "" ? "display:none":""}>
+                                    <div class="image-wrap"  style='height:400px;overflow: hidden;${content.pic == null || content.pic == "" ? "display:none":""}'>
                                             <%--图片--%>
-                                        <img src="${content.pic}" alt=""></div>
+                                        <img src="${content.pic}" style="margin: 0 0 -100px 0;" alt=""></div>
                                     <div class="post-cat">
                                             <%--详情跳转--%>
                                         <a href="/content?id=${content.id}">详情</a></div>
