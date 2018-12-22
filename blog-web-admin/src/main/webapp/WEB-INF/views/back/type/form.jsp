@@ -4,7 +4,7 @@
 <html>
 <head>
     <%@include file="../../includes/back/header.jsp"%>
-    <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/zTree.v3/3.5.33/css/metroStyle/metroStyle.css" rel="stylesheet" type="text/css"/>
     <title>分类管理</title>
 </head>
 <body class="standard simple bodyBack">

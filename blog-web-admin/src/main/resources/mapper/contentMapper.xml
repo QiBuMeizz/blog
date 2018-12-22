@@ -21,7 +21,7 @@
           c.name AS 'typeName'
     </sql>
 
-    <sql id="LeftJoinUser">
+    <sql id="LeftJoinContent">
         JOIN user AS b ON a.author_id = b.id
         JOIN type AS c ON c.id= a.type_id
     </sql>
@@ -30,7 +30,7 @@
         SELECT
         <include refid="ContentColumns"/>
         FROM content AS a
-        <include refid="LeftJoinUser"/>
+        <include refid="LeftJoinContent"/>
         WHERE a.status = '1'
     </select>
 
@@ -38,7 +38,7 @@
         SELECT
           <include refid="ContentColumns"/>
         FROM content AS a
-          <include refid="LeftJoinUser"/>
+          <include refid="LeftJoinContent"/>
         WHERE a.status = '1'
         <if test="title != null and title != '' ">
             AND a.title LIKE CONCAT('%',#{title},'%')
@@ -74,7 +74,7 @@
         SELECT
         <include refid="ContentColumns"/>
         FROM content AS a
-        <include refid="LeftJoinUser"/>
+        <include refid="LeftJoinContent"/>
         WHERE a.status = '1'
         AND a.id = #{id};
     </select>
@@ -132,14 +132,8 @@
         <include refid="ContentColumns"/>
         FROM
         content AS a
-        <where>
-            <if test="typeId!=null">
-                AND a.type_id=#{typeId}
-            </if>
-        </where>
-        <if test="page!=null">
-            LIMIT #{page.start},#{page.size};
-        </if>
+        <include refid="LeftJoinContent"/>
+        WHERE a.type_id = #{typeId}
     </select>
 
     <select id="getById" resultType="Content">
@@ -147,7 +141,7 @@
         <include refid="ContentColumns"/>
         FROM
         content AS a
-        <include refid="LeftJoinUser"/>
+        <include refid="LeftJoinContent"/>
         WHERE
         a.id=#{id}
     </select>

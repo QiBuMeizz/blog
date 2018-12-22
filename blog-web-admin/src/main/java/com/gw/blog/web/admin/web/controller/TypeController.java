@@ -66,16 +66,18 @@ public class TypeController extends BaseTreeController<Type, TypeService> {
      * @return
      */
     @PostMapping(value = "save")
-    public String save(Type type, RedirectAttributes redirectAttributes){
+    public String save(Type type,Model model, RedirectAttributes redirectAttributes){
         BaseResult result = service.save(type);
-        addDataToAttribute(redirectAttributes, Contents.BASE_RESULT, result);
+
         // 成功
         if (result.getStatus() == BaseResult.STATUS_SUCCESS) {
+            addDataToAttribute(redirectAttributes, Contents.BASE_RESULT, result);
             return "redirect:/back/type/list";
         }
 
         // 失败
         else {
+            addDataToAttribute(model, Contents.BASE_RESULT, result);
             return "back/type/form";
         }
 
