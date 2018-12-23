@@ -81,15 +81,6 @@
                                 <div class="post-entry">
                                     ${content.content}
                                 </div>
-                                <div class="post-share">
-										<span class="share-toggle pi-btn">
-											<i class="fa fa-share-alt"></i>
-										</span>
-                                    <div class="share">
-                                        <a href="#"><i class="fa fa-wechat"></i></a>
-                                        <a href="#"><i class="fa fa-qq"></i></a>
-                                    </div>
-                                </div>
                             </div>
                             <div id="tab_2"></div>
                         </div>
@@ -137,7 +128,7 @@
                                     <div class="col-md-12">
                                         <div class="form-item form-textarea-wrapper">
                                             <textarea id="comment-text" name="text" class="form-control" required
-                                                      autocomplete="off" placeholder="请输入内容">${commentResult.data.text}</textarea>
+                                                      autocomplete="off" maxlength="120" placeholder="请输入内容，最多能输入120个字符">${commentResult.data.text}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4 pull-right">
@@ -158,64 +149,6 @@
             </div>
         </div>
     </section>
-
-    <!-- /.modal -->
-    <div id="commentModal" class="modal fade" style="z-index: 10000;" tabindex="-1" >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title">回复</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- COMMENT FORM -->
-                            <form id="respon-form" action="/comment/form" method="post">
-                                <input type="hidden" name="contentId" value="${content.id}">
-                                <input type="hidden" name="parentId">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-item input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-user"></i>
-                                            </span>
-                                            <input id="respon-name" name="name" type="text" class="form-control"
-                                                   minlength="2" maxlength="20" required autocomplete="off"
-                                                   placeholder="请输入你的名字"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <div class="form-item input-group">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-envelope"></i>
-                                            </span>
-                                            <input id="respon-email" name="email" type="email" class="form-control"
-                                                   autocomplete="off" placeholder="请输入你的邮箱" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-item form-textarea-wrapper">
-                                            <textarea id="respon-text" name="text" class="form-control" required
-                                                      autocomplete="off" placeholder="请输入内容"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="top:10px">
-                                        <div class="form-actions pull-right">
-                                            <button data-dismiss="modal" class="btn btn-default" title="关闭"><i class="fa fa-reply"></i></button>
-                                            <button type="submit" class="btn btn-default" title="提交"><i class="fa fa-send"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- END / COMMENT FORM -->
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
     <!-- FOOTER -->
     <jsp:include page="includes/ui/footer.jsp"/>
 </div>
@@ -288,7 +221,8 @@
                             }
                         }
 
-                        $("#"+ul_id).append('<li class="comment" id="tab_comment_'+comment.id+'"> \n' +
+                        $("#"+ul_id).append('<div id="tab_comment_'+comment.id+'"></div>\n' +
+                            '               <li class="comment"> \n' +
                             '                   <div class="comment-box" style="word-wrap: break-word;word-break: break-all;overflow: hidden;">\n' +
                             '                       <div class="comment-author">\n' +
                             '                           <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>\n' +
@@ -303,15 +237,61 @@
                             '                           <p>'+parentName+comment.text+'</p>\n' +
                             '                       </div>\n' +
                             '                       <div class="comment-abs">\n' +
-                            '                           <a href="#" data-target="#commentModal" class="comment-reply-link pull-right" data-toggle="modal">回复</a><br/>\n' +
+                            '                           <a style="cursor: pointer" class="comment-reply-link pull-right" onclick="$(\'#respondBody'+comment.id+'\').toggle(\'slow\')">回复</a><br/>\n' +
                             '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
                             '                           <a style="display: none" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
+                            '                       </div>\n' +
+                            '                       <div id="respondBody'+comment.id+'" style="display: none;" class="row">\n' +
+                            '                        <div class="col-md-8 pull-right" style="border-top: 1px solid blue">\n' +
+                            '                           <div class="reply-title">\n' +
+                            '                                <h5 class="h5 text-uppercase">回复&nbsp;<span style="color:blue;">'+comment.name+'</span>:</h5>' +
+                            '                           </div>\n' +
+                            '                            <!-- COMMENT FORM -->\n' +
+                            '                            <form id="respond-form-'+comment.id+'" action="#" method="post">\n' +
+                            '                                <input type="hidden" name="contentId" value="'+comment.contentId+'">\n' +
+                            '                                <input type="hidden" name="parentId" value="'+comment.id+'">\n' +
+                            '                                <div class="row">\n' +
+                            '                                    <div class="col-md-6">\n' +
+                            '                                        <div class="form-item input-group">\n' +
+                            '                                            <span class="input-group-addon">\n' +
+                            '                                                <i class="fa fa-user"></i>\n' +
+                            '                                            </span>\n' +
+                            '                                            <input id="respond-name-'+comment.id+'" name="name" type="text" class="form-control"\n' +
+                            '                                                   minlength="2" maxlength="20" required autocomplete="off"\n' +
+                            '                                                   placeholder="请输入你的名字"/>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                    <div class="col-md-6 form-group">\n' +
+                            '                                        <div class="form-item input-group">\n' +
+                            '                                            <span class="input-group-addon">\n' +
+                            '                                                <i class="fa fa-envelope"></i>\n' +
+                            '                                            </span>\n' +
+                            '                                            <input id="respond-email-'+comment.id+'" name="email" type="email" class="form-control"\n' +
+                            '                                                   autocomplete="off" placeholder="请输入你的邮箱" required>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                    <div class="col-md-12">\n' +
+                            '                                        <div class="form-item form-textarea-wrapper">\n' +
+                            '                                            <textarea id="respond-text-'+comment.id+'" name="text" class="form-control" required\n' +
+                            '                                                      autocomplete="off" maxlength="120" placeholder="请输入内容,最多能输入120个字符"></textarea>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                    <div class="col-md-12" style="top:10px">\n' +
+                            '                                            <button type="button" class="btn btn-default" title="关闭" onclick="$(\'#respondBody'+comment.id+'\').toggle(\'slow\')"><i class="fa fa-reply"></i></button>\n' +
+                            '                                        <div class="form-actions pull-right">\n' +
+                            '                                            <button type="button" class="btn btn-default" title="提交" onclick="respondSubmit('+comment.id+')"><i class="fa fa-send"></i></button>\n' +
+                            '                                        </div>\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                            </form>\n' +
+                            '                            <!-- END / COMMENT FORM -->\n' +
+                            '                        </div>\n' +
                             '                       </div>\n' +
                             '                   </div>\n' +
                             '                   <ul id="children'+comment.id+'" class="children">\n' +
                             '                   </ul>\n' +
                             '                   <div id="showMore'+comment.id+'" style="position:absolute;left: 20%;display: none;z-index: 100;" value="'+data.index+'"><a href="javascript:showMore('+comment.id+')" style="color: #1d75b3">更多回复...</a></div>\n' +
-                            '               </li>')
+                            '               </li>');
                         //回复不需要子回复
                         if(comment.parentId != 0){
                             $("#children"+comment.id).remove();
@@ -368,6 +348,43 @@
         }
     }
     /* END SHOW COMMENT */
+
+    //提交回复
+    function respondSubmit(id) {
+        $.ajax({
+            url:"/comment/respond/form",
+            type:"post",
+            data:$("#respond-form-"+id).serialize(),
+            success:function (data) {
+                if(data.status == 200){
+                    swal({
+                        title: "恭喜娘子~",
+                        text :data.message,
+                        type :"success",
+                        timer: 3000,
+                        html:true,
+                        allowOutsideClick :"true",
+                        confirmButtonClass:"btn-success"
+                    });
+                    //清空表单
+                    $("#respond-form-"+id)[0].reset();
+                    //隐藏回复div
+                    $("#respondBody"+id).toggle();
+                }
+                else if(data.status == 500){
+                    swal({
+                        title:"官人，别走~",
+                        text :data.message,
+                        type :"error",
+                        timer: 5000,
+                        html:true,
+                        allowOutsideClick :"true",
+                        confirmButtonClass:"btn-danger"
+                    });
+                }
+            }
+        })
+    }
 
     var local = window.location;
     if (local == "http://localhost:8080/content?id=1"){

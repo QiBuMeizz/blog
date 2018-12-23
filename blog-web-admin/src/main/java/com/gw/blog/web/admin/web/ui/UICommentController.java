@@ -3,6 +3,7 @@ package com.gw.blog.web.admin.web.ui;
 import com.gw.blog.commons.abstracts.BaseController;
 import com.gw.blog.commons.contants.Contents;
 import com.gw.blog.commons.dto.BaseResult;
+import com.gw.blog.commons.validation.BeanValidator;
 import com.gw.blog.domain.Comment;
 import com.gw.blog.web.admin.service.CommentService;
 import org.apache.commons.collections.ListUtils;
@@ -48,8 +49,10 @@ public class UICommentController extends BaseController<Comment, CommentService>
         String tab = COMMENT_TAB_FAIL;
         //校验评论
         BaseResult baseResult = beanValidator(comment, redirectAttributes, Contents.COMMENT_RESULT);
+
         //校验成功
         if(baseResult.getStatus() == BaseResult.STATUS_SUCCESS){
+            //评论parentId 为0
             if(comment.getParentId() == null){
                 comment.setParentId(0L);
             }
@@ -64,10 +67,47 @@ public class UICommentController extends BaseController<Comment, CommentService>
                 //保存失败,将comment返回
                 baseResult.setData(comment);
             }
-            //将结果放进session，用后即删
+            //将结果放进session，用后即删,用于评论失败回显
             addDataToAttribute(redirectAttributes,Contents.COMMENT_RESULT,baseResult);
         }
         return "redirect:/content?id="+comment.getContentId()+tab;
+    }
+
+    /**
+     * 提交回复
+     * @param comment
+     * @param redirectAttributes
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/respond/form")
+    public Map<String,Object> saveRespond(Comment comment, RedirectAttributes redirectAttributes){
+        Map<String,Object> map = new HashMap<>();
+        BaseResult baseResult;
+        //默认失败状态
+        int status = BaseResult.STATUS_FAIL;
+
+        //校验回复
+        String message = BeanValidator.validator(comment);
+
+        //校验成功
+        if(message == null){
+            //保存
+            baseResult = service.save(comment);
+            //保存成功
+            if(baseResult.getStatus() == BaseResult.STATUS_SUCCESS){
+                message = "回复已成功提交，待管理员审核后即可显示";
+                status = BaseResult.STATUS_SUCCESS;
+            }
+            //保存失败,将comment返回
+            else {
+                message = baseResult.getMessage();
+            }
+        }
+        map.put("message",message);
+        map.put("status",status);
+        map.put("comment",comment);
+        return map;
     }
 
     /**
@@ -106,7 +146,7 @@ public class UICommentController extends BaseController<Comment, CommentService>
 
             int length = targetList.size();
             //截取 list 防止下标越界
-            if(length >= newIndex && length >= newSize){
+            if(length >= newIndex){
                 //还有更多数据
                 if(length > newIndex+newSize){
                     list = targetList.subList(newIndex,newIndex+newSize+1);
