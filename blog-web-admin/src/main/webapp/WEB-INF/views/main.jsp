@@ -147,6 +147,9 @@
         if(!flag){
             $("#menu li:first").addClass("current-menu-parent");
         }
+        if (local == "http://localhost:8080/content?id=1"){
+            $("#menu li:last").addClass("current-menu-parent");
+        }
     });
 
     function content(id) {

@@ -57,15 +57,23 @@ public class CommentController extends BaseController<Comment, CommentService> {
      */
     @GetMapping(value = "delete")
     public String delete(Comment comment, RedirectAttributes model){
-        List<Long> list = new ArrayList<>();
+        List<Long> newList = new ArrayList<>();
         //获得子评论集合
-        getDeleteId(comment,list);
+        getDeleteId(comment,newList);
         //转换成Long 数组
-        Long[] ids = new Long[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            ids[i] = list.get(i);
+        Long[] ids = new Long[newList.size()];
+        for (int i = 0; i < newList.size(); i++) {
+            ids[i] = newList.get(i);
         }
         service.deleteMore(ids);
+        List<Comment> list = service.selectByParentId(comment.getParentId());
+        Comment parentComment = service.selectById(comment.getParentId());
+        if (list == null || list.size() == 0) {
+            parentComment.setIsParent(false);
+        } else {
+            parentComment.setIsParent(true);
+        }
+        service.save(parentComment);
         model.addFlashAttribute(Contents.BASE_RESULT,BaseResult.success("删除数据成功!!!"));
         return "redirect:/back/comment/list";
     }
@@ -102,7 +110,6 @@ public class CommentController extends BaseController<Comment, CommentService> {
         if (array == null || "".equals(array)){
             return "error";
         }
-
 
         //分成数组
         String[] ids = array.split(",");

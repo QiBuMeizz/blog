@@ -28,7 +28,7 @@
                             <input type="text" name="id" value="${requestScope.type.id}" hidden>
                             <div class="form-group form-md-line-input">
                                 <input type="text" id="parentName" name="tname" class="form-control" placeholder="若无父类，留空" value="${requestScope.type.tname}" readonly data-toggle="modal" href="#zModel"  style="cursor: pointer">
-                                <input type="text" id="parentId" name="parentId" class="form-control" value="${requestScope.type.parentId}">
+                                <input type="text" id="parentId" name="parentId" class="form-control" value="${requestScope.type.parentId}" hidden>
                                 <label for="parentName">父类名称</label>
                             </div>
                             <div class="form-group form-md-line-input">

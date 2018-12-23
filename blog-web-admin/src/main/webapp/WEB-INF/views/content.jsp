@@ -368,6 +368,11 @@
         }
     }
     /* END SHOW COMMENT */
+
+    var local = window.location;
+    if (local == "http://localhost:8080/content?id=1"){
+        $("#menu li:last").addClass("current-menu-parent");
+    }
 </script>
 
 </html>
