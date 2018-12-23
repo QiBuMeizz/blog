@@ -55,7 +55,7 @@
                                     <label for="user">作者</label>
                                 </div>
 
-                                <div class="form-group form-md-line-input">
+                                <div class="form-group form-md-line-input" style="display: none">
                                     <input type="text" name="reads" class="form-control" id="reads" placeholder="阅读量"
                                            value="${content.reads == null? 0 :content.reads}" readonly>
                                     <label for="reads">阅读量</label>

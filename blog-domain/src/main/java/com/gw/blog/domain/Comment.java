@@ -28,7 +28,7 @@ public class Comment extends BasePageEntity {
     /**
      * 评论详情
      */
-    @NotNull
+    @Length(min = 1, max = 120, message = "内容长度不能超过120个字符")
     private String text;
     /**
      * 头像路径

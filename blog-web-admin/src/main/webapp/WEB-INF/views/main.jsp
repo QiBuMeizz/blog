@@ -11,7 +11,7 @@
 <%@ taglib prefix="sys" uri="/WEB-INF/views/tag/sys.tld" %>
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://v.bootstrapmb.com/2018/7/fsjud1659/index.html -->
-<html class="" lang="en">
+<html class="">
 <!--<![endif]-->
 <head>
     <jsp:include page="includes/ui/head.jsp"/>
