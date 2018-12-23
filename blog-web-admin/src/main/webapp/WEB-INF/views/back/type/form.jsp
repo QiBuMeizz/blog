@@ -28,7 +28,7 @@
                             <input type="text" name="id" value="${requestScope.type.id}" hidden>
                             <div class="form-group form-md-line-input">
                                 <input type="text" id="parentName" name="tname" class="form-control" placeholder="若无父类，留空" value="${requestScope.type.tname}" readonly data-toggle="modal" href="#zModel"  style="cursor: pointer">
-                                <input type="text" id="parentId" name="parentId" class="form-control" value="${requestScope.type.parentId}" hidden>
+                                <input type="hidden" id="parentId" name="parentId" class="form-control" value="${requestScope.type.parentId}"/>
                                 <label for="parentName">父类名称</label>
                             </div>
                             <div class="form-group form-md-line-input">
@@ -42,8 +42,8 @@
                         </div>
 
                         <div style="padding-left: 20px">
-                            <button type="submit" class="btn blue btn-outline">提交</button>
-                            <a href="/back/type/list" type="button" class="btn default btn-outline">返回</a>
+                            <button type="submit" class="btn blue btn-outline"><i class="fa fa-check">提交</i></button>
+                            <a href="/back/type/list" type="button" class="btn default btn-outline"><i class="fa fa-mail-reply">返回</i></a>
 
                         </div>
                     </form>

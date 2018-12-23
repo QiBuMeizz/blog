@@ -72,10 +72,12 @@
                                                                             pattern="MM"/></span>
                                         <span class="day"><fmt:formatDate value="${content.updated}"
                                                                           pattern="dd"/></span></div>
-                                    <div class="post-comment">
+                                            <%--待实现--%>
+                                    <%--<div class="post-comment">
                                         <i class="fa fa-comment"></i>
-                                            <%--评论数--%>
-                                        <a href="/content?id=${content.id}">${content.reads == null? '0':content.reads}</a></div>
+                                            &lt;%&ndash;评论数&ndash;%&gt;
+                                        <a href="/content?id=${content.id}">${content.reads == null? '0':content.reads}</a>
+                                    </div>--%>
                                 </div>
                                 <div class="post-body">
                                     <div class="post-title">

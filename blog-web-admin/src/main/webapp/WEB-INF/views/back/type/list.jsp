@@ -20,7 +20,7 @@
         <h3 style="color: floralwhite;float:left">分类列表</h3>
         <br><br><br>
         <a type="button" href="/back/type/form"
-           class="btn yellow btn-outline pull-right margin-top-20">新增分类</a>
+           class="btn yellow btn-outline pull-right margin-top-20"><i class="fa fa-plus">新增分类</i></a>
         <div class="entry">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -45,7 +45,7 @@
                                     <td width="19%">${type.sortOrder}</td>
                                     <td width="19%"><fmt:formatDate value="${type.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                     <td width="19%">
-                                        <a href="/back/type/form?id=${type.id}" type="button" class="btn blue btn-outline">修改</a>
+                                        <a href="/back/type/form?id=${type.id}" type="button" class="btn blue btn-outline"><i class="fa fa-edit">编辑</i></a>
                                         <button class="btn blue btn-outline red mt-sweetalert" +
                                                 data-title="确认删除吗？" +
                                                 data-type="info"  +
@@ -59,9 +59,9 @@
                                                 data-cancel-button-text="取消" +
                                                 data-popup-title-success="已删除" +
                                                 data-popup-title-cancel="已取消" +
-                                                data-get-url="/back/type/delete?id=${type.id}">删除</button>
+                                                data-get-url="/back/type/delete?id=${type.id}"><i class="fa fa-trash-o">删除</i></button>
                                         <c:if test="${type.parentId == 0}">
-                                            <a href="/back/type/form?parentId=${type.id}" type="button" class="btn green btn-outline">添加下级菜单</a>
+                                            <a href="/back/type/form?parentId=${type.id}" type="button" class="btn green btn-outline"><i class="fa fa-plus">添加下级菜单</i></a>
                                         </c:if>
                                     </td>
                                 </tr>

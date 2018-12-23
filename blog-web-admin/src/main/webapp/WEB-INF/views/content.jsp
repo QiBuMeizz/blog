@@ -70,10 +70,11 @@
                                     <span class="month"><fmt:formatDate value="${content.updated}" pattern="MM"/></span>
                                     <span class="day"><fmt:formatDate value="${content.updated}" pattern="dd"/></span>
                                 </div>
-                                <div class="post-comment">
+                                <%--待实现--%>
+                                <%--<div class="post-comment">
                                     <i class="fa fa-comment"></i>
                                     <a href="#">${content.reads}</a>
-                                </div>
+                                </div>--%>
                             </div>
                             <div class="post-body">
                                 <div class="post-title">
@@ -229,7 +230,7 @@
                             '                       </div>\n' +
                             '                       <div class="comment-body">\n' +
                             '                           <cite class="fn text-uppercase">\n' +
-                            '                               <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/single.html#">'+comment.name+'</a>\n' +
+                            '                               <a>'+comment.name+'</a>\n' +
                             '                           </cite>\n' +
                             '                           <div class="comment-meta">\n' +
                             '                               <span>'+DateTime.format(comment.created,"yyyy-MM-dd HH:mm:ss")+'</span>\n' +
