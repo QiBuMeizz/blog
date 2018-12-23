@@ -121,7 +121,7 @@
                                             data-cancel-button-text='取消'
                                             data-popup-title-success="删除成功"
                                             data-popup-message-success="所选数据已从数据表中移除."
-                                            data-get-url = "/back/comment/delete?id=${comment.id}"
+                                            data-get-url = "/back/comment/delete?id=${comment.id}&parentId=${comment.parentId}"
                                             data-popup-title-cancel="已取消"
                                             data-popup-message-cancel="已取消删除所选数据项.">
                                         <i class="fa fa-trash">删除</i></button>
