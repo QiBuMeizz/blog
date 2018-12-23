@@ -49,7 +49,7 @@
                         <c:set var="list" value="${pageResult.data.list}"/>
                         <c:set var="page" value="${pageResult.data}"/>
 
-                        <form action="/main" id="searchForm">
+                        <form action="/main" id="searchForm" method="post">
                             <input type="hidden" name="current" id="current" value="${page.current}"/>
                             <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                         </form>

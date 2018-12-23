@@ -72,8 +72,10 @@
             <if test="text != null and text !=''">
                 AND a.text LIKE CONCAT('%',#{text},'%')
             </if>
-            <if test="content.title != null and content.title !=''">
-                AND b.title LIKE CONCAT('%',#{content.title},'%')
+            <if test="content != null">
+                <if test="content.title != null and content.title !=''">
+                    AND b.title LIKE CONCAT('%',#{content.title},'%')
+                </if>
             </if>
         </where>
         ORDER BY a.status ASC
@@ -94,8 +96,10 @@
             <if test="text != null and text !=''">
                 AND a.text LIKE CONCAT('%',#{text},'%')
             </if>
-            <if test="content.title != null and content.title !=''">
-                AND b.title LIKE CONCAT('%',#{content.title},'%')
+            <if test="content != null">
+                <if test="content.title != null and content.title !=''">
+                    AND b.title LIKE CONCAT('%',#{content.title},'%')
+                </if>
             </if>
         </where>
     </select>

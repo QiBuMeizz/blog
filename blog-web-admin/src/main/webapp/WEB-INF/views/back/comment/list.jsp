@@ -41,8 +41,10 @@
                     onclick="$('#search').slideToggle(300)"><i class="fa fa-search">高级搜索</i>
             </button>
         </div>
-        <div class="col-md-offset-1" id="search">
-            <form role="form" action="/back/comment/list" method="get" class="echo" id="searchForm">
+        <div class="col-md-offset-1" id="search"
+        ${comment.name != '' || comment.text !='' || comment.content.title !='' ? '':'hidden'}
+        ${comment.name == null && comment.text ==null && comment.content.title ==null ? 'hidden':''}>
+            <form role="form" action="/back/comment/list" method="post" class="echo" id="searchForm">
                 <input type="hidden" name="current" id="current" value="${page.current}"/>
                 <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                 <h4 style="color: floralwhite ;">高级搜索</h4>

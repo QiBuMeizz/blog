@@ -43,8 +43,10 @@
                 <button type="button" href="/back/content/modify"
                    class="btn green btn-outline pull-right margin-top-20 " onclick="$('#search').slideToggle(300)"><i class="fa fa-search">高级搜索</i></button>
             </div>
-            <div class="col-md-offset-2" id="search" ${content.title == '' || content.content == '' ? '' :'style="display:none"'}>
-                <form role="form" action="/back/content/list" id="searchForm" method="get" class="echo">
+            <div class="col-md-offset-2" id="search"
+                ${content.title != '' || content.content !=''  ? '':'hidden'}
+                ${content.title == null || content.content ==null  ? 'hidden':''}>
+                <form role="form" action="/back/content/list" id="searchForm" method="post" class="echo">
                     <input type="hidden" name="current" id="current" value="${page.current}"/>
                     <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                     <h4 style="color: floralwhite ;">高级搜索</h4>
@@ -136,6 +138,7 @@
     <%@include file="../../includes/back/metronij.jsp" %>
 
 <script>
+
     function initPage(current) {
         if (typeof(current) == "undefined") {
             $("#current").val(1)
