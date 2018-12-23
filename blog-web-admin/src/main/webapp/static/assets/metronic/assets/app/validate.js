@@ -1,9 +1,12 @@
 <!--函数对象-->
 var Validate = function () {
     //私有方法
-    var handlerInitValidate = function () {
+    var handlerInitValidate = function (form_id) {
+        if(form_id == null){
+            form_id = "inputForm";
+        }
         //出错提示和警告颜色
-        $("#inputForm").validate({
+        $("#"+form_id).validate({
             errorElement: 'span',
             errorClass: 'help-block',
             rule: {
@@ -30,6 +33,9 @@ var Validate = function () {
     return {
         init:function () {
             handlerInitValidate();
+        },
+        myValidate: function (form_id) {
+            handlerInitValidate(form_id)
         }
     };
 }();
