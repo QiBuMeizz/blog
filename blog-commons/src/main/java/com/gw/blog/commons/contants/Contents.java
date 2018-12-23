@@ -11,6 +11,9 @@ public final class Contents {
     /**
      * 提交评论返回的结果的key
      */
-    public static final String COMMENT_RESULT = "commentResult";
+    public static final String COMMENT_RESULT = "commentResult";/**
+     * 提交回复返回的结果的key
+     */
+    public static final String RESPOND_RESULT = "respondResult";
     public static final Integer DELETE_STATUS = 0;
 }
