@@ -26,4 +26,10 @@ public interface CommentDao extends BasePageDao<Comment> {
      * @param array
      */
     void deleteMore(Long... array);
+
+    /**
+     * 找父评论
+     * @return
+     */
+    List<Comment> selectByParentId(Long parentId);
 }

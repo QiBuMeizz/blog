@@ -89,11 +89,17 @@ public class CommentServiceImpl extends BasePageServiceImpl<Comment, CommentDao>
     }
 
     /**
-     *
+     *批量删除
      * @param ids
      */
     @Override
     public void deleteMore(Long... ids) {
         dao.deleteMore(ids);
     }
+
+    @Override
+    public List<Comment> selectByParentId(Long parentId) {
+        return dao.selectByParentId(parentId);
+    }
+
 }

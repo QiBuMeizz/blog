@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 后台评论管理
  */
@@ -54,9 +57,16 @@ public class CommentController extends BaseController<Comment, CommentService> {
      */
     @GetMapping(value = "delete")
     public String delete(Comment comment, RedirectAttributes model){
-        System.out.println(comment);
-        BaseResult delete = service.delete(comment);
-        model.addFlashAttribute(Contents.BASE_RESULT,delete);
+        List<Long> list = new ArrayList<>();
+        //获得子评论集合
+        getDeleteId(comment,list);
+        //转换成Long 数组
+        Long[] ids = new Long[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            ids[i] = list.get(i);
+        }
+        service.deleteMore(ids);
+        model.addFlashAttribute(Contents.BASE_RESULT,BaseResult.success("删除数据成功!!!"));
         return "redirect:/back/comment/list";
     }
 
@@ -105,4 +115,14 @@ public class CommentController extends BaseController<Comment, CommentService> {
         return null;
     }
 
+
+    private void getDeleteId(Comment comment, List<Long> list) {
+        if (comment.getIsParent()){
+            List<Comment> comments = service.selectByParentId(comment.getId());
+            for (Comment child : comments) {
+                getDeleteId(child,list);
+            }
+        }
+        list.add(comment.getId());
+    }
 }

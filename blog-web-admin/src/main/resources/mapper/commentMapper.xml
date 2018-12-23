@@ -163,4 +163,13 @@
             #{array}
         </foreach>
     </delete>
+
+    <select id="selectByParentId" resultType="Comment">
+        SELECT
+        <include refid="CommentColumns"/>
+        FROM comment AS a
+        <include refid="LeftJoin"/>
+        WHERE
+        a.parent_id = #{parentId}
+    </select>
 </mapper>
