@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gw.blog.web.admin.dao.CommentDao">
+
+    <sql id="CommentColumns">
+        a.id,
+        a.name,
+        a.email,
+        a.text,
+        a.pic,
+        a.is_parent AS 'isParent',
+        a.parent_id AS 'parentId',
+        a.content_id AS 'contentId',
+        a.status,
+        a.created,
+        a.updated,
+        b.title AS 'content.title',
+        c.name AS 'parentName'
+    </sql>
+
+    <sql id="LeftJoin">
+        LEFT JOIN content AS b ON a.content_id = b.id
+        LEFT JOIN comment AS c ON a.parent_id = c.id
+    </sql>
+
+    <select id="selectAll" resultType="Comment">
+        SELECT
+            <include refid="CommentColumns"/>
+        FROM comment AS a
+            <include refid="LeftJoin"/>
+    </select>
+
+    <select id="selectById" resultType="Comment">
+        SELECT
+         <include refid="CommentColumns"/>
+        FROM comment AS a
+         <include refid="LeftJoin"/>
+        WHERE
+          a.id = #{id}
+    </select>
+
+    <select id="selectByName" resultType="Comment">
+        SELECT
+        <include refid="CommentColumns"/>
+        FROM comment AS a
+        <include refid="LeftJoin"/>
+        WHERE
+        a.name = #{name}
+        LIMIT 0,1;
+    </select>
+
+    <select id="selectComment" resultType="Comment" parameterType="java.util.Map">
+        SELECT
+            <include refid="CommentColumns"/>
+        FROM comment AS a
+            <include refid="LeftJoin"/>
+        WHERE
+            a.status = '1' AND a.parent_id = #{comment.id} AND a.content_id = #{comment.contentId}
+        ORDER BY a.created ASC
+        LIMIT #{index},#{size};
+    </select>
+
+    <select id="pageList" resultType="Comment">
+        SELECT
+            <include refid="CommentColumns"/>
+        FROM comment AS a
+            <include refid="LeftJoin"/>
+        <where>
+            <if test="name != null and name !=''">
+                AND a.name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="text != null and text !=''">
+                AND a.text LIKE CONCAT('%',#{text},'%')
+            </if>
+            <if test="content != null">
+                <if test="content.title != null and content.title !=''">
+                    AND b.title LIKE CONCAT('%',#{content.title},'%')
+                </if>
+            </if>
+        </where>
+        ORDER BY a.status ASC
+        <if test="page != null">
+            LIMIT #{page.start},#{page.size};
+        </if>
+    </select>
+
+    <select id="count" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM comment AS a
+        <include refid="LeftJoin"/>
+        <where>
+            <if test="name != null and name !=''">
+                AND a.name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="text != null and text !=''">
+                AND a.text LIKE CONCAT('%',#{text},'%')
+            </if>
+            <if test="content != null">
+                <if test="content.title != null and content.title !=''">
+                    AND b.title LIKE CONCAT('%',#{content.title},'%')
+                </if>
+            </if>
+        </where>
+    </select>
+	
+	<delete id="delete">
+        DELETE
+        FROM
+            comment
+        WHERE
+            id = #{id}
+    </delete>
+
+    <update id="update">
+        UPDATE
+          comment
+        SET
+          name = #{name},
+          email = #{email},
+          text = #{text},
+          pic = #{pic},
+          is_parent = #{isParent},
+          parent_id = #{parentId},
+          content_id = #{contentId},
+          status = #{status},
+          created = #{created},
+          updated = #{updated}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert">
+        INSERT INTO comment (
+          `name`,
+          `email`,
+          `text`,
+          `pic`,
+          `parent_id`,
+          `content_id`,
+          `status`,
+          `created`,
+          `updated`
+        )
+        VALUES
+          (
+            #{name},
+            #{email},
+            #{text},
+            #{pic},
+            #{parentId},
+            #{contentId},
+            #{status},
+            #{created},
+            #{updated}
+          );
+    </insert>
+
+    <delete id="deleteMore">
+        DELETE FROM
+          comment
+        WHERE id IN
+        <foreach collection="array" open="(" separator="," close=")" item="array">
+            #{array}
+        </foreach>
+    </delete>
+
+    <select id="selectByParentId" resultType="Comment">
+        SELECT
+        <include refid="CommentColumns"/>
+        FROM comment AS a
+        <include refid="LeftJoin"/>
+        WHERE
+        a.parent_id = #{parentId}
+    </select>
+</mapper>
