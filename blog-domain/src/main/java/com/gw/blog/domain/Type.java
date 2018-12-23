@@ -13,4 +13,5 @@ public class Type extends BaseTreeEntity {
 
     @Transient
     private String tname;
+
 }

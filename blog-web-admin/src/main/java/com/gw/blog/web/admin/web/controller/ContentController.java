@@ -8,6 +8,7 @@ import com.gw.blog.commons.abstracts.BaseController;
 import com.gw.blog.commons.abstracts.BaseTreeController;
 import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.commons.dto.Page;
+import com.gw.blog.commons.dto.PageResult;
 import com.gw.blog.domain.Content;
 import com.gw.blog.domain.Type;
 import com.gw.blog.web.admin.service.ContentService;
@@ -38,6 +39,7 @@ public class ContentController extends BaseController<Content,ContentService> {
 
         //显示主页面
         BaseResult baseResult = service.pageList(content);
+        model.addAttribute("content",content);
         model.addAttribute("pageResult",baseResult);
         return "back/content/list";
     }

@@ -19,6 +19,14 @@
         LEFT JOIN type AS b ON a.parent_id = b.id
     </sql>
 
+    <update id="delete">
+        UPDATE
+          type
+        SET
+          status = #{status}
+        WHERE id = #{id};
+    </update>
+
     <select id="selectAll" resultType="Type">
         SELECT
           <include refid="typeColumns"/>
@@ -36,5 +44,45 @@
             WHERE a.status = '1'
             AND a.id = #{id};
     </select>
+
+    <select id="getByParentId" resultType="Type">
+        SELECT
+        <include refid="typeColumns"/>
+        FROM type AS a
+        <include refid="leftJoinType"/>
+        WHERE a.status = '1'
+        AND a.parent_id = #{parentId};
+    </select>
+
+    <insert id="insert">
+        INSERT INTO type (
+            parent_id,
+            name,
+            sort_order,
+            created,
+            updated
+        )
+        VALUE (
+            #{parentId},
+            #{name},
+            #{sortOrder},
+            #{created},
+            #{updated}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE
+            type
+        SET
+            parent_id = #{parentId},
+            name = #{name},
+            sort_order = #{sortOrder},
+            is_parent = #{isParent},
+            created = #{created},
+            updated = #{updated}
+        WHERE
+            id = #{id}
+    </update>
 
 </mapper>

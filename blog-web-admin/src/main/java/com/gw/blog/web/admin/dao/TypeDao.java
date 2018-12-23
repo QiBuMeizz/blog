@@ -4,6 +4,9 @@ import com.gw.blog.commons.abstracts.BaseTreeDao;
 import com.gw.blog.domain.Type;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TypeDao extends BaseTreeDao<Type> {
+
 }

@@ -20,4 +20,10 @@ public interface CommentService extends BasePageService<Comment> {
      * @param ids
      */
     void deleteMore(Long... ids);
+
+    /**
+     * 找父评论
+     * @return
+     */
+    List<Comment> selectByParentId(Long parentId);
 }

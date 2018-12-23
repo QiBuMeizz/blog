@@ -19,7 +19,7 @@ import java.util.*;
 public class UploadController {
 
 
-    private static final String FILE_UPLOAD_PATH = "static" + File.separator + "assets"+ File.separator + "back"+ File.separator+"upload";
+    private static final String FILE_UPLOAD_PATH = "static" + File.separator + "assets"+ File.separator+"upload";
 
     /**
      * 上传
@@ -58,8 +58,11 @@ public class UploadController {
     private String write(HttpServletRequest request, MultipartFile multipartFile) {
         // 获取上传路径
         String realPath = request.getSession().getServletContext().getRealPath("/");
+        System.out.println("realPath"+realPath);
         String filePath = realPath + FILE_UPLOAD_PATH;
-
+        System.out.println("filePath"+filePath);
+//        String fullPath = this.getClass().getClassLoader().getResource("/").getPath();
+//        System.out.println("fullPath"+fullPath);
         // 先判断上传路径是否存在
         File file = new File(filePath);
         if (!file.exists()) {

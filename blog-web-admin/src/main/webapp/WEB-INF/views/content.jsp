@@ -71,7 +71,7 @@
                                     <span class="day"><fmt:formatDate value="${content.updated}" pattern="dd"/></span>
                                 </div>
                                 <div class="post-comment">
-                                    <i class="fa fa-book"></i>
+                                    <i class="fa fa-comment"></i>
                                     <a href="#">${content.reads}</a>
                                 </div>
                             </div>
@@ -86,8 +86,8 @@
 											<i class="fa fa-share-alt"></i>
 										</span>
                                     <div class="share">
-                                        <a href="#">微信<i class="fa fa-wechat"></i></a>
-                                        <a href="#">QQ<i class="fa fa-qq"></i></a>
+                                        <a href="#"><i class="fa fa-wechat"></i></a>
+                                        <a href="#"><i class="fa fa-qq"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -231,8 +231,8 @@
         $("#searchForm").submit();
     }
     $(function () {
-        if(${content.id == 1}){
-            //关于我们没有评论
+        if(${content.id == 1 || content.id == 2}){
+            //敬请期待,关于我们没有评论 1为关于我们 2为敬请期待
             $("#comments").remove();
             $("#respond").remove();
         }
@@ -288,8 +288,8 @@
                             }
                         }
 
-                        $("#"+ul_id).append('<li class="comment" id="tab_comment_'+comment.id+'">\n' +
-                            '                   <div class="comment-box">\n' +
+                        $("#"+ul_id).append('<li class="comment" id="tab_comment_'+comment.id+'"> \n' +
+                            '                   <div class="comment-box" style="word-wrap: break-word;word-break: break-all;overflow: hidden;">\n' +
                             '                       <div class="comment-author">\n' +
                             '                           <a href="#"><img src="/static/assets/ui/home/5(1).jpg" alt=""></a>\n' +
                             '                       </div>\n' +
@@ -299,7 +299,7 @@
                             '                           </cite>\n' +
                             '                           <div class="comment-meta">\n' +
                             '                               <span>'+DateTime.format(comment.created,"yyyy-MM-dd HH:mm:ss")+'</span>\n' +
-                            '                           </div>\n' +
+                            '                           </div><br/>\n' +
                             '                           <p>'+parentName+comment.text+'</p>\n' +
                             '                       </div>\n' +
                             '                       <div class="comment-abs">\n' +
@@ -368,6 +368,11 @@
         }
     }
     /* END SHOW COMMENT */
+
+    var local = window.location;
+    if (local == "http://localhost:8080/content?id=1"){
+        $("#menu li:last").addClass("current-menu-parent");
+    }
 </script>
 
 </html>

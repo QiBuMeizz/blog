@@ -74,6 +74,7 @@ public abstract class BasePageServiceImpl<T extends BasePageEntity,D extends Bas
         return BaseResult.success("", pageResult);
     }
 
+
     /**
      * 多选删除
      * @param ids

@@ -3,10 +3,12 @@ package com.gw.blog.commons.abstracts.impl;
 import com.gw.blog.commons.abstracts.BaseDao;
 import com.gw.blog.commons.abstracts.BaseService;
 import com.gw.blog.commons.abstracts.entity.BaseEntity;
+import com.gw.blog.commons.contants.Contents;
 import com.gw.blog.commons.dto.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 
 @Service
@@ -15,6 +17,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity,D extends BaseDao<T>>
     @Autowired
     protected D dao;
 
+
     /**
      * 伪删除,状态值变为0
      * @param entity
@@ -22,7 +25,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity,D extends BaseDao<T>>
      */
     @Override
     public BaseResult delete(T entity) {
-        entity.setStatus(0);
+        entity.setStatus(Contents.DELETE_STATUS);
         dao.delete(entity);
         return BaseResult.success("删除数据成功!!!");
     }

@@ -14,5 +14,6 @@ public class PageResult<T extends BasePageEntity> {
 
     private int current;//当前第几页
 
-    private int pageSize=3;//每页多少条记录
+    private int pageSize=10;//每页多少条记录
+
 }

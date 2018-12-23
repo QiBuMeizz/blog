@@ -49,16 +49,16 @@
                         <c:set var="list" value="${pageResult.data.list}"/>
                         <c:set var="page" value="${pageResult.data}"/>
 
-                        <form action="/main" id="searchForm">
+                        <form action="/main" id="searchForm" method="post">
                             <input type="hidden" name="current" id="current" value="${page.current}"/>
                             <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                         </form>
                         <c:forEach items="${list}" var="content">
                             <div class="post bg" onclick="content(${content.id});" style="cursor: pointer">
                                 <div class="post-media">
-                                    <div class="image-wrap"  style=${content.pic == null || content.pic == "" ? "display:none":""}>
+                                    <div class="image-wrap"  style='height:400px;overflow: hidden;${content.pic == null || content.pic == "" ? "display:none":""}'>
                                             <%--图片--%>
-                                        <img src="${content.pic}" alt=""></div>
+                                        <img src="${content.pic}" style="margin: 0 0 -100px 0;" alt=""></div>
                                     <div class="post-cat">
                                             <%--详情跳转--%>
                                         <a href="/content?id=${content.id}">详情</a></div>
@@ -146,6 +146,9 @@
         });
         if(!flag){
             $("#menu li:first").addClass("current-menu-parent");
+        }
+        if (local == "http://localhost:8080/content?id=1"){
+            $("#menu li:last").addClass("current-menu-parent");
         }
     });
 

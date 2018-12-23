@@ -17,12 +17,11 @@
         <h2 class="home" style="color:lightgrey">评论管理</h2>
     </div>
     <div class="middle_content">
-        <h3 style="color: floralwhite">评论列表</h3>
-        <br>
+        <h3 style="color: floralwhite; float:left">评论列表</h3>
         <c:set var="list" value="${pageResult.data.list}"/>
         <c:set var="page" value="${pageResult.data}"/>
         <div class="row table">
-            <button class="btn red btn-outline mt-sweetalert pull-right  margin-top-20"
+            <button class="btn red btn-outline mt-sweetalert pull-right margin-top-20"
                     data-title="温馨提示"
                     data-message="确定删除所选的多条数据项吗?"
                     data-type="warning" data-show-confirm-button="true"
@@ -38,25 +37,27 @@
                     data-post-url = "/back/comment/delete"
                     data-popup-title-cancel="已取消"
                     data-popup-message-cancel="已取消删除所选数据项."><i class="fa fa-trash-o">多选删除</i></button>
-            <button type="button" href="/back/content/modify" class="btn green btn-outline pull-right margin-top-20 "
-                    onclick="$('#searchForm').slideToggle(300)"><i class="fa fa-search">高级搜索</i>
+            <button type="button" href="/back/content/modify" class="btn green btn-outline pull-right margin-top-20"
+                    onclick="$('#search').slideToggle(300)"><i class="fa fa-search">高级搜索</i>
             </button>
         </div>
-        <div class="col-md-offset-1" hidden>
-            <form role="form" action="/back/comment/list" method="get" class="echo" id="searchForm">
+        <div class="col-md-offset-1" id="search"
+        ${comment.name != '' || comment.text !='' || comment.content.title !='' ? '':'hidden'}
+        ${comment.name == null && comment.text ==null && comment.content.title ==null ? 'hidden':''}>
+            <form role="form" action="/back/comment/list" method="post" class="echo" id="searchForm">
                 <input type="hidden" name="current" id="current" value="${page.current}"/>
                 <input type="hidden" name="pageSize" id="pageSize" value="${page.pageSize}"/>
                 <h4 style="color: floralwhite ;">高级搜索</h4>
                 <div class="form-body row">
                     <div class="form-group form-md-line-input col-md-3">
-                        <input type="text" name="name" class="form-control" placeholder="评论者">
+                        <input type="text" name="name" class="form-control" placeholder="评论者" value="${comment.name}">
                     </div>
                     <div class="form-group form-md-line-input col-md-3">
-                        <input type="text" name="text" class="form-control" placeholder="评论内容">
+                        <input type="text" name="text" class="form-control" placeholder="评论内容" value="${comment.text}">
                     </div>
 
                     <div class="form-group form-md-line-input col-md-3">
-                        <input type="text" name="content.title" class="form-control" placeholder="评论文章">
+                        <input type="text" name="content.title" class="form-control" placeholder="评论文章" value="${comment.content.title}">
                     </div>
                     <div style="padding-left: 20px">
                         <button type="submit" class="btn blue btn-outline btn-lg">&nbsp;<i class="fa fa-search"></i>&nbsp;</button>
@@ -89,7 +90,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         <c:forEach items="${list}" var="comment">
                             <tr style="white-space:nowrap" >
                                 <td width="3%">
@@ -99,9 +99,9 @@
                                         <span></span>
                                     </label>
                                 </td>
-                                <td width="7%">${comment.name}</td>
+                                <td class="tableFix" width="7%">${comment.name}</td>
                                 <td>${comment.email}</td>
-                                <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${comment.text}</td>
+                                <td class="tableFix">${comment.text}</td>
                                 <td>${comment.content.title}</td>
                                 <td>${comment.status == 0?'未审核':'已审核'}</td>
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -129,7 +129,7 @@
                             </tr>
                         </c:forEach>
                         </tbody>
-                    </table><br>
+                    </table>
                     <div class="row">
                         <sys:page count="${page.count}" current="${page.current}" pageSize="${page.pageSize}"></sys:page>
                     </div>
