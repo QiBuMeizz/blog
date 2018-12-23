@@ -7,12 +7,5 @@ import com.gw.blog.domain.Type;
 import java.util.List;
 
 public interface TypeService extends BaseTreeService<Type> {
-    /**
-     * 正确性检查
-     * @param type
-     * @return
-     */
-    String check(Type type);
-
 
 }

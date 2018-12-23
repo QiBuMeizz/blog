@@ -154,4 +154,16 @@
         WHERE id IN
         (#{ids});
     </update>
+
+    <update id="deleteList" parameterType="java.util.List">
+        UPDATE
+          content
+        SET
+          status = 0
+        WHERE id IN
+        <foreach collection="list" item="content" open="(" separator="," close=")">
+            #{content.id}
+        </foreach>
+    </update>
+
 </mapper>
