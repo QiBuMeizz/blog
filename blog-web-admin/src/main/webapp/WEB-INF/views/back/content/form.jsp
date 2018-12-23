@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="pic" id="pic" class="form-control" value="${content.pic}"/>
+                                <input type="text" name="pic" id="pic" class="form-control" value="${content.pic}" style="display: none"/>
                                 <div id="dropz" class="dropzone dropzone-file-area" >
                                     <h3 class="sbold">拖动文件到这里或点击上传</h3>
                                 </div>
