@@ -15,4 +15,5 @@ public interface ContentDao extends BasePageDao<Content> {
      */
     List<Content> getByTypeId(@Param(value = "typeId") Long typeId);
 
+    void deleteList(List<Content> list);
 }

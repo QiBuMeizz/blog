@@ -10,11 +10,14 @@ import com.gw.blog.web.admin.dao.CommentDao;
 import com.gw.blog.web.admin.dao.ContentDao;
 import com.gw.blog.web.admin.dao.TypeDao;
 import com.gw.blog.web.admin.service.TypeService;
+import org.apache.commons.collections.ListUtils;
 import org.apache.ibatis.annotations.Param;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,40 +29,31 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
 
     /**
      * 删除
+     * @param type
      */
     @Override
     @Transactional(readOnly = false)
-    public BaseResult delete(Type type){
+    public BaseResult delete(Type type) {
+        // 分类 Id
+        Long id = type.getId();
 
-        // 删除本类及其所属文章
-        deleteAll(type);
+        // 删除分类及其子分类
+        List<Type> typeList = getByParentId(id);
+        typeList.add(type);
+        dao.delete(typeList);
 
-        // 删除子类及其所属文章
-        List<Type> list = getByParentId(type.getId());
-        if (list != null) {
-            for (Type child : list) {
-                deleteAll(child);
-            }
+        // 删除分类及其子分类的所有文章
+        List<Content> contentList = Lists.newArrayList();
+        List<Content> contentSubList;
+        for (Type t : typeList) {
+            Long typeId = t.getId();
+            contentSubList = contentDao.getByTypeId(typeId);
+            // 把子分类的文章添加到 contentList
+            contentList = ListUtils.union(contentList, contentSubList);
         }
+        contentDao.deleteList(contentList);
+
         return BaseResult.success("删除数据成功!!!");
-    }
-
-    /**
-     * 删除相应的分类文章
-     * @param type
-     */
-    private void deleteAll(Type type) {
-
-        List<Content> contentList = contentDao.getByTypeId(type.getId());
-        if (contentList != null) {
-            for (Content content : contentList) {
-                content.setStatus(Contents.DELETE_STATUS);
-                contentDao.delete(content);
-            }
-        }
-
-        type.setStatus(Contents.DELETE_STATUS);
-        dao.delete(type);
     }
 
     /**
@@ -92,7 +86,6 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
      * @param type
      * @return
      */
-    @Override
     @Transactional(readOnly = false)
     public String check(Type type) {
         // 本类ID
@@ -111,7 +104,7 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
         if (id == null) {
             // 无父类或父类无父类
             if (parentId == 0L || parent.getParentId() == 0L) {
-                if ( size1 < 8 || parentId != 0L) {
+                if ( size1 < 7 || parentId != 0L) {
                     // 改变父类 isParent 值
                     turnIsParent(parent, null);
                     return null;
@@ -130,7 +123,7 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
                 // 无父类或父类无父类
                 if (parentId == 0L || parent.getParentId() == 0L) {
                     // 子类最多只有一个
-                    if (size2 <= 1 && size1 < 8) {
+                    if (size2 <= 1 && size1 < 7) {
                         // 改变父类 isParent 值
                         turnIsParent(parent, oldType);
                         return null;
@@ -150,7 +143,8 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
      * @param parent 新父类
      * @param oldType  原分类
      */
-    private void turnIsParent(Type parent, Type oldType) {
+    @Transactional(readOnly = false)
+    public void turnIsParent(Type parent, Type oldType) {
 
         // 新晋父类
         if (parent != null) {
