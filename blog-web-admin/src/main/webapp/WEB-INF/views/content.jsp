@@ -303,7 +303,7 @@
                             '                           <p>'+parentName+comment.text+'</p>\n' +
                             '                       </div>\n' +
                             '                       <div class="comment-abs">\n' +
-                            '                           <a data-target="#commentModal" class="comment-reply-link pull-right" data-toggle="modal">回复</a><br/>\n' +
+                            '                           <a href="#" data-target="#commentModal" class="comment-reply-link pull-right" data-toggle="modal">回复</a><br/>\n' +
                             '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
                             '                           <a style="display: none" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
                             '                       </div>\n' +
