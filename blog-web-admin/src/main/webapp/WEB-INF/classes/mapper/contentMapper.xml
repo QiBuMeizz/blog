@@ -50,7 +50,7 @@
             AND a.type_id = #{typeId}
         </if>
         <!--<if test="typeId == null or typeId == '' ">-->
-            ORDER BY a.updated DESC
+            ORDER BY a.created DESC
         <!--</if>-->
         <if test="page!=null">
             LIMIT #{page.start},#{page.size};
@@ -154,4 +154,16 @@
         WHERE id IN
         (#{ids});
     </update>
+
+    <update id="deleteList" parameterType="java.util.List">
+        UPDATE
+          content
+        SET
+          status = 0
+        WHERE id IN
+        <foreach collection="list" item="content" open="(" separator="," close=")">
+            #{content.id}
+        </foreach>
+    </update>
+
 </mapper>
