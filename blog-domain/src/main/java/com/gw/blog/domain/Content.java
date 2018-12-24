@@ -19,7 +19,7 @@ public class Content extends BasePageEntity {
     /**
      * 文章标题
      */
-    @Length(min = 4,message = "标题不能少于4个字符")
+    @Length(min = 2,message = "标题不能少于2个字符")
     private String title;
     /**
      * 作者ID
@@ -37,7 +37,7 @@ public class Content extends BasePageEntity {
     /**
      * 标题描述
      */
-    @Length(max = 30,message = "内容长度不能超30个字符")
+    @Length(max = 30,message = "标题描述不能超30个字符")
     private String titleDesc;
     /**
      * 阅读量
