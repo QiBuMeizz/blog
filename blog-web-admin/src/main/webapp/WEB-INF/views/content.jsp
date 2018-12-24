@@ -21,7 +21,8 @@
             position: fixed;
             top: auto;
             bottom: 0;
-            left: 50%;
+            left: 59%;
+            background-color: #fffffc;
             text-align: center !important;
             border: 1px solid #BFBFBF !important;
             z-index: 9999;
@@ -99,6 +100,7 @@
                                 <ul id="comment-list" class="commentlist">
 
                                 </ul>
+                                <div class="row">&nbsp;</div>
                                 <div id="showMoreParent" class="hover" style="position:absolute;left: 37%;display: none;"><a href="javascript:showMore()">查看更多...</a></div>
                             </div>
                         </div>
@@ -245,7 +247,7 @@
                             '                       <div class="comment-abs">\n' +
                             '                           <a style="cursor: pointer" class="comment-reply-link pull-right" onclick="$(\'#respondBody'+comment.id+'\').toggle(\'slow\')">回复</a><br/>\n' +
                             '                           <a style="display: '+isShowReplyBtn+'" href="javascript:showComment(\'children'+comment.id+'\',\'showMore'+comment.id+'\','+comment.id+',0)" id="showReplyBtn'+comment.id+'" class="pull-right" onclick="show('+comment.id+')">查看回复</a>\n' +
-                            '                           <a style="display: none" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
+                            '                           <a style="display: none;cursor: pointer;" id="hideReplyBtn'+comment.id+'" class="hide-reply-btn" onclick="hide('+comment.id+')">收起回复</a>\n' +
                             '                       </div>\n' +
                             '                       <div id="respondBody'+comment.id+'" style="display: none;" class="row">\n' +
                             '                        <div class="col-md-8 pull-right" style="border-top: 1px solid blue">\n' +
@@ -297,6 +299,7 @@
                             '                   <ul id="children'+comment.id+'" class="children">\n' +
                             '                   </ul>\n' +
                             '                   <div id="showMore'+comment.id+'" style="position:absolute;left: 20%;display: none;z-index: 100;" value="'+data.index+'"><a href="javascript:showMore('+comment.id+')" style="color: #1d75b3">更多回复...</a></div>\n' +
+                            '                   <div class="row">&nbsp;</div>\n' +
                             '               </li>');
                         //回复不需要子回复
                         if(comment.parentId != 0){
