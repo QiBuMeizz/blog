@@ -41,7 +41,7 @@
 <div class="logo">
     <a href="/">
         <%--<img src="/static/assets/ui/home/qianfeng_logo.png" alt="" /> </a>--%>
-        <img src="https://cdn.bootcss.com/zTree.v3/3.5.32/css/zTreeStyle/img/diy/1_open.png" alt="" /> </a>
+        <img src="/static/assets/ui/home/qianfeng_logo.png" alt="" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
