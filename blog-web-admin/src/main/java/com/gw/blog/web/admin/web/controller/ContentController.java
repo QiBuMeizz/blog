@@ -9,6 +9,7 @@ import com.gw.blog.commons.abstracts.BaseTreeController;
 import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.commons.dto.Page;
 import com.gw.blog.commons.dto.PageResult;
+import com.gw.blog.commons.validation.BeanValidator;
 import com.gw.blog.domain.Content;
 import com.gw.blog.domain.Type;
 import com.gw.blog.web.admin.service.ContentService;
@@ -61,6 +62,11 @@ public class ContentController extends BaseController<Content,ContentService> {
      */
     @PostMapping(value = "save")
     public String save(Content content,Model model){
+        String validator = BeanValidator.validator(content);
+        if (validator != null) {
+            model.addAttribute("baseResult",BaseResult.fail(validator));
+            return "back/content/form";
+        }
         //封装了修改成功消息
         BaseResult result = service.save(content);
         return "redirect:/back/content/list";
