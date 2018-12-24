@@ -9,7 +9,7 @@
     background-repeat:no-repeat;
 }
 .echo{
-    color:lightgrey;
+    color:lightgrey !important;
 }
 .mytable {
     table-layout: fixed;

@@ -27,16 +27,16 @@
                         <div class="form-body">
                             <input type="text" name="id" value="${requestScope.type.id}" hidden>
                             <div class="form-group form-md-line-input">
-                                <input type="text" id="parentName" name="tname" class="form-control" placeholder="若无父类，留空" value="${requestScope.type.tname}" readonly data-toggle="modal" href="#zModel"  style="cursor: pointer">
+                                <input type="text" id="parentName" name="tname" class="form-control echo" placeholder="若无父类，留空" value="${requestScope.type.tname}" readonly data-toggle="modal" href="#zModel"  style="cursor: pointer">
                                 <input type="hidden" id="parentId" name="parentId" class="form-control" value="${requestScope.type.parentId}"/>
                                 <label for="parentName">父类名称</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="name" class="form-control required" id="name" placeholder="请输入类目名称" value="${requestScope.type.name}">
+                                <input type="text" name="name" class="form-control required echo" id="name" placeholder="请输入类目名称" value="${requestScope.type.name}">
                                 <label for="name">类目名称</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="sortOrder" class="form-control required" id="sortOrder" placeholder="请输入排列序号" value="${requestScope.type.sortOrder}">
+                                <input type="text" name="sortOrder" class="form-control required echo" id="sortOrder" placeholder="请输入排列序号" value="${requestScope.type.sortOrder}">
                                 <label for="sortOrder">排列序号</label>
                             </div>
                         </div>

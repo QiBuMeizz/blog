@@ -31,32 +31,32 @@
                             <input type="text" name="id" value="${content.id}" hidden>
                             <div class="form-group form-md-line-input">
                                 <input type="text" name="typeId" id="typeId" value="${content.typeId}" hidden>
-                                <input type="text" name="typeName" class="form-control" id="typeName" placeholder="请输入文章类型"
+                                <input type="text" name="typeName" class="form-control echo" id="typeName" placeholder="请输入文章类型"
                                        value="${content.typeName}" readonly style="cursor: pointer" data-toggle="modal"
                                        href="#zModel">
                                 <label for="typeId">文章类型</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="title" class="form-control" id="title" placeholder="请输入文章标题"
+                                <input type="text" name="title" class="form-control echo" id="title" placeholder="请输入文章标题"
                                        value="${content.title}">
                                 <label for="title">文章标题</label>
                             </div>
 
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="titleDesc" class="form-control" id="titleDesc"
+                                <input type="text" name="titleDesc" class="form-control echo" id="titleDesc"
                                        placeholder="请输入简介" value="${content.titleDesc}">
                                 <label for="titleDesc">简介</label>
                             </div>
 
                             <div style="display: ${content.id==null?'none':''}">
                                 <div class="form-group form-md-line-input">
-                                    <input type="text" name="user.username" class="form-control" id="user"
+                                    <input type="text" name="user.username" class="form-control echo" id="user"
                                            placeholder="请输入作者" value="${content.user.username}" readonly>
                                     <label for="user">作者</label>
                                 </div>
 
                                 <div class="form-group form-md-line-input" style="display: none">
-                                    <input type="text" name="reads" class="form-control" id="reads" placeholder="阅读量"
+                                    <input type="text" name="reads" class="form-control echo" id="reads" placeholder="阅读量"
                                            value="${content.reads == null? 0 :content.reads}" readonly>
                                     <label for="reads">阅读量</label>
                                 </div>
@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="pic" id="pic" class="form-control" value="${content.pic}" style="display: none"/>
+                                <input type="text" name="pic" id="pic" class="form-control echo" value="${content.pic}" style="display: none"/>
                                 <div id="dropz" class="dropzone dropzone-file-area" >
                                     <h3 class="sbold">拖动文件到这里或点击上传</h3>
                                 </div>

@@ -22,31 +22,31 @@
             <h3 style="color: floralwhite">审核评论</h3>
             <div class="entry">
                 <div class="portlet-body form">
-                    <form role="form" action="/back/comment/save" method="post" modelAttribute="user" id="commentForm">
-                        <div class="form-body" >
-                            <input type="text"  name="id" value="${requestScope.comment.id}" hidden>
+                    <form role="form" action="/back/comment/save" method="post" modelAttribute="user" class="echo" id="commentForm">
+                        <div class="form-body echo" >
+                            <input type="text"   name="id" value="${requestScope.comment.id}" hidden>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="name" class="form-control" id="name" value="${requestScope.comment.name}" readonly>
+                                <input type="text"  name="name" class="form-control echo" id="name" value="${requestScope.comment.name}" readonly>
                                 <label for="name">类目名称</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="email" class="form-control" id="email" value="${requestScope.comment.email}" readonly>
+                                <input type="text" name="email" class="form-control echo" id="email" value="${requestScope.comment.email}" readonly>
                                 <label for="email">邮箱</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="content.title" class="form-control" id="content.title" value="${requestScope.comment.content.title}" readonly>
+                                <input type="text" name="content.title" class="form-control echo" id="content.title" value="${requestScope.comment.content.title}" readonly>
                                 <label for="content.title">所属文章标题</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="parentName" class="form-control" id="parentName" value="${requestScope.comment.parentName == null? '无父评论':requestScope.comment.parentName}" readonly>
+                                <input type="text" name="parentName" class="form-control echo" id="parentName" value="${requestScope.comment.parentName == null? '无父评论':requestScope.comment.parentName}" readonly>
                                 <label for="parentName">父评论名称</label>
                             </div>
                             <div class="form-group form-md-line-input" >
-                                <textarea name="text" class="form-control" id="textarea"  readonly>${requestScope.comment.text}</textarea>
+                                <textarea name="text" class="form-control echo" id="textarea"  readonly>${requestScope.comment.text}</textarea>
                                 <label for="textarea">评论内容</label>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <input type="text" name="status" class="form-control" id="status" value="${requestScope.comment.status == 0? '未审核':'已审核'}" readonly>
+                                <input type="text" name="status" class="form-control echo" id="status" value="${requestScope.comment.status == 0? '未审核':'已审核'}" readonly>
                                 <label for="status">状态</label>
                             </div>
                         </div>
