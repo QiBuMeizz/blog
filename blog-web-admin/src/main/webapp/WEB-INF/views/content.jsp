@@ -82,6 +82,11 @@
                                 <div class="post-entry">
                                     ${content.content}
                                 </div>
+                                <div class="post-share" onclick="location.href='#tab_3'" title="评论">
+										<span class="share-toggle pi-btn">
+											<i class="fa fa-comment"></i>
+										</span>
+                                </div>
                             </div>
                             <div id="tab_2"></div>
                         </div>
