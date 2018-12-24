@@ -107,7 +107,7 @@
                                 <td><fmt:formatDate value="${comment.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>
                                     <a href="/back/comment/form?id=${comment.id}" class="btn blue btn-outline"><i class="fa fa-edit">详情</i></a>
-                                    <a href="/back/comment/save?id=${comment.id}" class="btn yellow btn-outline"><i class="fa fa-check">通过</i></a>
+                                    <button ${comment.status == 0?'':'disabled="true"'} onclick="location.href='/back/comment/save?id=${comment.id}'" class="btn yellow btn-outline"><i class="fa fa-check">通过</i></button>
                                     <button class="btn red btn-outline mt-sweetalert"
                                             data-title="温馨提示"
                                             data-message="确定删除所选的多条数据项吗?"

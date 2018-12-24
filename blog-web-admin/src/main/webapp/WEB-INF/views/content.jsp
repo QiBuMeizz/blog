@@ -70,16 +70,22 @@
                                     <span class="month"><fmt:formatDate value="${content.updated}" pattern="MM"/></span>
                                     <span class="day"><fmt:formatDate value="${content.updated}" pattern="dd"/></span>
                                 </div>
-                                <div class="post-comment">
+                                <%--待实现--%>
+                                <%--<div class="post-comment">
                                     <i class="fa fa-comment"></i>
                                     <a href="#">${content.reads}</a>
-                                </div>
+                                </div>--%>
                             </div>
                             <div class="post-body">
                                 <div class="post-title">
                                     <h1>${content.title}</h1></div>
                                 <div class="post-entry">
                                     ${content.content}
+                                </div>
+                                <div class="post-share" onclick="location.href='#tab_3'" title="评论">
+										<span class="share-toggle pi-btn">
+											<i class="fa fa-comment"></i>
+										</span>
                                 </div>
                             </div>
                             <div id="tab_2"></div>
@@ -229,7 +235,7 @@
                             '                       </div>\n' +
                             '                       <div class="comment-body">\n' +
                             '                           <cite class="fn text-uppercase">\n' +
-                            '                               <a href="http://v.bootstrapmb.com/2018/7/fsjud1659/single.html#">'+comment.name+'</a>\n' +
+                            '                               <a>'+comment.name+'</a>\n' +
                             '                           </cite>\n' +
                             '                           <div class="comment-meta">\n' +
                             '                               <span>'+DateTime.format(comment.created,"yyyy-MM-dd HH:mm:ss")+'</span>\n' +
@@ -256,8 +262,8 @@
                             '                                            <span class="input-group-addon">\n' +
                             '                                                <i class="fa fa-user"></i>\n' +
                             '                                            </span>\n' +
-                            '                                            <input id="respond-name-'+comment.id+'" name="name" type="text" class="form-control"\n' +
-                            '                                                   minlength="2" maxlength="20" required autocomplete="off"\n' +
+                            '                                            <input id="respond-name-'+comment.id+'" name="name" type="text" class="required form-control"\n' +
+                            '                                                   minlength="2" maxlength="20" autocomplete="off"\n' +
                             '                                                   placeholder="请输入你的名字"/>\n' +
                             '                                        </div>\n' +
                             '                                    </div>\n' +
@@ -266,13 +272,13 @@
                             '                                            <span class="input-group-addon">\n' +
                             '                                                <i class="fa fa-envelope"></i>\n' +
                             '                                            </span>\n' +
-                            '                                            <input id="respond-email-'+comment.id+'" name="email" type="email" class="form-control"\n' +
-                            '                                                   autocomplete="off" placeholder="请输入你的邮箱" required>\n' +
+                            '                                            <input id="respond-email-'+comment.id+'" name="email" type="email" class="required form-control"\n' +
+                            '                                                   autocomplete="off" placeholder="请输入你的邮箱">\n' +
                             '                                        </div>\n' +
                             '                                    </div>\n' +
                             '                                    <div class="col-md-12">\n' +
                             '                                        <div class="form-item form-textarea-wrapper">\n' +
-                            '                                            <textarea id="respond-text-'+comment.id+'" name="text" class="form-control" required\n' +
+                            '                                            <textarea id="respond-text-'+comment.id+'" name="text" class="required form-control"\n' +
                             '                                                      autocomplete="off" maxlength="120" placeholder="请输入内容,最多能输入120个字符"></textarea>\n' +
                             '                                        </div>\n' +
                             '                                    </div>\n' +
@@ -351,6 +357,29 @@
 
     //提交回复
     function respondSubmit(id) {
+        var message = '';
+        if($("#respond-name-"+id).val() == null || $("#respond-name-"+id).val() == ''){
+            message = message+"名字不能为空<br/>";
+        }
+        if($("#respond-email-"+id).val() == null || $("#respond-email-"+id).val() == ''){
+            message = message+"邮箱不能为空<br/>";
+        }
+        if($("#respond-text-"+id).val() == null || $("#respond-text-"+id).val() == ''){
+            message = message+"内容不能为空<br/>";
+        }
+        if(message.length > 0){
+            swal({
+                title:"小老弟，这么急吗？",
+                text :message,
+                type :"warning",
+                timer: 5000,
+                html:true,
+                allowOutsideClick :"true",
+                confirmButtonClass:"btn-warning"
+            });
+            return;
+        }
+
         $.ajax({
             url:"/comment/respond/form",
             type:"post",

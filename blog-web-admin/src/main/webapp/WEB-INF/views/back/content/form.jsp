@@ -73,7 +73,7 @@
                                 </div>
                             </div>
 
-                            <div id="editor" class="form-group form-md-line-input ">
+                            <div id="editor" class="form-group form-md-line-input echo">
                                 <div class="echo">
                                     ${content.content}
                                 </div>

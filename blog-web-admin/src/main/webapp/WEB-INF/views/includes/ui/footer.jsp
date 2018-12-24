@@ -25,6 +25,7 @@
 
 <script src="/static/assets/metronic/assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="/static/assets/ui/js/DateTime.js"></script>
+
 <script>
     function searchSoon(title) {
         $("#inputSoon").val(title);

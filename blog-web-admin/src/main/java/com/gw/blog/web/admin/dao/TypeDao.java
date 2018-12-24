@@ -9,4 +9,9 @@ import java.util.List;
 @Repository
 public interface TypeDao extends BaseTreeDao<Type> {
 
+    /**
+     * 删除
+     * @param list
+     */
+    void delete(List<Type> list);
 }
