@@ -51,7 +51,11 @@ public class TypeServiceImpl extends BaseTreeServiceImpl<Type, TypeDao> implemen
             // 把子分类的文章添加到 contentList
             contentList = ListUtils.union(contentList, contentSubList);
         }
-        contentDao.deleteList(contentList);
+
+        // 有文章才能删除
+        if (contentList.size() != 0) {
+            contentDao.deleteList(contentList);
+        }
 
         return BaseResult.success("删除数据成功!!!");
     }
