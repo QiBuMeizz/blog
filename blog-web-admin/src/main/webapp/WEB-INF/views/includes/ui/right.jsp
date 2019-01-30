@@ -21,6 +21,7 @@
                     成立于2018年11月15日,</br>
                     我们是一支高效,团结的优秀团队.
                 </p>
+                <p><font color="red">注： </font>本网站仅供个人学习使用</p>
             </div>
             <div class="about-social">
                 加入我们:

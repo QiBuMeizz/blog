@@ -9,6 +9,7 @@
 <footer id="footer" class="footer">
     <div class="copyright text-center">
         <p>Copyrights © 2018 All Rights Reserved by GW工作组</p>
+        <p><a href="http://www.miitbeian.gov.cn/">粤ICP备19008558号</a></p>
     </div>
 </footer>
 <!-- END / FOOTER -->
