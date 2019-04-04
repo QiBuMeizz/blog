@@ -41,7 +41,7 @@
 <div class="logo">
     <a href="/">
         <%--<img src="/static/assets/ui/home/qianfeng_logo.png" alt="" /> </a>--%>
-        <img src="/static/assets/ui/home/qianfeng_logo.png" alt="" /> </a>
+        <img src="/static/assets/ui/home/gw-logo.png" alt="" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
