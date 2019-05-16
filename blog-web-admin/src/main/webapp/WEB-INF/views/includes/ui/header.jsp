@@ -11,7 +11,7 @@
     <div class="container">
         <!-- LOGO -->
         <div class="logo text-center">
-            <a href="#">
+            <a href="/main">
                 <img src="/static/assets/ui/home/gw-logo.png" alt=""></a>
         </div>
         <!-- END / LOGO -->

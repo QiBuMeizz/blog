@@ -25,11 +25,8 @@
             </div>
             <div class="about-social">
                 加入我们:
-                <a href="#">
+                <a href="/content?id=1">
                     <i class="fa fa-weixin"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-qq"></i>
                 </a>
             </div>
         </div>
