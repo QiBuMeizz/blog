@@ -31,6 +31,9 @@
                 <if test="email != null and email != ''">
                     email=#{email},
                 </if>
+                <if test="role != null and role != ''">
+                    role=#{role},
+                </if>
                     updated=#{updated}
         WHERE
             id=#{id}
@@ -52,5 +55,25 @@
         user AS a
         WHERE
         a.id = #{id}
+    </select>
+
+    <select id="pageQueryUser" resultType="com.gw.blog.domain.User">
+        SELECT
+          <include refid="userColumns"/>
+        FROM
+          user AS a
+        <where>
+            <if test="paramMap.user.username != null and paramMap.user.username != ''">
+                a.username LIKE CONCAT('%',#{paramMap.user.username},'%'),
+            </if>
+            <if test="paramMap.user.phone != null and paramMap.user.phone != ''">
+                a.phone LIKE CONCAT('%',#{paramMap.user.phone},'%'),
+            </if>
+            <if test="paramMap.user.email != null and paramMap.user.email != ''">
+                a.email LIKE CONCAT('%',#{paramMap.user.email},'%')
+            </if>
+        </where>
+        ORDER BY a.updated DESC
+        LIMIT #{paramMap.start},#{paramMap.pageSize}
     </select>
 </mapper>

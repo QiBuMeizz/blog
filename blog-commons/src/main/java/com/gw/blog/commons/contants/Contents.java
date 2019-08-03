@@ -16,4 +16,8 @@ public final class Contents {
      */
     public static final String RESPOND_RESULT = "respondResult";
     public static final Integer DELETE_STATUS = 0;
+    /**
+     * 匹配 0 、1 正则表达式
+     */
+    public static final String ROLE_REGEXP = "^[01]{1}$";
 }

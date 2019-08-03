@@ -133,7 +133,7 @@ jQuery(document).ready(function(){
 	
 	jQuery('.standard .header_arrow').live('click', function(){
 		showHideContent();
-		
+
 		return false;
 	});
 	
@@ -157,7 +157,7 @@ function showHideContent(){
 	if (jQuery('body').hasClass('standard')){
 		if (jQuery('.standard .header_wrap').css('left') == '10px'){
 			jQuery('.standard .header_wrap').animate({left:'-242px'}, 700, 'easeInQuint', function(){
-				jQuery('.standard .header_arrow').addClass('hidden').css({left:'85px'}).animate({left:'155px'}, 300, 'easeInQuint');
+				jQuery('.standard .header_arrow').addClass('').css({left:'85px'}).animate({left:'155px'}, 300, 'easeInQuint');
 			});
 			jQuery('.standard #middle').css({position:'fixed'}).animate({left:'-1645px'}, 700, 'easeInQuint');
 		} else {

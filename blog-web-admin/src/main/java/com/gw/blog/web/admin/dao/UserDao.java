@@ -2,7 +2,11 @@ package com.gw.blog.web.admin.dao;
 
 import com.gw.blog.commons.abstracts.BaseDao;
 import com.gw.blog.domain.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户数据层接口
@@ -24,6 +28,7 @@ public interface UserDao extends BaseDao<User> {
      */
     User getByLoginId(User user);
 
+    List<User> pageQueryUser(@Param("paramMap") Map<String,Object> paramMap);
 }
 
 

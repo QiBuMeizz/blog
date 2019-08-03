@@ -68,12 +68,14 @@ public class CommentController extends BaseController<Comment, CommentService> {
         service.deleteMore(ids);
         List<Comment> list = service.selectByParentId(comment.getParentId());
         Comment parentComment = service.selectById(comment.getParentId());
-        if (list == null || list.size() == 0) {
-            parentComment.setIsParent(false);
-        } else {
-            parentComment.setIsParent(true);
+        if (parentComment != null){
+            if (list == null || list.size() == 0) {
+                parentComment.setIsParent(false);
+            } else {
+                parentComment.setIsParent(true);
+            }
+            service.save(parentComment);
         }
-        service.save(parentComment);
         model.addFlashAttribute(Contents.BASE_RESULT,BaseResult.success("删除数据成功!!!"));
         return "redirect:/back/comment/list";
     }

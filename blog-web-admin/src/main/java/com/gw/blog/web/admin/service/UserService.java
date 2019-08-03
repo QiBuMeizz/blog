@@ -4,6 +4,9 @@ package com.gw.blog.web.admin.service;
 import com.gw.blog.commons.abstracts.BaseService;
 import com.gw.blog.domain.User;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 用户业务处理层接口
  *
@@ -22,4 +25,6 @@ public interface UserService extends BaseService<User> {
      * @return
      */
     User login(User user);
+
+    List<User> pageQueryUser(Map<String,Object> paramMap);
 }

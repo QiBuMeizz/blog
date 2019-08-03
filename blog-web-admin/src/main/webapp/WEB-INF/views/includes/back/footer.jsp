@@ -76,12 +76,12 @@
 <script type="text/javascript">
     //<!CDATA[
     var bodyBgs = [];
-    bodyBgs[5] = "/static/assets/back/mp3/theFirstTown.mp3";
-    bodyBgs[4] = "/static/assets/back/mp3/swordland.mp3";
-    bodyBgs[2] = "/static/assets/back/mp3/ADAMAS.mp3";
-    bodyBgs[3] = "/static/assets/back/mp3/STYXHELIX.mp3";
-    bodyBgs[0] = "/static/assets/back/mp3/aLIEz.mp3";
-    bodyBgs[1] = "/static/assets/back/mp3/partytime.mp3";
-    var randomBgIndex = Math.round( Math.random() * 5 ); document.write('<audio src=\''+bodyBgs[randomBgIndex]+ '\'autoplay=\'autoplay\'></audio>');
+    // bodyBgs[5] = "/static/assets/back/mp3/theFirstTown.mp3";
+    // bodyBgs[4] = "/static/assets/back/mp3/swordland.mp3";
+    // bodyBgs[2] = "/static/assets/back/mp3/ADAMAS.mp3";
+    // bodyBgs[3] = "/static/assets/back/mp3/STYXHELIX.mp3";
+    // bodyBgs[0] = "/static/assets/back/mp3/aLIEz.mp3";
+    // bodyBgs[1] = "/static/assets/back/mp3/partytime.mp3";
+    // var randomBgIndex = Math.round( Math.random() * 5 ); document.write('<audio src=\''+bodyBgs[randomBgIndex]+ '\'autoplay=\'autoplay\'></audio>');
     //]]>
 </script>
