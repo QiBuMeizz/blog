@@ -10,4 +10,5 @@ package com.gw.blog.commons.validation;
 public abstract class BeanValidatorGroup {
     public interface InsertUser {}
     public interface UpdateUser {}
+    public interface DeleteUser {}
 }

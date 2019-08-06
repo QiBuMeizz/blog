@@ -1,7 +1,10 @@
 package com.gw.blog.commons.abstracts.entity;
 
+import com.gw.blog.commons.validation.BeanValidatorGroup;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 对象的id
      */
+    @NotNull(message = "id 不能为空", groups = {BeanValidatorGroup.DeleteUser.class})
     private Long id;
     /**
      * 更新时间

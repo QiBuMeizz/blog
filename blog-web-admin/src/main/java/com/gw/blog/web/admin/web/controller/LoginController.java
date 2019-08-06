@@ -30,7 +30,7 @@ public class LoginController extends BaseController<User, UserService> {
      * @param request
      * @return
      */
-    @GetMapping(value = "login")
+    @GetMapping(value = {"login",""})
     public String login(HttpServletRequest request, Model model){
         String cookieValue = CookieUtils.getCookieValue(request, Contents.COOKIE_USER);
 

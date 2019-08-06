@@ -38,7 +38,7 @@ public abstract class BasePageServiceImpl<T extends BasePageEntity,D extends Bas
         Integer count = dao.count(entity);
 
         //没有符合的数据
-        if (count == 0){
+        if (count == null || count == 0){
             return BaseResult.fail("敬请期待!!!");
         }
 

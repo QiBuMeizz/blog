@@ -23,6 +23,10 @@
             <bean class="com.gw.blog.web.admin.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
+            <mvc:mapping path="/back/admin/**"/>
+            <bean class="com.gw.blog.web.admin.web.interceptor.AdminMainInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
             <mvc:mapping path="/back/**"/>
             <bean class="com.gw.blog.web.admin.web.interceptor.MainInterceptor"/>
         </mvc:interceptor>

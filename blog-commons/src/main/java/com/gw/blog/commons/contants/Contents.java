@@ -20,4 +20,13 @@ public final class Contents {
      * 匹配 0 、1 正则表达式
      */
     public static final String ROLE_REGEXP = "^[01]{1}$";
+    /**
+     * 修改密码格式限制  正则
+     */
+    public static final String MODIFY_PASSWOED_REGEXP = "^[A-Za-z0-9]{0}$|^[A-Za-z0-9]{6,20}$";
+    public static final String UPDATE_USER_KEY = "updateUser";
+    /**
+     * 超级管理员id
+     */
+    public static final Long SUPER_ADMIN_USER_ID = 1L;
 }

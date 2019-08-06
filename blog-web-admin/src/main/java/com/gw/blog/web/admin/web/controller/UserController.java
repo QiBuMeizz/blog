@@ -4,15 +4,18 @@ import com.alibaba.fastjson.JSONObject;
 import com.gw.blog.commons.abstracts.BaseController;
 import com.gw.blog.commons.contants.Contents;
 import com.gw.blog.commons.dto.BaseResult;
+import com.gw.blog.commons.dto.Page;
 import com.gw.blog.domain.User;
 import com.gw.blog.web.admin.service.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +35,19 @@ public class UserController extends BaseController<User, UserService> {
     }
 
     //更新个人信息
-    @PostMapping(value = "save")
-    public String save(User user, RedirectAttributes redirectAttributes, HttpServletRequest request){
+    @PostMapping(value = {"save","admin/user/save"})
+    public String save(User user, RedirectAttributes redirectAttributes, HttpServletRequest request, Model model){
         User sessionUser = (User) request.getSession().getAttribute(Contents.SESSION_USER);
         LOG.info(sessionUser.getUsername() + " 用户操作 save() 更新用户信息，参数为 ===>> " + JSONObject.toJSONString(user));
         BaseResult result;
+        Boolean updateUserRole = user.getRole();
         //判断更新的信息是否当前登录用户
-        boolean isLoginUser = user != null && sessionUser.getUsername().equals(user.getUsername());
+        boolean isLoginUser = user != null && sessionUser.getId().equals(user.getId());
+
+        if (!Contents.SUPER_ADMIN_USER_ID.equals(sessionUser.getId())) {
+            //只有超级管理员才能更改角色
+            user.setRole(null);
+        }
 
         //管理员
         if (sessionUser.getRole()) {
@@ -48,8 +57,6 @@ public class UserController extends BaseController<User, UserService> {
         else {
             //不为管理员 当前登录用户不能更改用户名
             if (isLoginUser) {
-                //只有管理员才能更改角色
-                user.setRole(sessionUser.getRole());
                 result = service.save(user);
             }
             else {
@@ -57,6 +64,7 @@ public class UserController extends BaseController<User, UserService> {
             }
         }
 
+        user.setRole(updateUserRole);
         result.setData(user);
         if (BaseResult.STATUS_SUCCESS  == result.getStatus()) {
             if (isLoginUser) {
@@ -69,11 +77,67 @@ public class UserController extends BaseController<User, UserService> {
         else {
             redirectAttributes.addFlashAttribute(Contents.BASE_RESULT, result);
         }
+        String requestUrl = request.getRequestURL().toString();
+        LOG.info("save() 入口路径为" + requestUrl);
         LOG.info("save() 出口数据 ===>> " + JSONObject.toJSONString(result));
-        return "redirect:/back/info";
+        if (requestUrl.endsWith("/back/save")){
+            return "redirect:/back/info";
+        }
+        else {
+            if (BaseResult.STATUS_SUCCESS == result.getStatus()){
+                return "redirect:/back/admin/user/list";
+            }
+            model.addAttribute(Contents.BASE_RESULT, result);
+            return adminInfo(user,model);
+        }
     }
 
+    @RequestMapping(value = "/admin/user/list")
+    public String list(User user, Page page, Model model){
+        LOG.info("UserController 接口 list() 入口参数为 ===>> user=" + JSONObject.toJSONString(user) + ",page=" + JSONObject.toJSONString(page));
+        //分页列表
+        user.setPage(page);
 
+        //显示主页面
+        BaseResult baseResult = service.pageList(user);
+        model.addAttribute("user",user);
+        model.addAttribute("pageResult",baseResult);
+        return "back/admin/user/list";
+    }
+
+    /**
+     * 逻辑删除 用户
+     * @param user
+     * @param adminUsername
+     * @param adminPassword
+     * @return
+     */
+    @RequestMapping(value = "/admin/user/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult delete(User user, String adminUsername, String adminPassword, HttpServletRequest request) {
+        User sessionUser = (User) request.getSession().getAttribute(Contents.SESSION_USER);
+        if (sessionUser.getId().equals(user.getId())){
+            return BaseResult.fail("非法操作！！！");
+        }
+        user.setUsername(adminUsername);
+        user.setPassword(adminPassword);
+        BaseResult deleteResult = service.delete(user);
+        return deleteResult;
+    }
+
+    @GetMapping(value = "/admin/user/info")
+    public String adminInfo(User user, Model model){
+        model.addAttribute(Contents.UPDATE_USER_KEY,user);
+        return "back/admin/user/info";
+    }
+
+    @PostMapping("/admin/user/active")
+    @ResponseBody
+    public BaseResult active(User user){
+        user.setPassword(null);
+        BaseResult result = service.save(user);
+        return result;
+    }
 }
 
 

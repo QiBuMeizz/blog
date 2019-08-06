@@ -5,11 +5,11 @@
     <sql id="userColumns">
             a.id,
             a.username,
-            a.password,
             a.pic,
             a.email,
             a.phone,
             a.role,
+            a.status,
             a.created,
             a.updated
     </sql>
@@ -34,6 +34,9 @@
                 <if test="role != null and role != ''">
                     role=#{role},
                 </if>
+                <if test="status != null">
+                    status=#{status},
+                </if>
                     updated=#{updated}
         WHERE
             id=#{id}
@@ -41,39 +44,83 @@
 
     <select id="getByLoginId" resultType="User">
         SELECT
-          <include refid="userColumns"/>
+          <include refid="userColumns"/> ,
+           a.password
         FROM
           user AS a
         WHERE
           a.username = #{username}
+          AND a.status = '1';
     </select>
 
     <select id="selectById" resultType="User">
         SELECT
-        <include refid="userColumns"/>
+          <include refid="userColumns"/>
         FROM
         user AS a
         WHERE
         a.id = #{id}
     </select>
 
-    <select id="pageQueryUser" resultType="com.gw.blog.domain.User">
+    <select id="pageList" resultType="com.gw.blog.domain.User">
         SELECT
           <include refid="userColumns"/>
         FROM
           user AS a
         <where>
-            <if test="paramMap.user.username != null and paramMap.user.username != ''">
-                a.username LIKE CONCAT('%',#{paramMap.user.username},'%'),
+            <if test="username != null and username != ''">
+              AND  a.username LIKE CONCAT('%',#{username},'%')
             </if>
-            <if test="paramMap.user.phone != null and paramMap.user.phone != ''">
-                a.phone LIKE CONCAT('%',#{paramMap.user.phone},'%'),
+            <if test="phone != null and phone != ''">
+              AND  a.phone LIKE CONCAT('%',#{phone},'%')
             </if>
-            <if test="paramMap.user.email != null and paramMap.user.email != ''">
-                a.email LIKE CONCAT('%',#{paramMap.user.email},'%')
+            <if test="email != null and email != ''">
+              AND a.email LIKE CONCAT('%',#{email},'%')
             </if>
         </where>
         ORDER BY a.updated DESC
-        LIMIT #{paramMap.start},#{paramMap.pageSize}
+        <if test="page!=null">
+            LIMIT #{page.start},#{page.size};
+        </if>
     </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT
+            COUNT(1)
+        FROM
+        user AS a
+        <where>
+            <if test="username != null and username != ''">
+              AND  a.username LIKE CONCAT('%',#{username},'%')
+            </if>
+            <if test="phone != null and phone != ''">
+              AND  a.phone LIKE CONCAT('%',#{phone},'%')
+            </if>
+            <if test="email != null and email != ''">
+              AND a.email LIKE CONCAT('%',#{email},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" >
+        INSERT INTO user (
+          username,
+          password,
+          pic,
+          email,
+          phone,
+          role,
+          created,
+          updated
+        )VALUES (
+          #{username},
+          #{password},
+          #{pic},
+          #{email},
+          #{phone},
+          #{role},
+          #{created},
+          #{updated}
+        )
+    </insert>
 </mapper>

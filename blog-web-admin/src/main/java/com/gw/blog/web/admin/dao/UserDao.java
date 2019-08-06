@@ -1,6 +1,7 @@
 package com.gw.blog.web.admin.dao;
 
 import com.gw.blog.commons.abstracts.BaseDao;
+import com.gw.blog.commons.abstracts.BasePageDao;
 import com.gw.blog.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ import java.util.Map;
  * @Version : 1.0.0
  */
 @Repository
-public interface UserDao extends BaseDao<User> {
+public interface UserDao extends BasePageDao<User> {
 
 
     /**
@@ -27,8 +28,6 @@ public interface UserDao extends BaseDao<User> {
      * @return
      */
     User getByLoginId(User user);
-
-    List<User> pageQueryUser(@Param("paramMap") Map<String,Object> paramMap);
 }
 
 

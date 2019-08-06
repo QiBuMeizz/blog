@@ -37,8 +37,8 @@
 <script type="text/javascript">
     //<!CDATA[
     var bodyBgs = [];
-    bodyBgs[0] = "/static/assets/back/mp3/onj001.mp3";
-    var randomBgIndex = Math.round( Math.random() * 1 ); document.write('<audio src=\''+bodyBgs[randomBgIndex]+ '\'autoplay=\'autoplay\'></audio>');
+    // bodyBgs[0] = "/static/assets/back/mp3/onj001.mp3";
+    // var randomBgIndex = Math.round( Math.random() * 1 ); document.write('<audio src=\''+bodyBgs[randomBgIndex]+ '\'autoplay=\'autoplay\'></audio>');
     //]]>
 </script>
 <script>
