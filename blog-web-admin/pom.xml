@@ -19,10 +19,6 @@
         <!--Project Begin-->
         <dependency>
             <groupId>com.gw</groupId>
-            <artifactId>blog-commons</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.gw</groupId>
             <artifactId>blog-domain</artifactId>
         </dependency>
         <!--Project End-->

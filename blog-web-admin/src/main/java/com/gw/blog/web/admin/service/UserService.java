@@ -2,6 +2,7 @@
 package com.gw.blog.web.admin.service;
 
 import com.gw.blog.commons.abstracts.BasePageService;
+import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.domain.User;
 
 /**
@@ -13,8 +14,6 @@ import com.gw.blog.domain.User;
  * @Version : 1.0.0
  */
 public interface UserService extends BasePageService<User> {
-
-
 
     /**
      * 登录

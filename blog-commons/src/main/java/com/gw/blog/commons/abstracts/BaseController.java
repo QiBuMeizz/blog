@@ -6,13 +6,11 @@ import com.gw.blog.commons.dto.BaseResult;
 import com.gw.blog.commons.validation.BeanValidator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.lang.reflect.ParameterizedType;
-import java.util.List;
 
 public abstract class BaseController<T extends BaseEntity,S extends BaseService<T>> {
 

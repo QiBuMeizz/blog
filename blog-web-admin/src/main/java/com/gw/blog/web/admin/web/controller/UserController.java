@@ -42,7 +42,7 @@ public class UserController extends BaseController<User, UserService> {
         BaseResult result;
         Boolean updateUserRole = user.getRole();
         //判断更新的信息是否当前登录用户
-        boolean isLoginUser = user != null && sessionUser.getId().equals(user.getId());
+        boolean isLoginUser = sessionUser.getId().equals(user.getId());
 
         if (!Contents.SUPER_ADMIN_USER_ID.equals(sessionUser.getId())) {
             //只有超级管理员才能更改角色
@@ -97,7 +97,6 @@ public class UserController extends BaseController<User, UserService> {
         LOG.info("UserController 接口 list() 入口参数为 ===>> user=" + JSONObject.toJSONString(user) + ",page=" + JSONObject.toJSONString(page));
         //分页列表
         user.setPage(page);
-
         //显示主页面
         BaseResult baseResult = service.pageList(user);
         model.addAttribute("user",user);
