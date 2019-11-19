@@ -76,8 +76,9 @@
                                     <td>${user.status == 1 ? "有效" : "已删除"}</td>
                                     <td><fmt:formatDate value="${user.updated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                     <td>
-                                        <a type="button" href="/back/admin/user/info?id=${user.id}"
-                                           class="btn blue btn-outline"><i class="fa fa-edit">编辑</i></a>
+                                        <button onclick="location.href='/back/admin/user/info?id=${user.id}'"
+                                           class="btn blue btn-outline" ${user.id == 1 && user.id != sessionScope.user.id ? 'disabled' : ''}>
+                                            <i class="fa fa-edit" >编辑</i></button>
                                         <button class="btn btn-outline ${user.id == 1 || user.id == sessionScope.user.id ? 'grey' : 'red '} ${user.status == 1 ? '' : 'hidden'}" data-toggle="modal" data-target="#modifyUserConfirm"
                                                 onclick="setDeleteModalValue('${user.id}','${user.username}')" ${user.id == 1 || user.id == sessionScope.user.id ? 'disabled' : ''}>
                                             <i class="fa fa-trash">删除</i></button>

@@ -44,14 +44,19 @@ public class UserController extends BaseController<User, UserService> {
         //判断更新的信息是否当前登录用户
         boolean isLoginUser = sessionUser.getId().equals(user.getId());
 
-        if (!Contents.SUPER_ADMIN_USER_ID.equals(sessionUser.getId())) {
-            //只有超级管理员才能更改角色
+        if (!Contents.SUPER_ADMIN_USER_ID.equals(sessionUser.getId()) || Contents.SUPER_ADMIN_USER_ID.equals(user.getId())) {
+            //只有超级管理员才能更改角色,但是超级管理员不能更改自己的角色
             user.setRole(null);
         }
 
         //管理员
         if (sessionUser.getRole()) {
-            result = service.save(user);
+            if (Contents.SUPER_ADMIN_USER_ID.equals(user.getId()) && !Contents.SUPER_ADMIN_USER_ID.equals(sessionUser.getId())){
+                //更改超级管理员的信息，当前登录用户并非管理员则不能操作
+                result = BaseResult.fail("无权限进行此操作");
+            }else {
+                result = service.save(user);
+            }
         }
         //非管理员
         else {

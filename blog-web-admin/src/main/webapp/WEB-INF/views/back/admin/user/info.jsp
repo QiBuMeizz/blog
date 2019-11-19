@@ -53,14 +53,14 @@
                         </div>
                         <br>
                         <div class="form-group form-md-line-input">
-                            <select name="role" class="form-control" id="role" ${updateUser.id != null && updateUser.id == 1 ? '' : 'disabled'}>
+                            <select name="role" class="form-control" id="role" ${sessionScope.user.id != null && sessionScope.user.id == 1 && updateUser.id != 1 ? '' : 'disabled'}>
                                 <option value="0">普通用户</option>
-                                <option ${updateUser.role ? 'selected' : ''} value="1">管理员</option>
+                                <option ${updateUser.role ? 'selected' : ''} value="1">${updateUser.id == 1 ? "超级" : ""}管理员</option>
                             </select>
                             <label for="role">角色</label>
                         </div>
                         <br>
-                        <div class="form-group form-md-line-input">
+                        <div class="form-group form-md-line-input ${updateUser.id == null ? 'hidden':''}">
                             <input type="text" class="form-control"
                                    value="<fmt:formatDate value="${updateUser.updated}" pattern="yyyy-MM-dd HH:mm:ss"/>"
                                    readonly>
@@ -84,7 +84,11 @@
 </div>
 <%@include file="../../../includes/back/metronij.jsp"%>
 
-
+<script type="text/javascript">
+    $(function () {
+        // console.log()
+    })
+</script>
 
 </body>
 </html>
