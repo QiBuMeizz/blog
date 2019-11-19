@@ -1,10 +1,8 @@
 package com.gw.blog.web.admin.service.impl;
 
 import com.gw.blog.commons.abstracts.impl.BasePageServiceImpl;
-import com.gw.blog.commons.abstracts.impl.BaseServiceImpl;
 import com.gw.blog.commons.contants.Contents;
 import com.gw.blog.commons.dto.BaseResult;
-import com.gw.blog.commons.dto.Page;
 import com.gw.blog.commons.validation.BeanValidator;
 import com.gw.blog.commons.validation.BeanValidatorGroup;
 import com.gw.blog.domain.User;
@@ -13,8 +11,6 @@ import com.gw.blog.web.admin.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
-
-import java.util.List;
 
 
 /**

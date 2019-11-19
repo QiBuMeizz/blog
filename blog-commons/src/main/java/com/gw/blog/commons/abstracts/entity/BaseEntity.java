@@ -3,7 +3,6 @@ package com.gw.blog.commons.abstracts.entity;
 import com.gw.blog.commons.validation.BeanValidatorGroup;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;

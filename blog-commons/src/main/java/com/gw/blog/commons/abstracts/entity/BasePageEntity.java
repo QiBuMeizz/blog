@@ -10,5 +10,5 @@ public class BasePageEntity extends BaseEntity {
     /**
      * 分页
      */
-    private Page page;
+    protected Page page;
 }
