@@ -32,7 +32,7 @@
         <druid.version>1.1.12</druid.version>
         <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
         <persistence-api.version>1.0.2</persistence-api.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <javax.el.version>3.0.0</javax.el.version>
         <el-impl.version>2.2</el-impl.version>
         <jstl.version>1.2</jstl.version>
